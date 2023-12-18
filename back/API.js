@@ -35,9 +35,9 @@ async function main() {
                 console.log(`Ajout de la carte ${card.name} à la base de données`);
             }
 
-            const query = `INSERT INTO Carte (id_carte, nom, type, image, image_cropped, image_petite, race, archetype, id_carte_konami, attaque, defense, etoiles, attribut, cardmarket_price, tcgplayer_price, ebay_price, amazon_price, set_nom, set_rarete) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const query = `INSERT INTO Carte (nom, type, image, image_cropped, image_petite, race, archetype, id_carte_konami, attaque, defense, etoiles, attribut, cardmarket_price, tcgplayer_price, ebay_price, amazon_price, set_nom, set_rarete) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
             const queryParams = [
-                card.id, card.name, card.type, cardImage.image_url, cardImage.image_url_cropped, cardImage.image_url_small,
+                card.name, card.type, cardImage.image_url, cardImage.image_url_cropped, cardImage.image_url_small,
                 card.race, card.archetype, card.id, card.atk, card.def, card.level, card.attribute,
                 cardPrice.cardmarket_price, cardPrice.tcgplayer_price, cardPrice.ebay_price, cardPrice.amazon_price,
                 cardSet.set_name, cardSet.set_rarity
