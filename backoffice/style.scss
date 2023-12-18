@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+
+    .page-sct {
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+
+        .navbar-sct {
+            position: absolute;
+            top: 0;
+            height: 15vh;
+            width: 100vw;
+            display: flex;
+
+            .logo-sct {
+                width: 100vw;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+        }
+
+        .panel-sct {
+            position: absolute;
+            margin-top: 15vh;
+            height: 85vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .log-sct {
+                height: 70vh;
+                width: 70vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+
+                .input-sct {
+                    width: 90%;
+                    height: 75%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+
+                    .user-sct {
+                        display: flex;
+                        flex-direction: column;
+                        height: auto;
+                        align-items: center;
+
+                        label {
+    
+                        }
+    
+                        input {
+    
+                        }
+
+                    }
+
+                    .pwd-sct {
+                        display: flex;
+                        flex-direction: column;
+                        height: auto;
+                        align-items: center;
+
+                        label {
+    
+                        }
+    
+                        input {
+    
+                        }
+
+                    }
+
+                }
+
+                .submit-sct {
+                    height: 25%;
+                    input {
+
+                    }
+                }
+            }
+
+            .home-sct {
+                height: 100%;
+                width: 100%;
+                display: flex;
+
+                .left-btn {
+                    height: 100%;
+                    width: 10%;
+                }
+                .content-sct {
+                    height: 100%;
+                    width: 80%;
+                }
+                .right-btn {
+                    height: 100%;
+                    width: 10%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center ;
+
+                    #r_chev {
+                        // background-color: green;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+}

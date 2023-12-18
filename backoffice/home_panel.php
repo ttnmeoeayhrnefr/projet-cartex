@@ -1,21 +1,27 @@
-<div class="page-sct">
-    <div class="navbar-sct">
-        <div class="logo-sct">
-            <h1>AdminPanel</h1>
-        </div>
-        <div class="btn-sct">
-            <h3>Gestion utilisateurs</h3>
-            <h3>Gestion cartes</h3>
-        </div>
-        <div class="search-sct">
-            <input type="search" name="searchbar" id="searchbar">
-        </div>
-    </div>
-    <div class="panel-sct">
-        <div class="welcome-sct">
-            <h2>
-                Bonjour Administrateur !
-            </h2>
-        </div>
-    </div>
-</div>
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home - AdminPanel</title>
+        <link rel="stylesheet" href="style.scss">
+    </head>
+    <body>
+        <div class="page-sct">
+            <div class="navbar-sct">
+                <div class="logo-sct">
+                    <h1>Panneau d'administration</h1>
+                </div>
+            </div>
+            <div class="panel-sct">
+                <div class="home-sct">
+                    <div class="left-btn"></div>
+                    <div class="content-sct"></div>
+                    <div class="right-btn">
+                        <img src="assets/r_chevron.svg" alt="right button" id="r_chev">
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </body>
+</html>
