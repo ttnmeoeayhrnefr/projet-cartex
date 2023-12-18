@@ -8,7 +8,7 @@ export default function Infos() {
             </div>
             <div className="describe">
                 <span>Dans le cadre de notre 2ème année de Prépa Bachelor, nous devons réaliser un marketplace de carte Yu-Gi-Oh!.
-                    Dans celui ci, nous devions faire en sorte d'avoir un marketplace avec toutes les cartes disponibles dans notre$
+                    Dans celui ci, nous devions faire en sorte d'avoir un marketplace avec toutes les cartes disponibles dans notre
                     base de données. L'utilisateur doit également pouvoir créer, modifier ainsi que supprimer ses cartes. Il doit
                     également y avoir un système de filtre afin de simplifier les recherches et l'ergonomie du site web.
                 </span>
