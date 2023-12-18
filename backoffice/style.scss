@@ -103,10 +103,89 @@ body {
                 .left-btn {
                     height: 100%;
                     width: 10%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center ;
+
+                    #l_chev1 {
+                        opacity: 0.3;
+                        height: 6vh;
+                        width: 6vh;
+                    }
+
+                    #l_chev2 {
+                        opacity: 1;
+                        height: 6vh;
+                        width: 6vh;
+                    }
+
+                    #l_chev3 {
+                        opacity: 1;
+                        height: 6vh;
+                        width: 6vh;
+                    }
                 }
                 .content-sct {
                     height: 100%;
                     width: 80%;
+
+                    .message-sct {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-evenly;
+
+                        .title-sct {
+                            #Wlc {
+                                font-weight: 200;
+                                font-size: 6vh;
+                            }
+
+                        }
+
+                        .text-sct {
+                            #Txt {
+                                font-size: 2.5vh;
+                            }
+
+                        }
+                    }
+
+                    .user-sct {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-evenly;
+
+                        .title-sct {
+                            height: 15%;
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            
+                            #Usr {
+                                font-weight: 200;
+                                font-size: 6vh;
+                            }
+                        }
+
+                        .gest-sct {
+                            height: 85%;
+                            width: 100% ;
+                            background-color: pink;
+
+                            .template {
+                               background-color: red;
+                               height: 100%;
+                               width: 100%; 
+                            }
+                        }
+                    }
                 }
                 .right-btn {
                     height: 100%;
@@ -115,8 +194,23 @@ body {
                     justify-content: center;
                     align-items: center ;
 
-                    #r_chev {
+                    #r_chev1 {
+                        opacity: 1;
+                        height: 6vh;
+                        width: 6vh;
                         // background-color: green;
+                    }
+
+                    #r_chev2 {
+                        opacity: 1;
+                        height: 6vh;
+                        width: 6vh;
+                    }
+
+                    #r_chev3 {
+                        opacity: 0.3;
+                        height: 6vh;
+                        width: 6vh;
                     }
                 }
 

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home - AdminPanel</title>
+        <title>User - AdminPanel</title>
         <link rel="stylesheet" href="style.scss">
     </head>
     <body>
@@ -16,26 +16,22 @@
             <div class="panel-sct">
                 <div class="home-sct">
                     <div class="left-btn">
-                        <img src="assets/l_chevron.svg" alt="left button" id="l_chev1">
+                        <img src="assets/l_chevron.svg" alt="left button" id="l_chev2">
                     </div>
                     <div class="content-sct">
-                        <div class="message-sct">
+                        <div class="user-sct">
                             <div class="title-sct">
-                                <h2 id="Wlc">
-                                    Bienvenue Administrateur !  
+                                <h2 id="Usr">
+                                    Gestion utilisateurs  
                                 </h2>
                             </div>
-                            <div class="text-sct">
-                                <p id="Txt">
-                                    Appuyer sur les flèches sur les côtés de l'écran pour parcourir les différentes sections. 
-                                    </br>
-                                    Vous pourrez effectuer la gestion de la base de données comprenant les utilisateurs ainsi que les différentes cartes.   
-                                </p>
+                            <div class="gest-sct">
+                                <div class="template"></div>
                             </div>
                         </div>
                     </div>
                     <div class="right-btn">
-                        <img src="assets/r_chevron.svg" alt="right button" id="r_chev1">
+                        <img src="assets/r_chevron.svg" alt="right button" id="r_chev2">
                     </div>
                 </div>
             </div>
