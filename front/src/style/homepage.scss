@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 3rem;
     
     .left {
         height: 80%;
@@ -44,6 +45,35 @@
     .right {
         height: 100%;
         width: 35vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .imgtop {
+            height: 20rem;
+            width: auto;
+            display: flex;
+            justify-content: center;
+
+        }
+        
+        .imgbot {
+            margin-top: -5rem;
+            width: auto;
+            height: 20rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        img {
+            height: 20rem;
+            border-radius: 5px;
+            transition: all .3s ease-in-out;
+
+            &:hover {
+                transform: rotate(5deg) scale(1.05);
+            }
+        }
     }
 }
 
@@ -52,7 +82,7 @@
     height: 60vh;
 
     .title {
-        margin-left: 2rem;
+        margin-left: 5rem;
     }
 
     .container {
@@ -84,31 +114,140 @@
     width: 100vw;
     height: 15rem;
 
-    .title {
-        margin-left: 2rem;
-    }
-
     .btn {
         width: 100vw;
         height: 10rem;
         display: flex;
         justify-content: center;
 
-        span {
+        a {
             background-color: var(--color-btn);
-            height: 4rem;
+            height: 3rem;
             width: 15rem;
             margin-top: 2rem;
             border-radius: 4rem;
             display: grid;
             place-items: center;
-            font-size: 1.8rem;
-            text-transform: uppercase;
+            font-size: 1.4rem;
             cursor: pointer;
             color: var(--color-black);
 
             &:hover {
                 transform: scale(1.01);
+            }
+        }
+    }
+}
+
+.licences {
+    width: 100vw;
+    height: 15rem;
+
+    h1, .img {
+        margin-left: 5rem;
+    }
+}
+
+.box-bot {
+    height: auto;
+    width: 100vw;
+    
+    .container {
+        background-color: var(--color-container);
+        margin: 2rem 15rem;
+        width: auto;
+        height: 25rem;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .text {
+            height: 100%;
+            width: 40%;
+            margin-left: 3rem;
+            padding: 2rem;
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        .img {
+            height: 100%;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 2rem;
+
+            img {
+                height: 20rem;
+                margin-left: 2rem;
+                border-radius: 5px
+            }
+        }
+    }
+}
+
+.box-bottom {
+    position: relative;
+    height: auto;
+    width: 100vw;
+
+    .container {
+        background-color: var(--color-yellow);
+        margin: 15rem 15rem 2rem 15rem;
+        width: auto;
+        height: 15rem;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .text {
+            height: 100%;
+            width: 40%;
+            margin-left: 3rem;
+            padding: 2rem;
+        }
+
+        .btn {
+            height: 3rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            span, a {
+                height: 100%;
+                width: 8rem;
+                border-radius: 2rem;
+                display: grid;
+                place-items: center;
+                cursor: pointer;
+            }
+            
+            .btn1 {
+                background-color: var(--color-btn);
+                color: var(--color-black);
+            }
+
+            .btn2 {
+                background-color: var(--color-black);
+            }
+
+        }
+        .img {
+            position: absolute;
+            height: 25rem;
+            right: 22rem;
+            top: 2rem;
+
+            img {
+                height: 100%;
+                border-radius: 5px;
             }
         }
     }

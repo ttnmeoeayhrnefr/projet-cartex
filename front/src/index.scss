@@ -8,6 +8,7 @@ body {
   color: var(--color-font);
   font-family: 'Roboto', sans-serif;
   background-color: var(--color-bg);
+  cursor: default;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -26,6 +27,7 @@ body {
 
 :root {
   --color-black: #070707;
+  --color-navbar: #0707077e;
   --color-bg: #212121;
   --color-bg-box: #484848;
   --color-font: #fff;
@@ -33,6 +35,7 @@ body {
   --color-inner-btn: #6a6a6a;
   --color-hover-btn: #5d5d5d;
   --color-yellow: #f3d987;
+  --color-container: #303030;
 }
 
 a {
