@@ -9,19 +9,15 @@ export default function Homepage() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Incrémente l'index, revient à zéro s'il atteint la fin
       setCurrentIndex((prevIndex) => (prevIndex + 1) % (totalCards - cardsPerPage + 1));
-    }, 3000); // Changer la durée selon vos besoins
+    }, 1000);
 
-    // Nettoie l'intervalle lors du démontage du composant
     return () => clearInterval(interval);
-  }, [currentIndex]); // Déclenche l'effet chaque fois que l'index change
-
+  }, [currentIndex]);
   const visibleCards = Array.from({ length: cardsPerPage }, (_, index) => {
     const cardIndex = (currentIndex + index) % totalCards;
     return (
       <div key={cardIndex} className="cards">
-        {/* Contenu de la carte */}
         <p>Card {cardIndex + 1}</p>
       </div>
     );
