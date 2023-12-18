@@ -1,5 +1,56 @@
 .content {
     height: auto;
     width: 100vw;
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &::-webkit-scrollbar {
+        width: 15px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-primary);
+        border-radius: 10px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: var(--color-hover-btn);
+        border-radius: 10px;
+    }
+
+    .navbar {
+        background-color: var(--color-black);
+        width: 100vw;
+        height: 9vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.3rem;
+
+        .link {
+            width: 30vw;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .register {
+            background-color: var(--color-btn);
+            height: 5vh;
+            width: 9vw;
+            border-radius: 2rem;
+            display: grid;
+            place-items: center;
+            font-size: 1.1rem;
+            color: var(--color-black);
+            cursor: pointer;
+        }
+
+        .logo {
+            height: 5vh;
+            width: 9vw;
+            display: grid;
+            place-items: center;
+        }
+    }
 }
