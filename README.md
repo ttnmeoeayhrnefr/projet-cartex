@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Bonjour,
 
 Ceci est notre rendu de projet CarteX.
@@ -39,3 +40,6 @@ La commande précédente devrait vous ressortir "vXX.X.X" où X correspond à un
 TODO DB
 
 Merci à notre école Ipssi Paris ainsi qu'à monsieur Maxime OUDOT et madame Laetitia PINTO pour l'opportunité de réaliser ce projet dans le cadre de notre apprentissage.
+=======
+# projet carteX
+>>>>>>> d9906838ab9667fbd437b62986ae1ffe5db50b8b
