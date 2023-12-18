@@ -9,7 +9,7 @@ const port = process.env.PORT || 3001;
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    database: process.env.DB_DATABASE,
+    database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PWD,
 });

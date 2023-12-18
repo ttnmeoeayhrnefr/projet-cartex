@@ -1,12 +1,13 @@
 const axios = require('axios');
 const mariadb = require('mariadb');
+require('dotenv').config();
 
 const pool = mariadb.createPool({
-    host: "127.0.0.1",
-    port: "3306",
-    database: "ProjetCarteX",
-    user: "ProjetCarteX",
-    password: "ProjetCarteX",
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
 });
 
 const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
