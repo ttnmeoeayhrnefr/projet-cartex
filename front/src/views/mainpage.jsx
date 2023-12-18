@@ -16,7 +16,7 @@ export default function Mainpage() {
                     <Link to='/Infos'>Infos</Link>
                 </div>
                 <div className="register">
-                    <span>Register</span>
+                    <span>Inscription</span>
                 </div>
             </div>
             <div className="container">
