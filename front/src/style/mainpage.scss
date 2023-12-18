@@ -20,7 +20,8 @@
     }
 
     .navbar {
-        background-color: var(--color-black);
+        position: fixed;
+        background-color: var(--color-navbar);
         width: 100vw;
         height: 9vh;
         display: flex;
