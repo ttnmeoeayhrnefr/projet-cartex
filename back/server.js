@@ -4,12 +4,12 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 require("dotenv").config();
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.DB_PORT || 3001;
 
 const pool = mariadb.createPool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
-  database: process.env.DB_DATABASE,
+  database: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PWD,
 });
@@ -77,15 +77,15 @@ app.post("/utilisateurs", async (req, res) => {
   let conn;
   try {
     bcrypt
-      .hash(req.body.mot_de_passe, 10)
+      .hash(req.body.mdp, 10)
       .then(async (hash) => {
-        console.log("lancement de la console");
+        console.log("lancement de la requete POST");
         conn = await pool.getConnection();
-        console.log("lancement de la requête");
+        console.log("lancement de la POST");
         console.log(req.body);
         let requete =
-          "INSERT INTO utilisateurs (`pseudo`, `mdp`) VALUES (?, ?)";
-        let rows = await conn.query(requete, [req.body.nom_utilisateur, hash]);
+          "INSERT INTO utilisateur (pseudo, mdp) VALUES (?, ?)";
+        let rows = await conn.query(requete, [req.body.pseudo, hash]);
         console.log(rows);
         res.status(200).json("L'ajout d'utilisateur a bien été effectué");
       })
