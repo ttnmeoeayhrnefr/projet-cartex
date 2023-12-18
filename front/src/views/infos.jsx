@@ -20,32 +20,36 @@ export default function Infos() {
                         <div className="img"></div>
                         <div className="name">
                             <p>ROMERO Raphaël</p>
-                            <p>Ecole IPSSI</p>
+                            <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
+                            <a href="https://github.com/RaphTPLR"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
                         </div>
                     </div>
                     <div id="container-colab">
                         <div className="img"></div>
                         <div className="name">
                             <p>KORZENIOWSKI Rémi</p>
-                            <p>Ecole IPSSI</p>
+                            <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
+                            <a href="https://github.com/Korzeremi"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
                         </div>
                     </div>
                     <div id="container-colab">
                         <div className="img"></div>
                         <div className="name">
                             <p>DO Alexandre</p>
-                            <p>Ecole IPSSI</p>
+                            <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
+                            <a href="https://github.com/Purplezer"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
                         </div>
                     </div>
                     <div id="container-colab">
                         <div className="img"></div>
                         <div className="name">
                             <p>MENANT--FERRY Théo</p>
-                            <p>Ecole IPSSI</p>
+                            <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
+                            <a href="https://github.com/ttnmeoeayhrnefr"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
                         </div>
                     </div>
                 </div>
