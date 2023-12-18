@@ -7,3 +7,11 @@ node_modules
 .env
 .env.local
 .env.storage.local
+
+/src/.env
+/src/.env.local
+/src/.env.storage.local
+
+src/.env
+src/.env.local
+src/.env.storage.local
