@@ -15,7 +15,7 @@ const pool = mariadb.createPool({
 });
 
 
-const saveCardDataToDatabase = async (cardData) => {
+const addCardToDatabase = async (cardData) => {
     let conn;
     try {
       conn = await pool.getConnection();
@@ -60,17 +60,13 @@ app.get('/', (req, res) => {
     res.json('Hello la Team!');
 });
 
-app.post('/addCard', async (req, res) => {
-    const cardData = req.body;
-  
-    try {
-      const insertedCardId = await saveCardDataToDatabase(cardData);
-      res.status(201).json({ insertedCardId });
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout de la carte à la base de données : ', error);
-      res.status(500).json({ error: 'Erreur Serveur' });
-    }
-  });
+app.post('/addCard', (req, res) => {
+  const cardData = req.body;
+  // Logique pour ajouter la carte à la base de données
+  addCardToDatabase(cardData);
+  res.json({ message: 'Carte ajoutée avec succès.' });
+});
+
 
 
   
