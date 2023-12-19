@@ -4,14 +4,14 @@ import { useState } from "react";
 
 export default function Register() {
   const [pseudo, set_pseudo] = useState("");
-  const [mot_de_passe, set_mot_de_passe] = useState("");
+  const [mdp, set_mdp] = useState("");
 
-  const handleRegister = async (event) => {
+  const register = async (event) => {
     event.preventDefault();
 
     const nouveau_utilisateur = {
       pseudo: pseudo,
-      mot_de_passe: mot_de_passe,
+      mdp: mdp,
     };
 
     try {
@@ -25,8 +25,8 @@ export default function Register() {
       if (response.ok) {
         console.log("Utilisateur ajouté avec succès");
         set_pseudo("");
-        set_mot_de_passe("");
-        window.location.href = "/"; //Redirection vers la page d'accueil
+        set_mdp("");
+        window.location.href = "/";
       } else {
         console.log("Erreur lors de l'ajout de l'utilisateur");
       }
@@ -38,7 +38,7 @@ export default function Register() {
   return (
     <div className="register">
       <h1>Register</h1>
-      <form onSubmit={handleRegister}>
+      <form onSubmit={register}>
         <label htmlFor="pseudo">Pseudo</label>
         <input
           type="text"
@@ -47,12 +47,12 @@ export default function Register() {
           onChange={(e) => set_pseudo(e.target.value)}
         />
 
-        <label htmlFor="mot_de_passe">Mot de passe</label>
+        <label htmlFor="mdp">Mot de passe</label>
         <input
           type="text"
-          id="mot_de_passe"
-          value={mot_de_passe}
-          onChange={(e) => set_mot_de_passe(e.target.value)}
+          id="mdp"
+          value={mdp}
+          onChange={(e) => set_mdp(e.target.value)}
         />
 
         <button type="submit">S'inscrire</button>
