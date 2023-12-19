@@ -4,47 +4,29 @@ import { Link} from 'react-router-dom'
 import axios from 'axios';
 
 export default function Homepage() {
-//     const totalCards = 10;
-//   const cardsPerPage = 6;
-  const [cards, setCards] = useState([]);
-
-//   const [currentIndex, setCurrentIndex] = useState(0);
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrentIndex((prevIndex) => (prevIndex + 1) % (totalCards - cardsPerPage + 1));
-//     }, 1000);
-
-//     return () => clearInterval(interval);
-//   }, [currentIndex]);
-
-  useEffect(() => {
-    const fetchRandomCards = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/cartes/random/random');
-        setCards(response.data);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des cartes', error);
-      }
-    };
-
-    fetchRandomCards();
-  }, []);
-
-//   const visibleCards = Array.from({ length: cardsPerPage }, (_, index) => {
-//     const cardIndex = (currentIndex + index) % totalCards;
-//     return (
-//       <div key={cardIndex} className="cards">
-//         <p>Card {cardIndex + 1}</p>
-//       </div>
-//     );
-//   });
-
-  const cardComponents = cards.map((card, index) => (
-    <div key={index} className="cards">
-      <img src={card.image} alt={`Card ${index + 1}`} />
-    </div>
-    ));
+    const [cards, setCards] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+  
+    useEffect(() => {
+      const fetchRandomCards = async () => {
+        try {
+          const response = await axios.get('http://localhost:3001/cartes/random/random');
+          setCards(response.data.slice(0, 15));
+        } catch (error) {
+          console.error('Erreur lors de la récupération des cartes', error);
+        }
+      };
+  
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % (15 - 6 + 1));
+      }, 1000);
+  
+      fetchRandomCards();
+  
+      return () => {
+        clearInterval(interval);
+      };
+    }, []); 
 
     return (
         <div className="content">
@@ -77,7 +59,11 @@ export default function Homepage() {
                     <h1>Rechercher</h1>
                 </div>
                 <div className="container">
-                    {cardComponents}
+                {cards.slice(currentIndex, currentIndex + 6).map((card, index) => (
+                    <div key={card.id_carte} className="cards">
+                        <img src={card.image} alt={card.nom} />
+                    </div>
+                ))}
                 </div>
             </div>
             <div className="marketplace-hook">
