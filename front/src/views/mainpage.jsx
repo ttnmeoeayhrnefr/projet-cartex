@@ -17,13 +17,13 @@ export default function Mainpage() {
           <Link to="/Marketplace">Marketplace</Link>
           <Link to="/Infos">Infos</Link>
         </div>
-        <div className="register">
-          <Link to="/Register" className="Link">Inscription</Link>
-        </div>
-        <div className="connect">
-          <Link to="/Connect" className="Link">
-            Connect
-          </Link>
+        <div className="acc-btn">
+          <div className="register">
+            <Link to="/Register" className="Link">Inscription</Link>
+          </div>
+          <div className="connect">
+            <Link to="/Connect" className="Link">Connexion</Link>
+          </div>
         </div>
       </div>
       <div className="container">

@@ -35,7 +35,13 @@
             justify-content: space-between;
         }
 
-        .register {
+        .acc-btn {
+            display: flex;
+            width: 20vw;
+            justify-content: space-between;
+        }
+
+        .register, .connect {
             background-color: var(--color-primary);
             height: 5vh;
             width: 9vw;
@@ -52,7 +58,7 @@
 
         .logo {
             height: 5vh;
-            width: 9vw;
+            width: 20vw;
             display: grid;
             place-items: center;
             font-family: 'Beau Rivage', cursive;
