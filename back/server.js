@@ -73,6 +73,7 @@ app.post("/addCard", async (req, res) => {
   }
 });
 
+// CRUD UTILISATEUR
 app.post("/utilisateurs", async (req, res) => {
   let conn;
   try {
@@ -83,8 +84,7 @@ app.post("/utilisateurs", async (req, res) => {
         conn = await pool.getConnection();
         console.log("lancement de la POST");
         console.log(req.body);
-        let requete =
-          "INSERT INTO utilisateur (pseudo, mdp) VALUES (?, ?)";
+        let requete = "INSERT INTO utilisateur (pseudo, mdp) VALUES (?, ?)";
         let rows = await conn.query(requete, [req.body.pseudo, hash]);
         console.log(rows);
         res.status(200).json("L'ajout d'utilisateur a bien été effectué");
@@ -92,6 +92,111 @@ app.post("/utilisateurs", async (req, res) => {
       .catch((err) => res.status(500).json(err));
   } catch (err) {
     console.log(err);
+  }
+});
+
+app.get("/utilisateurs", async (req, res) => {
+  let conn;
+  try {
+    console.log("lancement de la console");
+    conn = await pool.getConnection();
+    console.log("lancement de la requête");
+    const rows = await conn.query("select * from utilisateurs");
+    console.log(rows);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/utilisateurs/:id", async (req, res) => {
+  let conn;
+  try {
+    console.log("lancement de la console");
+    conn = await pool.getConnection();
+    console.log("lancement de la requête");
+    const rows = await conn.query(
+      "select * from utilisateurs where id_utilisateur = ?",
+      [req.params.id]
+    );
+    console.log(rows);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/utilisateurs/nom/:nom", async (req, res) => {
+  let conn;
+  try {
+    console.log("Lancement de la connexion");
+    conn = await pool.getConnection();
+    console.log("Lancement de la requête");
+    const rows = await conn.query(
+      "select * from utilisateurs where nom_utilisateur = ?",
+      [req.params.nom]
+    );
+    console.log(rows);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.put("/utilisateurs/:nom", async (req, res) => {
+  let conn;
+  try {
+    bcrypt
+      .hash(req.body.mot_de_passe, 10)
+      .then(async (hash) => {
+        console.log("lancement de la console");
+        conn = await pool.getConnection();
+        console.log("lancement de la requête");
+        const rows = await conn.query(
+          "update utilisateurs set nom_utilisateur = ?, email = ?, mot_de_passe = ? where nom_utilisateur = ?",
+          [req.body.nom_utilisateur, req.body.email, hash, req.params.nom]
+        );
+        console.log(rows);
+        res.status(200).json("La modification a bien été effectuée");
+      })
+      .catch((err) => res.status(500).json(err));
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.delete("/utilisateurs/:id", async (req, res) => {
+  let conn;
+  try {
+    console.log("Lancement de la connexion");
+    conn = await pool.getConnection();
+    console.log("Lancement de la requête");
+    const rows = await conn.query(
+      "delete from utilisateurs where id_utilisateur = ?",
+      [req.params.id]
+    );
+    console.log(rows);
+    res.status(200).json("La suppression a bien été effectuée");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.delete("/utilisateurs/nom/:nom", async (req, res) => {
+  let conn;
+  try {
+    console.log("Lancement de la connexion");
+    conn = await pool.getConnection();
+    console.log("Lancement de la requête");
+    const rows = await conn.query(
+      "delete from utilisateurs where nom_utilisateur = ?",
+      [req.params.nom]
+    );
+    console.log(rows);
+    res.status(200).json("La suppression a bien été effectuée");
+  } catch (err) {
+    console.log(err);
+    res.status(500).json("Erreur lors de la suppression");
   }
 });
 
