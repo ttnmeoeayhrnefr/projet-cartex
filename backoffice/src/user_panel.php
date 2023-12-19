@@ -41,16 +41,22 @@
                                 </h2>
                             </div>
                             <div class="gest-sct">
-                                <div class="template">
+                                <div class="userUpdateSct">
                                     <?php
-                                    foreach ($user as $us) {
-                                        echo "<tr>";
-                                        echo "<td>" . $us['id_user'] . "</td>";
-                                        echo "<td>" . $us['pseudo'] . "</td>";
-                                        echo "<td>" . $us['mdp'] . "</td>";
-                                        echo "<td>" . $us['role'] . "</td>";
-                                        echo "</tr>";
-                                    }
+                                        echo "<table>";
+                                        echo "<td><a href='user_add.php'>Ajouter utilisateur</a></td>";
+                                        echo "<tr><th>ID</th><th>Pseudo</th><th>Mot de passe</th><th>Role</th><th>Actions</th></tr>";
+                                        foreach ($user as $us) {
+                                            echo "<tr>";
+                                            echo "<td>" . $us['id_user'] . "</td>";
+                                            echo "<td>" . $us['pseudo'] . "</td>";
+                                            echo "<td>" . $us['mdp'] . "</td>";
+                                            echo "<td>" . $us['role'] . "</td>";
+                                            echo "<td><a href='user_add.php'>Modifier utilisateur</a></td>";
+                                            echo "<td><a href='request.php'>Supprimer utilisateur</a></td>";
+                                            echo "</tr>";
+                                        }
+                                        echo "</table>";
                                     ?>
                                 </div>
                             </div>
