@@ -15,7 +15,7 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-      background-color: var(--color-yellow);
+      background-color: var(--color-primary);
       border-radius: 10px;
   }
 
@@ -26,15 +26,14 @@ body {
 }
 
 :root {
+  --color-primary: #f3d987;
   --color-black: #070707;
   --color-navbar: #0707077e;
   --color-bg: #212121;
   --color-bg-box: #484848;
   --color-font: #fff;
-  --color-btn: #66adf7;
   --color-inner-btn: #6a6a6a;
   --color-hover-btn: #5d5d5d;
-  --color-yellow: #f3d987;
   --color-container: #303030;
 }
 
@@ -44,5 +43,5 @@ a {
 }
 
 .primary {
-  color: var(--color-yellow);
+  color: var(--color-primary);
 }
