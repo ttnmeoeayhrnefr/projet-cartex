@@ -10,16 +10,14 @@ export default function Mainpage() {
   return (
     <div className="content">
       <div className="navbar">
-        <div className="logo">CarteX</div>
+        <Link to="/" className="logo">Carte<span className="primary">X</span></Link>
         <div className="link">
           <Link to="/">Accueil</Link>
           <Link to="/Marketplace">Marketplace</Link>
           <Link to="/Infos">Infos</Link>
         </div>
         <div className="register">
-          <Link to="/Register" className="Link">
-            Register
-          </Link>
+          <Link to="/Register" className="Link">Inscription</Link>
         </div>
       </div>
       <div className="container">
