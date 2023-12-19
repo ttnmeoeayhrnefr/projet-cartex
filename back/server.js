@@ -74,6 +74,25 @@ app.get('/cartes/nom/:nom', async (req, res) => {
     }
 })
 
+// GET 10 RANDOM CARDS
+app.get('/cartes/random/random', async (req, res) => {
+    let conn;
+    try {
+        console.log('Lancement de la connexion');
+        conn = await pool.getConnection();
+        console.log('Lancement de la requête');
+        const rows = await conn.query('SELECT * FROM carte ORDER BY RAND() LIMIT 10');
+        console.log(rows);
+        res.status(200).json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erreur lors de la récupération des cartes aléatoires.' });
+    } finally {
+        if (conn) conn.release();
+    }
+});
+
+
 
 // POST NEW CARD
 app.post("/cartes", async (req, res) => {
