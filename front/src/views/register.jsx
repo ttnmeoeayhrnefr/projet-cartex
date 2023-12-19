@@ -1,33 +1,45 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import "../styles/register.css";
 
 export default function Register() {
+  // VARIABLES POUR INSCRIPTION UTILISATEUR
   const [pseudo, set_pseudo] = useState("");
-  const [mot_de_passe, set_mot_de_passe] = useState("");
+  const [mdp, set_mdp] = useState("");
+  const [user_connected, set_user_connected] = useState(false);
 
-  const handleRegister = async (event) => {
+  // INSCRIPTION UTILISATEUR
+  const register = async (event) => {
     event.preventDefault();
 
-    const nouveau_utilisateur = {
+    // DATA UTILISATEUR
+    const new_user = {
       pseudo: pseudo,
-      mot_de_passe: mot_de_passe,
+      mdp: mdp,
     };
 
+    // VERIFICATION, PAS DE CREATION D'UTILISATEUR "VIDE" ET EVITE PROBLEME SI DEJA CONNECTE
+    if (!pseudo || !mdp) {
+      alert("Veuillez remplir tous les champs.");
+      return;
+    }
+
     try {
-      //Ajout user dans BDD
+      // UTILISATION API AVEC FETCH
       const response = await fetch("http://localhost:3001/utilisateurs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(nouveau_utilisateur),
+        body: JSON.stringify(new_user),
       });
 
       if (response.ok) {
+        // INSCRIPTION REUSSIE
         console.log("Utilisateur ajouté avec succès");
         set_pseudo("");
-        set_mot_de_passe("");
-        window.location.href = "/"; //Redirection vers la page d'accueil
+        set_mdp("");
+        window.location.href = "/";
       } else {
+        // INSCRIPTION NON REUSSIE
         console.log("Erreur lors de l'ajout de l'utilisateur");
       }
     } catch (err) {
@@ -35,24 +47,37 @@ export default function Register() {
     }
   };
 
+  // VERIFICATION
+  useEffect(() => {
+    const user_connected = localStorage.getItem("pseudo");
+    if (user_connected) {
+      set_user_connected(true);
+      alert("Un utilisateur est déjà connecté.");
+      document.getElementById("pseudo").disabled = true;
+      document.getElementById("mdp").disabled = true;
+    }
+  }, []);
+
   return (
     <div className="register">
-      <h1>Register</h1>
-      <form onSubmit={handleRegister}>
+      <h1>Inscription</h1>
+      <form onSubmit={register}>
         <label htmlFor="pseudo">Pseudo</label>
         <input
           type="text"
           id="pseudo"
           value={pseudo}
           onChange={(e) => set_pseudo(e.target.value)}
+          disabled={user_connected}
         />
 
-        <label htmlFor="mot_de_passe">Mot de passe</label>
+        <label htmlFor="mdp">Mot de passe</label>
         <input
           type="text"
-          id="mot_de_passe"
-          value={mot_de_passe}
-          onChange={(e) => set_mot_de_passe(e.target.value)}
+          id="mdp"
+          value={mdp}
+          onChange={(e) => set_mdp(e.target.value)}
+          disabled={user_connected}
         />
 
         <button type="submit">S'inscrire</button>

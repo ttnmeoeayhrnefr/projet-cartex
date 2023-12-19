@@ -35,23 +35,37 @@
             justify-content: space-between;
         }
 
-        .register {
-            background-color: var(--color-btn);
+        .acc-btn {
+            display: flex;
+            width: 20vw;
+            justify-content: space-between;
+        }
+
+        .register, .connect {
+            background-color: var(--color-primary);
             height: 5vh;
             width: 9vw;
             border-radius: 2rem;
             display: grid;
             place-items: center;
             font-size: 1.1rem;
-            color: var(--color-black);
             cursor: pointer;
+            
+            a {
+                color: var(--color-black);
+            }
         }
 
         .logo {
             height: 5vh;
-            width: 9vw;
+            width: 20vw;
             display: grid;
             place-items: center;
+            font-family: 'Beau Rivage', cursive;
+            font-size: 2.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }

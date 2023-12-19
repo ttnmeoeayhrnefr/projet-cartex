@@ -3,6 +3,7 @@ import Homepage from "../components/Homepage";
 import Marketplace from "./marketplace";
 import Infos from "./infos";
 import Register from "./register";
+import Connect from "./connect";
 
 import "../style/mainpage.scss";
 
@@ -10,16 +11,19 @@ export default function Mainpage() {
   return (
     <div className="content">
       <div className="navbar">
-        <div className="logo">CarteX</div>
+        <Link to="/" className="logo">Carte<span className="primary">X</span></Link>
         <div className="link">
           <Link to="/">Accueil</Link>
           <Link to="/Marketplace">Marketplace</Link>
           <Link to="/Infos">Infos</Link>
         </div>
-        <div className="register">
-          <Link to="/Register" className="Link">
-            Register
-          </Link>
+        <div className="acc-btn">
+          <div className="register">
+            <Link to="/Register" className="Link">Inscription</Link>
+          </div>
+          <div className="connect">
+            <Link to="/Connect" className="Link">Connexion</Link>
+          </div>
         </div>
       </div>
       <div className="container">
@@ -28,6 +32,7 @@ export default function Mainpage() {
           <Route path="/Marketplace" element={<Marketplace />}></Route>
           <Route path="/Infos" element={<Infos />}></Route>
           <Route path="/Register" element={<Register />}></Route>
+          <Route path="/Connect" element={<Connect />}></Route>
         </Routes>
       </div>
     </div>
