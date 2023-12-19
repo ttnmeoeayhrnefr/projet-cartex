@@ -13,9 +13,11 @@ export default function Mainpage() {
       <div className="navbar">
         <Link to="/" className="logo">Carte<span className="primary">X</span></Link>
         <div className="link">
-          <Link to="/">Accueil</Link>
-          <Link to="/Marketplace">Marketplace</Link>
-          <Link to="/Infos">Infos</Link>
+          <ul>
+            <li><Link to="/">Accueil</Link></li>
+            <li><Link to="/Marketplace">Marketplace</Link></li>
+            <li><Link to="/Infos">Infos</Link></li>
+          </ul>
         </div>
         <div className="acc-btn">
             <Link to="/Register" className="Link">
