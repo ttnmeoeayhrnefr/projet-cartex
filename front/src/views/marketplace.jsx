@@ -29,6 +29,7 @@ export default function MarketPlace() {
     //   };
 
     const [cards, setCards] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState([]);
 
     useEffect(() => {
       const fetchAllCards = async () => {
@@ -43,6 +44,16 @@ export default function MarketPlace() {
       fetchAllCards();
     }, []);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % 4);
+        }, 1000);
+      
+        return () => {
+          clearInterval(interval);
+        };
+      }, []);
+
     const generateCardList = () => {
       return cards.map((card) => (
         <div className="card" key={card.id}>
@@ -55,10 +66,11 @@ export default function MarketPlace() {
           </div>
           <div className="describe">
             <div className="price">
-              <span>{`${card.cardmarket_price}$`}</span>
-              <span>{`${card.tcgplayer_price}$`}</span>
-              <span>{`${card.ebay_price}$`}</span>
-              <span>{`${card.amazon_price}$`}</span>
+                {["cardmarket", "tcgplayer", "ebay", "amazon"].map((source, index) => (
+                    <span key={index} className={index === currentIndex ? 'active' : ''}>
+                    {`${card[`${source}_price`]}$`}
+                    </span>
+                ))}
             </div>
           </div>
         </div>
@@ -67,7 +79,7 @@ export default function MarketPlace() {
     return (
         <div className="content-mkp">
             <div className="header">
-                <h2>Bienvenue sur CarteX,</h2>
+                <h2>Bienvenue sur Carte<span className='primary'>X</span>,</h2>
                 <p>Trouve toutes les cartes que tu désires !</p>
             </div>
             <div className="filterbar">

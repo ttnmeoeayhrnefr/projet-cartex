@@ -98,9 +98,11 @@
             .title {
                 width: auto;
                 margin: 1rem 1rem .5rem 1rem;
+                background-color: red;
+                height: 3rem;
 
                 span {
-                    font-size: 1.2rem;
+                    font-size: .9rem;
                     font-weight: 500;
                 }
 
@@ -125,10 +127,36 @@
 
             .describe {
                 width: auto;
-                margin: 1rem;
+                margin: .7rem 1rem;
                 height: auto;
                 display: flex;
                 justify-content: end;
+                font-size: .7rem;
+
+                .price {
+                    display: flex;
+                    overflow: hidden;
+                  }
+                  
+                  .price span {
+                    flex: 0 0 100%;
+                    opacity: 0;
+                    text-align: end;
+                    transition: opacity 0.5s ease-in-out;
+                  }
+                  
+                  .price span.active {
+                    opacity: 1;
+                  }
+                  
+                  @keyframes rotatePrice {
+                    0% {
+                      transform: translateY(0);
+                    }
+                    100% {
+                      transform: translateY(-100%);
+                    }
+                  }
             }
 
             &:hover {
