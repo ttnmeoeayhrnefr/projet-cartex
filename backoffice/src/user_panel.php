@@ -1,3 +1,11 @@
+<?php
+    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
+ 
+    $DAO = new DAO($connexion);
+    $user = $DAO->listAllUsers();
+?>
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -33,7 +41,18 @@
                                 </h2>
                             </div>
                             <div class="gest-sct">
-                                <div class="template"></div>
+                                <div class="template">
+                                    <?php
+                                    foreach ($user as $us) {
+                                        echo "<tr>";
+                                        echo "<td>" . $us['id_user'] . "</td>";
+                                        echo "<td>" . $us['pseudo'] . "</td>";
+                                        echo "<td>" . $us['mdp'] . "</td>";
+                                        echo "<td>" . $us['role'] . "</td>";
+                                        echo "</tr>";
+                                    }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
