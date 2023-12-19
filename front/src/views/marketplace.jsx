@@ -29,12 +29,16 @@ export default function MarketPlace() {
     //   };
 
     const [cards, setCards] = useState([]);
+    const [search, setSearch] = useState("");
+    const [filteredCards, setFilteredCards] = useState([]);
+    // const [activeFilter, setActiveFilter] = useState(null);
 
     useEffect(() => {
       const fetchAllCards = async () => {
         try {
           const response = await axios.get('http://localhost:3001/cartes'); // Assurez-vous que l'URL est correcte
           setCards(response.data);
+          setFilteredCards(response.data); // Initialise également filteredCards avec toutes les cartes
         } catch (error) {
           console.error('Erreur lors de la récupération des cartes', error);
         }
@@ -43,8 +47,55 @@ export default function MarketPlace() {
       fetchAllCards();
     }, []);
 
+    const handleSearch = (e) => {
+      let value = e.target.value.toLowerCase();
+      setSearch(value);
+    
+      const filtered = cards.filter((card) => {
+        return card.nom.toLowerCase().includes(value);
+      });
+    
+      setFilteredCards(filtered);
+    };
+
+    console.log(search);
+
+    const handleFilter = (filterType) => {
+      const sortedCards = [...cards];
+  
+      switch (filterType) {
+        case 'A-Z':
+          sortedCards.sort((a, b) => a.nom.localeCompare(b.nom));
+          break;
+        case 'Prix':
+          sortedCards.sort((a, b) => a.cardmarket_price - b.cardmarket_price);
+          break;
+        case 'Rarete':
+          const rarityOrder = {
+            '': 6, // Si la rareté est vide, on la met en dernier
+            'Common': 5,
+            'Rare': 4,
+            'Super Rare': 3,
+            'Ultra Rare': 2,
+            'Secret Rare': 1,
+          };
+  
+          sortedCards.sort((a, b) => {
+            return rarityOrder[a.set_rarete] - rarityOrder[b.set_rarete] || a.nom.localeCompare(b.nom);
+          });
+          break;
+        case 'Puissance':
+          sortedCards.sort((a, b) => b.etoiles - a.etoiles);
+          break;
+        default:
+          break;
+      }
+  
+      setFilteredCards(sortedCards);
+    };
+
     const generateCardList = () => {
-      return cards.map((card) => (
+      return filteredCards.map((card) => (
         <div className="card" key={card.id}>
           <div className="title">
             <span>{card.nom}</span>
@@ -64,6 +115,8 @@ export default function MarketPlace() {
         </div>
       ));
     };
+
+
     return (
         <div className="content-mkp">
             <div className="header">
@@ -72,13 +125,13 @@ export default function MarketPlace() {
             </div>
             <div className="filterbar">
                 <div className="filters">
-                    <span>A - Z</span>
-                    <span>Prix</span>
-                    <span>Rareté</span>
-                    <span>Puissance</span>
+                    <span onClick={() => handleFilter('A-Z')}>A - Z</span>
+                    <span onClick={() => handleFilter('Prix')}>Prix</span>
+                    <span onClick={() => handleFilter('Rarete')}>Rareté</span>
+                    <span onClick={() => handleFilter('Puissance')}>Puissance</span>
                 </div>
                 <div className="searchbar">
-                    <input type="text" placeholder='Rechercher...'/>
+                    <input type="text" placeholder='Rechercher...' onChange={handleSearch}/>
                 </div>
             </div>
             <div className="container-cards-mkt">
