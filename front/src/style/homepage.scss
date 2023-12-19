@@ -29,7 +29,7 @@
             justify-content: space-between;
 
             #btn-home {
-                background-color: var(--color-btn);
+                background-color: var(--color-primary);
                 height: 3rem;
                 width: 10rem;
                 border-radius: 2rem;
@@ -93,7 +93,7 @@
         justify-content: center;
 
         .cards {
-            background-color: var(--color-yellow);
+            background-color: var(--color-primary);
             height: 40vh;
             width: 13vw;
             margin-left: 2rem;
@@ -121,7 +121,7 @@
         justify-content: center;
 
         a {
-            background-color: var(--color-btn);
+            background-color: var(--color-primary);
             height: 3rem;
             width: 15rem;
             margin-top: 2rem;
@@ -199,7 +199,7 @@
     width: 100vw;
 
     .container {
-        background-color: var(--color-yellow);
+        background-color: var(--color-primary);
         margin: 15rem 15rem 2rem 15rem;
         width: auto;
         height: 15rem;
@@ -230,7 +230,7 @@
             }
             
             .btn1 {
-                background-color: var(--color-btn);
+                background-color: var(--color-font);
                 color: var(--color-black);
             }
 
