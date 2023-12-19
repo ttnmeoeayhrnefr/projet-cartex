@@ -40,17 +40,17 @@
                             <div class="gest-sct">
                                 <div class="template">
                                     <div class="userUpdateSct">
-                                        <div id="userUpdateInputSct" class="userPseudoSct" >
+                                        <div id="userUpdateInputSct" class="userPseudoSct">
                                             <label for="userPseudo">Pseudo</label>
-                                            <input type="text" name="userPseudo" id="usrPseudo">
+                                            <input type="text" name="userPseudo" id="usrPseudo" value="" required>
                                         </div>
                                         <div id="userUpdateInputSct" class="userPwdSct">
                                             <label for="userMdp">Mot de passe</label>
-                                            <input type="password" name="userMdp" id="usrMdp">
+                                            <input type="password" name="userMdp" id="usrMdp" value="" required>
                                         </div>
                                         <div id="userUpdateInputSct" class="userRoleSct">
                                             <label for="userRole">Rôle</label>
-                                            <select name="userRole" id="usrRole">
+                                            <select name="userRole" id="usrRole" required>
                                                 <option value="0">Utilisateur</option>
                                                 <option value="1">Admin</option>
                                             </select>
