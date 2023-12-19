@@ -37,5 +37,7 @@ app.get('/cartes', async (req, res) => {
     }
 })
 
+app.get('/cartes/:id')
+
 
 app.listen(port, () => console.log(`Le serveur écoute sur : http://localhost:${port}`));
