@@ -3,6 +3,7 @@ import Homepage from "../components/Homepage";
 import Marketplace from "./marketplace";
 import Infos from "./infos";
 import Register from "./register";
+import Connect from "./connect";
 
 import "../style/mainpage.scss";
 
@@ -21,6 +22,11 @@ export default function Mainpage() {
             Register
           </Link>
         </div>
+        <div className="connect">
+          <Link to="/Connect" className="Link">
+            Connect
+          </Link>
+        </div>
       </div>
       <div className="container">
         <Routes>
@@ -28,6 +34,7 @@ export default function Mainpage() {
           <Route path="/Marketplace" element={<Marketplace />}></Route>
           <Route path="/Infos" element={<Infos />}></Route>
           <Route path="/Register" element={<Register />}></Route>
+          <Route path="/Connect" element={<Connect />}></Route>
         </Routes>
       </div>
     </div>
