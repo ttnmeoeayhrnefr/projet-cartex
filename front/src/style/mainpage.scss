@@ -27,12 +27,54 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            list-style: none; 
+            padding: 0;
+            width: 30vw;
+        }
 
         .link {
             width: 30vw;
             display: flex;
             justify-content: space-between;
+
+            a {
+                color: #fff;
+                text-transform: uppercase;
+                text-decoration: none;
+                letter-spacing: 0.15em;
+                
+                display: inline-block;
+                padding: 10px 20px;
+                position: relative;
+            }
+
+            a:after {    
+                background: none repeat scroll 0 0 transparent;
+                bottom: 0;
+                content: "";
+                display: block;
+                height: 2px;
+                left: 50%;
+                position: absolute;
+                background: var(--color-primary);
+                transition: width 0.5s ease 0s, left 0.5s ease 0s;
+                width: 0;
+            }
+
+            a:hover:after { 
+                width: 100%; 
+                left: 0; 
+              }
+              @media screen and (max-height: 300px) {
+                  ul {
+                      margin-top: 40px;
+                  }
+              }
         }
 
         .acc-btn {
@@ -48,9 +90,17 @@
             border-radius: 2rem;
             display: grid;
             place-items: center;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             color: var(--color-black);
+            text-transform: uppercase;
+            transition: all .1s ease-in-out;
+
+            &:hover {
+                box-shadow: 1px 1px 40px -0px rgba(243,217,135,0.82);
+                -webkit-box-shadow: 1px 1px 40px -0px rgba(243,217,135,0.82);
+                -moz-box-shadow: 1px 1px 40px -0px rgba(243,217,135,0.82);
+            }
         }
 
         .logo {
@@ -63,6 +113,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+            span {
+                display: inline-block;
+                animation: rotateAnimation 2s infinite paused; /* Rotation de 3 secondes, infinie et en pause par défaut */
+
+            }
+
+            &:hover {
+                span {
+                    animation-play-state: running;
+                }
+            }
+            
+              @keyframes rotateAnimation {
+                0% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }
         }
     }
 }
