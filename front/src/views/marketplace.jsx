@@ -1,30 +1,69 @@
 import '../style/marketplace.scss'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function MarketPlace() {
-    const generateCardList = () => {
-        const cardList = [];
+    // const generateCardList = () => {
+    //     const cardList = [];
     
-        for (let i = 0; i < 10; i++) {
-          cardList.push(
-            <div className="card" key={i}>
-              <div className="title">
-                <span>Title</span>
-                <p>#152354751255</p>
-              </div>
-              <div className="img">
-                <img src="https://i.pinimg.com/564x/2d/e0/b7/2de0b7946bb7c8427018694ce5464709.jpg" alt="" />
-              </div>
-              <div className="describe">
-                <div className="price">
-                  <span>1.99$</span>
-                </div>
-              </div>
-            </div>
-          );
+    //     for (let i = 0; i < 10; i++) {
+    //       cardList.push(
+    //         <div className="card" key={i}>
+    //           <div className="title">
+    //             <span>Title</span>
+    //             <p>#152354751255</p>
+    //           </div>
+    //           <div className="img">
+    //             <img src="https://i.pinimg.com/564x/2d/e0/b7/2de0b7946bb7c8427018694ce5464709.jpg" alt="" />
+    //           </div>
+    //           <div className="describe">
+    //             <div className="price">
+    //               <span>1.99$</span>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       );
+    //     }
+    
+    //     return cardList;
+    //   };
+
+    const [cards, setCards] = useState([]);
+
+    useEffect(() => {
+      const fetchAllCards = async () => {
+        try {
+          const response = await axios.get('http://localhost:3001/cartes'); // Assurez-vous que l'URL est correcte
+          setCards(response.data);
+        } catch (error) {
+          console.error('Erreur lors de la récupération des cartes', error);
         }
-    
-        return cardList;
       };
+
+      fetchAllCards();
+    }, []);
+
+    const generateCardList = () => {
+      return cards.map((card) => (
+        <div className="card" key={card.id}>
+          <div className="title">
+            <span>{card.nom}</span>
+            <p>#{card.id_carte_konami}</p>
+          </div>
+          <div className="img">
+            <img src={card.image} alt="" />
+          </div>
+          <div className="describe">
+            <div className="price">
+              <span>{`${card.cardmarket_price}$`}</span>
+              <span>{`${card.tcgplayer_price}$`}</span>
+              <span>{`${card.ebay_price}$`}</span>
+              <span>{`${card.amazon_price}$`}</span>
+            </div>
+          </div>
+        </div>
+      ));
+    };
     return (
         <div className="content-mkp">
             <div className="header">
