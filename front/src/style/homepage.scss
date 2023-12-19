@@ -102,9 +102,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: transform 0.5s ease-in-out;
 
         .cards {
-            background-color: var(--color-primary);
             height: 40vh;
             width: 13vw;
             margin-left: 2rem;
@@ -113,9 +113,19 @@
             display: grid;
             place-items: center;
 
+            &.visible {
+                opacity: 1;
+                visibility: visible;
+              }
+
             p {
                 font-size: 2rem;
                 color: var(--color-black);
+            }
+
+            img {
+                width: 100%;
+                border-radius: 10px;
             }
         }
     }
