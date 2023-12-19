@@ -25,7 +25,6 @@
                 align-items: center;
 
                 .img {
-                    background-color: var(--color-primary);
                     width: 13rem;
                     height: 13rem;
                     margin: 1rem;
@@ -33,6 +32,12 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    border-radius: 50%;
+
+                    img {
+                        height: 14rem;
+                        border-radius: 50%;
+                    }
                 }
 
                 p {
@@ -41,6 +46,7 @@
 
                 img {
                     height: 2rem;
+                    margin-right: 1rem;
                 }
             }
         }

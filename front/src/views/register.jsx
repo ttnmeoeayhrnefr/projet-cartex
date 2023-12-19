@@ -60,8 +60,8 @@ export default function Register() {
 
   return (
     <div className="register">
-      <h1>Register</h1>
-      <form onSubmit={register}>
+      <h1>Inscription</h1>
+      <form onSubmit={handleRegister}>
         <label htmlFor="pseudo">Pseudo</label>
         <input
           type="text"

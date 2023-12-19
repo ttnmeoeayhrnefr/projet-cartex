@@ -17,30 +17,45 @@ export default function Infos() {
                 <h2>Team</h2>
                 <div className="item-team">
                     <div id="container-colab">
-                        <div className="img"></div>
+                        <div className="img">
+                            <img src="https://avatars.githubusercontent.com/u/102389757?v=4" alt="" />
+                        </div>
                         <div className="name">
                             <p>ROMERO Raphaël</p>
                             <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
-                            <a href="https://github.com/RaphTPLR"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
+                            <div>
+                                <a href="https://github.com/RaphTPLR"><img src="https://img.icons8.com/?size=256&id=12599&format=png" alt="" /></a>
+                                <a href="https://www.linkedin.com/in/romero-rapha%C3%ABl/"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
+                            </div>
                         </div>
                     </div>
                     <div id="container-colab">
-                        <div className="img"></div>
+                        <div className="img">
+                            <img src="https://media.licdn.com/dms/image/D4E03AQGGU5FpFKOP9g/profile-displayphoto-shrink_400_400/0/1674459513000?e=1708560000&v=beta&t=jdBLjh9fINg0hfM18p7IyFan0LVkImaS25say1fxPeI" alt="" />
+                        </div>
                         <div className="name">
                             <p>KORZENIOWSKI Rémi</p>
                             <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
-                            <a href="https://github.com/Korzeremi"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
+                            <div>
+                                <a href="https://github.com/Korzeremi"><img src="https://img.icons8.com/?size=256&id=12599&format=png" alt="" /></a>
+                                <a href="https://www.linkedin.com/in/r%C3%A9mi-korzeniowski/"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
+                            </div>
                         </div>
                     </div>
                     <div id="container-colab">
-                        <div className="img"></div>
+                        <div className="img">
+                            <img src="https://media.licdn.com/dms/image/D4E03AQGPPbwB2ayUMQ/profile-displayphoto-shrink_400_400/0/1676373860572?e=1708560000&v=beta&t=qsIfBY-RsE2bhI_jIvD6zVKeLXzXQYZnjeXITFWwDcY" alt="" />
+                        </div>
                         <div className="name">
                             <p>DO Alexandre</p>
                             <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
-                            <a href="https://github.com/Purplezer"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
+                            <div>
+                                <a href="https://github.com/Purplezer"><img src="https://img.icons8.com/?size=256&id=12599&format=png" alt="" /></a>
+                                <a href="https://www.linkedin.com/in/alexandre-do-63b257253/"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
+                            </div>
                         </div>
                     </div>
                     <div id="container-colab">
@@ -49,7 +64,10 @@ export default function Infos() {
                             <p>MENANT--FERRY Théo</p>
                             <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
-                            <a href="https://github.com/ttnmeoeayhrnefr"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
+                            <div>
+                                <a href="https://github.com/ttnmeoeayhrnefr"><img src="https://img.icons8.com/?size=256&id=12599&format=png" alt="" /></a>
+                                <a href="https://github.com/Korzeremi"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
+                            </div>
                         </div>
                     </div>
                 </div>
