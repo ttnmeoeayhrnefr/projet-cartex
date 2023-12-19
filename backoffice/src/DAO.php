@@ -331,10 +331,14 @@
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
         
-        public function updateUserById($id_user, $pseudo, $mdp, $role) {
+        public function updateUserById($pseudo, $mdp, $role, $id_user) {
             try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = ?, mdp = ?, role = ? WHERE id_user = ?");
-                $row->execute([$pseudo, $mdp, $role, $id_user]);
+                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = :pseudo, mdp = :mdp, role = :role WHERE id_user = :id_user");
+                $row->bindParam(':pseudo', $pseudo);
+                $row->bindParam(':mdp', $mdp);
+                $row->bindParam(':role', $role);
+                $row->bindParam(':id_user', $id_user);
+                $row->execute();
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la mise à jour de l'utilisateur: " . $e->getMessage();
@@ -343,8 +347,10 @@
         } 
         public function updateUserPseudo($id_user, $pseudo) {
             try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = ? WHERE id_user = ?");
-                $row->execute([$pseudo, $id_user]);
+                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = :pseudo WHERE id_user = id_user");
+                $row->bindParam(':pseudo', $pseudo);
+                $row->bindParam(':id_user', $id_user);
+                $row->execute();
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la mise à jour du pseudo de l'utilisateur: " . $e->getMessage();
@@ -353,8 +359,10 @@
         } 
         public function updateUserPassword($id_user, $password) {
             try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET mdp = ? WHERE id_user = ?");
-                $row->execute([$password, $id_user]);
+                $row = $this->bdd->prepare("UPDATE utilisateur SET mdp = :mdp WHERE id_user = :id_user");
+                $row->bindParam(':mdp', $password);
+                $row->bindParam(':id_user', $id_user);
+                $row->execute();
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la mise à jour du mot de passe de l'utilisateur: " . $e->getMessage();
@@ -363,8 +371,10 @@
         }  
         public function updateUserRole($id_user, $role) {
             try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET role = ? WHERE id_user = ?");
-                $row->execute([$role, $id_user]);
+                $row = $this->bdd->prepare("UPDATE utilisateur SET role = :role WHERE id_user = :id_user");
+                $row->bindParam(':role', $role);
+                $row->bindParam(':id_user', $id_user);
+                $row->execute();
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la mise à jour du rôle de l'utilisateur: " . $e->getMessage();
@@ -378,8 +388,9 @@
 
         public function removeUserById($id_user) {
             try {
-                $row = $this->bdd->prepare("DELETE FROM utilisateur WHERE id_user = ?");
-                $row->execute([$id_user]);
+                $row = $this->bdd->prepare("DELETE FROM utilisateur WHERE id_user = :id_user");
+                $row->bindParam(':id_user', $id_user);
+                $row->execute();
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la suppression de l'utilisateur: " . $e->getMessage();
@@ -388,8 +399,9 @@
         }
         public function removeUserPseudo($id_user) {
             try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = NULL WHERE id_user = ?");
-                $row->execute([$id_user]);
+                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = NULL WHERE id_user = :id_user");
+                $row->bindParam(':id_user', $id_user);
+                $row->execute();
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la suppression du pseudo de l'utilisateur: " . $e->getMessage();
@@ -398,8 +410,9 @@
         }  
         public function removeUserPassword($id_user) {
             try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET mdp = NULL WHERE id_user = ?");
-                $row->execute([$id_user]);
+                $row = $this->bdd->prepare("UPDATE utilisateur SET mdp = NULL WHERE id_user = :id_user");
+                $row->bindParam(':id_user', $id_user);
+                $row->execute();
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la suppression du mot de passe de l'utilisateur: " . $e->getMessage();
@@ -408,8 +421,9 @@
         }
         public function removeUserRole($id_user) {
             try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET role = NULL WHERE id_user = ?");
-                $row->execute([$id_user]);
+                $row = $this->bdd->prepare("UPDATE utilisateur SET role = NULL WHERE id_user = :id_user");
+                $row->bindParam(':id_user', $id_user);
+                $row->execute();
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la suppression du rôle de l'utilisateur: " . $e->getMessage();
