@@ -18,12 +18,16 @@ export default function Mainpage() {
           <Link to="/Infos">Infos</Link>
         </div>
         <div className="acc-btn">
-          <div className="register">
-            <Link to="/Register" className="Link">Inscription</Link>
-          </div>
-          <div className="connect">
-            <Link to="/Connect" className="Link">Connexion</Link>
-          </div>
+            <Link to="/Register" className="Link">
+              <div className="register">
+                Inscription
+              </div>
+            </Link>
+            <Link to="/Connect" className="Link">
+              <div className="connect">
+                Connexion
+              </div>
+            </Link>
         </div>
       </div>
       <div className="container">

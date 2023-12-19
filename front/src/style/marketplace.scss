@@ -81,7 +81,7 @@
         flex-wrap: wrap;
 
         .card {
-            border: 2px solid #f3da8784;
+            border: 2px solid var(--color-border);
             background-color: var(--color-bg-box);
             height: 23rem;
             width: 13rem;

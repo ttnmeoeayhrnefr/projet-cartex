@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-// import "../styles/connect.css";
+import "../style/connexion.scss";
+import { Link, Route, Routes } from 'react-router-dom'
 
 export default function Connexion() {
   // VARIABLES POUR CONNEXION DECONNEXION UTILISATEUR
@@ -70,31 +71,42 @@ export default function Connexion() {
   }, []);
 
   return (
-    <div className="connexion">
-      <div className="connexiontitre">
-        <h2>Connexion</h2>
-      </div>
-      <div className="connexioncontenu">
-        <form onSubmit={connect}>
-          <label htmlFor="pseudo">Nom d'utilisateur</label>
-          <input
-            type="text"
-            id="pseudo"
-            value={pseudo}
-            onChange={(e) => set_pseudo(e.target.value)}
-            disabled={user_connected}
-          />
-          <label htmlFor="mdp">Mot de passe</label>
-          <input
-            type="password"
-            id="mdp"
-            value={mdp}
-            onChange={(e) => set_mdp(e.target.value)}
-            disabled={user_connected}
-          />
-          <button type="submit">Se connecter</button>
-        </form>
-        <button onClick={disconnect}>Se déconnecter</button>
+    <div className="connexion-page">
+      <div className="container">
+        <div className="title">
+          <h1>Connexion</h1>
+        </div>
+        <div className="form">
+          <form onSubmit={connect}>
+            <div className="pseudo">
+              <input
+                type="text"
+                id="pseudo"
+                placeholder="Pseudo..."
+                value={pseudo}
+                onChange={(e) => set_pseudo(e.target.value)}
+                disabled={user_connected}
+              />
+            </div>
+            <div className="pwd">
+              <input
+                type="password"
+                id="mdp"
+                placeholder="Password..."
+                value={mdp}
+                onChange={(e) => set_mdp(e.target.value)}
+                disabled={user_connected}
+              />
+            </div>
+            <div className="text">
+              <Link to="/Connect">Mots de passe oublié ?</Link>
+            </div>
+            <div className="btn-connect">
+              <button onClick={disconnect}>Se déconnecter</button>
+              <button type="submit">Se connecter</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

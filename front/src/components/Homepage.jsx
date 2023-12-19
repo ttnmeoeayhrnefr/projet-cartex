@@ -36,7 +36,7 @@ export default function Homepage() {
                         En tout cas ce site il a l'air bien lourd sah ! Je sais pas ce que vous en pensez mais on va forcement avoir 20.</p>
                     </div>
                     <div className="btn-home">
-                        <span id='btn-home'>Inscription</span>
+                        <Link to="/Register" id='btn-home'>Inscription</Link>
                         <Link to='/Marketplace' id='btn-home'>Marketplace</Link>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ export default function Homepage() {
                     <div className="text">
                         <h1>Achetez et vendez vos cartes en toute tranquilité sur CarteX</h1>
                         <div className="btn">
-                            <span className='btn1'>Inscription</span>
+                            <Link to='/Register' className='btn1'>Inscription</Link>
                             <Link to='/Marketplace' className='btn2'>Marketplace</Link>
                         </div>
                     </div>
