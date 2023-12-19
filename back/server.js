@@ -339,24 +339,7 @@ app.delete("/cartes/nom/:nom", async (req, res) => {
 
 
 
-
-//Connexion au port
-app.listen(port, () => console.log(`Le serveur écoute sur : http://localhost:${port}`));
-app.post("/addCard", async (req, res) => {
-  const cardData = req.body;
-
-  try {
-    const insertedCardId = await saveCardDataToDatabase(cardData);
-    res.status(201).json({ insertedCardId });
-  } catch (error) {
-    console.error(
-      "Erreur lors de l'ajout de la carte à la base de données : ",
-      error
-    );
-    res.status(500).json({ error: "Erreur Serveur" });
-  }
-});
-
+//CRUD UTILISATEUR
 app.post("/utilisateurs", async (req, res) => {
   let conn;
   try {
@@ -379,6 +362,5 @@ app.post("/utilisateurs", async (req, res) => {
   }
 });
 
-app.listen(port, () =>
-  console.log(`Le serveur écoute sur : http://localhost:${port}`)
-);
+//Connexion au port
+app.listen(port, () => console.log(`Le serveur écoute sur : http://localhost:${port}`));
