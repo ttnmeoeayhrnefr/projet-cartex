@@ -61,7 +61,7 @@ export default function Register() {
   return (
     <div className="register">
       <h1>Inscription</h1>
-      <form onSubmit={handleRegister}>
+      <form onSubmit={register}>
         <label htmlFor="pseudo">Pseudo</label>
         <input
           type="text"
