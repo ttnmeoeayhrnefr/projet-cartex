@@ -1,101 +1,57 @@
-  import React, { useEffect, useState, useCallback } from 'react';
+const axios = require('axios');
+const mariadb = require('mariadb');
+require('dotenv').config();
 
-  export default function ListeCarte() {
-    const [cartes, setCartes] = useState([]);
-    const apiUrl = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
+const pool = mariadb.createPool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
+});
 
-    const fetchAllCards = useCallback(() => {
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          const allCardData = data.data || [];
-          const limitedCards = allCardData.slice(0, 100);
-          setCartes(limitedCards);
-        })
-        .catch((error) => {
-          console.error('Erreur lors de la récupération des données : ', error);
-        });
-    }, [apiUrl]);
+const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
 
-    const addCardToDatabase = async (cardData) => {
-      try {
-        await fetch('http://localhost:3001/addCard', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(cardData),
-        });
-        console.log(`Carte ajoutée à la base de données : ${cardData.nom}`);
-      } catch (error) {
-        console.error('Erreur lors de l\'ajout de la carte à la base de données : ', error);
-      }
-    };
-    
+async function main() {
+    let conn;
+    try {
+        const response = await axios.get(url);
+        const cards = response.data.data.slice(0, 500);
 
-    useEffect(() => {
-      fetchAllCards();
-    }, [fetchAllCards]);
+        conn = await pool.getConnection();
+        for (const card of cards) {
+            const cardSet = card.card_sets ? card.card_sets[0] : {};
+            const cardImage = card.card_images ? card.card_images[0] : {};
+            const cardPrice = card.card_prices ? card.card_prices[0] : {};
+
+            //Verifie si la carte existe déjà dans la base de données
+            const queryCheck = `SELECT * FROM Carte WHERE nom = ?`;
+            const queryParamsCheck = [card.name];
+            const resultCheck = await conn.query(queryCheck, queryParamsCheck);
+
+            if (resultCheck.length > 0) {
+                continue;
+            } else {
+                console.log(`Ajout de la carte ${card.name} à la base de données`);
+            }
+
+            const query = `INSERT INTO Carte (nom, type, image, image_cropped, image_petite, race, archetype, id_carte_konami, attaque, defense, etoiles, attribut, cardmarket_price, tcgplayer_price, ebay_price, amazon_price, set_nom, set_rarete) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const queryParams = [
+                card.name, card.type, cardImage.image_url, cardImage.image_url_cropped, cardImage.image_url_small,
+                card.race, card.archetype, card.id, card.atk, card.def, card.level, card.attribute,
+                cardPrice.cardmarket_price, cardPrice.tcgplayer_price, cardPrice.ebay_price, cardPrice.amazon_price,
+                cardSet.set_name, cardSet.set_rarity
+            ];
+
+            await conn.query(query, queryParams);
+        }
+    } catch (error) {
+        console.error("Erreur lors de la récupération des données de l'API ou de l'interaction avec la base de données:", error);
+    } finally {
+        if (conn) conn.release();
+    }
+}
+
+main();
 
 
-    useEffect(() => {
-      if (cartes.length > 0) {
-        addCardToDatabase();
-      }
-    }, [cartes, addCardToDatabase]);
-
-    return (
-      <div>
-        <h1>Liste des cartes :</h1>
-        {cartes.map((carte, index) => (
-          <div key={index}>
-            <h3>{carte.name}</h3>
-            
-            <img src={carte.card_images[0].image_url} alt={carte.name} />
-            <img src={carte.card_images[0].image_url_small} alt={carte.name} />
-            <img src={carte.card_images[0].image_url_cropped} alt={carte.name} />
-
-            <p> ID : {carte.id}</p>
-            <p> Description : {carte.desc}</p>
-            <p> Type : {carte.type}</p>
-            <p> Race : {carte.race}</p>
-            <p> Attaque : {carte.atk}</p>
-            <p> Defense : {carte.def}</p>
-            <p> Etoiles : {carte.level}</p>
-            <p> Archetype : {carte.archetype}</p>
-            <p> Attribut : {carte.attribute}</p>
-
-            <p> Card Prices : </p>
-            {carte.card_prices && carte.card_prices.length > 0 ? (
-              <div>
-                {carte.card_prices.map((price, index) => (
-                  <div key={index}>
-                    <p>Cardmarket Price: {price.cardmarket_price}</p>
-                    <p>Tcgplayer Price: {price.tcgplayer_price}</p>
-                    <p>Ebay Price: {price.ebay_price}</p>
-                    <p>Amazon Price: {price.amazon_price}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>No card prices available.</p>
-            )}
-
-            {carte.card_sets && carte.card_sets.length > 0 ? (
-            <div>
-                <h4>Card Sets:</h4>
-                {carte.card_sets.map((set, index) => (
-                  <div key={index}>
-                    <p>Set Nom: {set.set_name}</p>
-                    <p>Set Rareté: {set.set_rarity}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>No card sets available.</p>
-            )}
-          </div>
-        ))}
-      </div>
-    );
-  }
