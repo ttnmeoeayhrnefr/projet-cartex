@@ -28,7 +28,7 @@ export default function MarketPlace() {
     return (
         <div className="content-mkp">
             <div className="header">
-                <h2>Bienvenue sur CarteX,</h2>
+                <h2>Bienvenue sur Carte<span className='primary'>X</span>,</h2>
                 <p>Trouve toutes les cartes que tu désires !</p>
             </div>
             <div className="filterbar">
