@@ -1,3 +1,11 @@
+<?php
+    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
+
+    $DAO = new DAO($connexion);
+    $card = $DAO->listAllCards();
+?>
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -33,7 +41,24 @@
                                 </h2>
                             </div>
                             <div class="gest-sct">
-                                <div class="template"></div>
+                                <div class="cardUpdateSct">
+                                    <?php
+                                        echo "<table>";
+                                        echo "<td><a href='card_add.php'>Ajouter carte</a></td>";
+                                        echo "<tr><th>ID</th><th>Nom</th><th>Description</th><th>Ebay_Price</th><th>Actions</th></tr>";
+                                        foreach ($card as $cd) {
+                                            echo "<tr>";
+                                            echo "<td>" . $cd['id_carte'] . "</td>";
+                                            echo "<td>" . $cd['nom'] . "</td>";
+                                            echo "<td>" . $cd['description'] . "</td>";
+                                            echo "<td>" . $cd['ebay_price'] . "</td>";
+                                            echo "<td><a href='card_add.php?userId=" . $cd['id_user'] . "'>Modifier carte</a></td>";
+                                            echo "<td><a href='request.php'>Supprimer carte</a></td>";
+                                            echo "</tr>";
+                                        }
+                                        echo "</table>";
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>

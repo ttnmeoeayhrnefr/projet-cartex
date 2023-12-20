@@ -241,37 +241,7 @@
                 echo "Erreur lors de l'affichage des utilisateurs par id: " . $e->getMessage();
                 return [];
             }
-        } 
-        public function listUserPseudo($id_user) {
-            try {
-                $row = $this->bdd->prepare("SELECT pseudo FROM utilisateur WHERE id_user = ?");
-                $row->execute([$id_user]);
-                return $row->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'affichage du pseudo de l'utilisateur: " . $e->getMessage();
-                return [];
-            }
-        }
-        public function listUserPassword() {
-            try {
-                $row = $this->bdd->prepare("SELECT mdp FROM utilisateur");
-                $row->execute();
-                return $row->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'affichage des mots de passe utilisateurs: " . $e->getMessage();
-                return [];
-            }
-        }
-        public function listUserRole() {
-            try {
-                $row = $this->bdd->prepare("SELECT role FROM utilisateur");
-                $row->execute();
-                return $row->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'affichage des rôles utilisateurs: " . $e->getMessage();
-                return [];
-            }
-        }    
+        }   
 
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -290,42 +260,6 @@
                 return false;
             }
         }   
-        public function addUserPseudo($pseudo, $id_user) {
-            try {
-                $row = $this->bdd->prepare("INSERT INTO utilisateur(pseudo) VALUES(:pseudo) WHERE id_user = :id_user");
-                $row->bindParam(':pseudo', $pseudo);
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'ajout du pseudo de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        }
-        public function addUserPassword($password, $id_user) {
-            try {
-                $row = $this->bdd->prepare("INSERT INTO utilisateur(mdp) VALUES(:password) WHERE id_user = :id_user");
-                $row->bindParam(':password', $password);
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true; 
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'ajout du mot de passe de l'utilisateur: " . $e->getMessage();
-                return false; 
-            }
-        }
-        public function addUserRole($role, $id_user) {
-            try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET role = :role WHERE id_user = :id_user");
-                $row->bindParam(':role', $role);
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'ajout du rôle de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        }
 
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -344,43 +278,7 @@
                 echo "Erreur lors de la mise à jour de l'utilisateur: " . $e->getMessage();
                 return false;
             }
-        } 
-        public function updateUserPseudo($id_user, $pseudo) {
-            try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = :pseudo WHERE id_user = id_user");
-                $row->bindParam(':pseudo', $pseudo);
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la mise à jour du pseudo de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        } 
-        public function updateUserPassword($id_user, $password) {
-            try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET mdp = :mdp WHERE id_user = :id_user");
-                $row->bindParam(':mdp', $password);
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la mise à jour du mot de passe de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        }  
-        public function updateUserRole($id_user, $role) {
-            try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET role = :role WHERE id_user = :id_user");
-                $row->bindParam(':role', $role);
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la mise à jour du rôle de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        }   
+        }    
 
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -397,41 +295,101 @@
                 return false;
             }
         }
-        public function removeUserPseudo($id_user) {
-            try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = NULL WHERE id_user = :id_user");
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la suppression du pseudo de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        }  
-        public function removeUserPassword($id_user) {
-            try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET mdp = NULL WHERE id_user = :id_user");
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la suppression du mot de passe de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        }
-        public function removeUserRole($id_user) {
-            try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET role = NULL WHERE id_user = :id_user");
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la suppression du rôle de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        }
+
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
 
+        public function addCard($idCarte,$nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price) {
+            try {
+                $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_small, image_cropped, id_konami, description, type, race, attack, defense, stars, archetype,
+                attribute, cardmarket_price, ebay_price, amazon_price, tcgplayer_price) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
+                :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price) WHERE id_carte = :id");
+                $row->bindParam(":nom", $nom);
+                $row->bindParam(":image", $image);
+                $row->bindParam(":image_small", $image_small);
+                $row->bindParam(":image_cropped", $image_cropped);
+                $row->bindParam(":id_konami", $id_konami);
+                $row->bindParam(":description", $description);
+                $row->bindParam(":type", $type);
+                $row->bindParam(":race", $race);
+                $row->bindParam(":attack", $attack);
+                $row->bindParam(":defense", $defense);
+                $row->bindParam(":stars", $stars);
+                $row->bindParam(":archetype", $archetype);
+                $row->bindParam(":attribute", $attribute);
+                $row->bindParam(":cardmarket_price", $cardmarket_price);
+                $row->bindParam(":ebay_price", $ebay_price);
+                $row->bindParam(":amazon_price", $amazon_price);
+                $row->bindParam(":tcgplayer_price", $tcgplayer_price);
+                $row->bindParam(":id_carte", $idCarte);
+                $row->execute();
+            } catch (PDOException $e) {
+                echo "Erreur lors de la création de la carte par son id :" . $e->getMessage();
+            }
+        }
+
+        public function listAllCards() {
+            try {
+                $row = $this->bdd->prepare("SELECT * FROM carte");
+                $row->execute();
+                return $row->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
+            }
+        }
+
+        public function listCardById($idCarte) {
+            try {
+                $row = $this->bdd->prepare("SELECT * FROM carte WHERE id_carte = :id_carte");
+                $row->bindParam(":id_carte", $idCarte);
+                $row->execute();
+                return $row->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
+            }
+        }
+
+        public function updateCardById($idCarte,$nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price) {
+            try {
+                $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_small = :image_small, image_cropped = :image_cropped, id_konami = :id_konami,
+                description = :description, type = :type, race = :race, attack = :attack, defense = :defense, stars = :stars, archetype = :archetype, attribute = :attribute,
+                cardmarket_price = :cardmarket_price, ebay_price = :ebay_price, amazon_price = :amazon_price, tcgplayer_price = :tcgplayer_price WHERE id_carte = :id");
+                $row->bindParam(":nom", $nom);
+                $row->bindParam(":image", $image);
+                $row->bindParam(":image_small", $image_small);
+                $row->bindParam(":image_cropped", $image_cropped);
+                $row->bindParam(":id_konami", $id_konami);
+                $row->bindParam(":description", $description);
+                $row->bindParam(":type", $type);
+                $row->bindParam(":race", $race);
+                $row->bindParam(":attack", $attack);
+                $row->bindParam(":defense", $defense);
+                $row->bindParam(":stars", $stars);
+                $row->bindParam(":archetype", $archetype);
+                $row->bindParam(":attribute", $attribute);
+                $row->bindParam(":cardmarket_price", $cardmarket_price);
+                $row->bindParam(":ebay_price", $ebay_price);
+                $row->bindParam(":amazon_price", $amazon_price);
+                $row->bindParam(":tcgplayer_price", $tcgplayer_price);
+                $row->bindParam(":id_carte", $idCarte);
+                $row->execute();
+            } catch (PDOException $e) {
+                echo "Erreur lors de la modification de la carte par son id :" . $e->getMessage();
+            }
+        }
+
+        public function removeCardById($idCarte) {
+            try {
+                $row = $this->bdd->prepare("DELETE FROM carte WHERE id_carte = :id_carte");
+                $row->binParam(":id_carte", $idCarte);
+                $row->execute();
+                return true;
+            } catch (PDOException $e) {
+                echo "Erreur lors de la suppression de la carte par son id :" . $e->getMessage();
+                return false;
+            }
+        }
         // Cqrtes
         // private $id;
         // private $nom;
