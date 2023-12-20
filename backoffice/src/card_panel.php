@@ -1,9 +1,9 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
-$DAO = new DAO($connexion);
-$card = $DAO->listAllCards();
+    $DAO = new DAO($connexion);
+    $card = $DAO->listAllCards();
 ?>
 
 <!DOCTYPE html>
