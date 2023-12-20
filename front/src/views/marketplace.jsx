@@ -36,7 +36,17 @@ export default function MarketPlace() {
     const [filteredCards, setFilteredCards] = useState([]);
     const [selectedCardId, setSelectedCardId] = useState(null);
     // const [activeFilter, setActiveFilter] = useState(null);
+    const [currentPrice, setCurrentPrice] = useState(0);
 
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentPrice((prevPrice) => (prevPrice + 1) % 4);
+      }, 1000);
+    
+      return () => {
+        clearInterval(interval);
+      };
+    }, []);
 
     useEffect(() => {
       const fetchAllCards = async () => {
@@ -128,13 +138,24 @@ export default function MarketPlace() {
               <img src={card.image} alt="" />
             </div>
             <div className="describe">
-              <div className="price">
-                {["cardmarket", "tcgplayer", "ebay", "amazon"].map((source, index) => (
-                  <span key={index} className={index === currentIndex ? 'active' : ''}>
-                    {`${card[`${source}_price`]}$`}
-                  </span>
-                ))}
-              </div>
+            <div className="price" style={{ position: 'relative' }}>
+            {["cardmarket", "tcgplayer", "ebay", "amazon"].map((source, index) => (
+              <span
+                key={index}
+                className={index === currentIndex ? 'active' : ''}
+                style={{
+                  position: 'absolute',
+                  top: '0%',
+                  left: '-1.75vw',
+                  opacity: index === currentPrice ? '1' : '0',
+                  transition: 'opacity 0.5s ease-in-out',
+                  zIndex: '999',
+                }}
+              >
+                {`${card[`${source}_price`]}$`}
+              </span>
+            ))}
+          </div>
             </div>
           </div>
       </Link>
