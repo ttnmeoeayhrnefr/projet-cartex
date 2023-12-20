@@ -441,7 +441,7 @@ class DAO
                 return false;
             }
         }
-    }
+    
 
         public function removeCardById($idCarte) {
             try {
