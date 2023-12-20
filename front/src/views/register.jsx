@@ -78,7 +78,7 @@ export default function Register() {
                       </div>
                       <div className="pwd">
                         <input
-                          type="text"
+                          type="password"
                           id="mdp"
                           placeholder="Password..."
                           value={mdp}

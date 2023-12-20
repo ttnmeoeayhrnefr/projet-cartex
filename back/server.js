@@ -12,6 +12,7 @@ const pool = mariadb.createPool({
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PWD,
+  connectionLimit: 20,
 });
 
 
@@ -375,7 +376,7 @@ app.get("/utilisateurs/:id", async (req, res) => {
   }
 });
 
-app.get("/utilisateurs/nom/:nom", async (req, res) => {
+app.get("/utilisateurs/nom/:pseudo", async (req, res) => {
   let conn;
   try {
     console.log("Lancement de la connexion");
@@ -448,6 +449,40 @@ app.delete("/utilisateurs/nom/:pseudo", async (req, res) => {
     res.status(500).json("Erreur lors de la suppression");
   }
 });
+
+// POST CONNEXION
+app.post("/connexion", async (req, res) => {
+  let conn;
+  try {
+    const { pseudo, mdp } = req.body;
+    conn = await pool.getConnection();
+    const rows = await conn.query(
+      "SELECT * FROM utilisateur WHERE pseudo = ?",
+      [pseudo]
+    );
+
+    if (rows.length > 0) {
+      const user = rows[0];
+      const match = await bcrypt.compare(mdp, user.mdp);
+
+      if (match) {
+        // Les mots de passe correspondent, authentification réussie
+        res.status(200).json({ message: "Authentification réussie" });
+      } else {
+        // Les mots de passe ne correspondent pas
+        res.status(401).json({ message: "Mot de passe incorrect" });
+      }
+    } else {
+      // L'utilisateur n'existe pas
+      res.status(404).json({ message: "Utilisateur non trouvé" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Erreur lors de l'authentification" });
+  }
+});
+
+
 
 app.listen(port, () =>
   console.log(`Le serveur écoute sur : http://localhost:${port}`)

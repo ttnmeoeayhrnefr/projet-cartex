@@ -82,6 +82,13 @@
             display: flex;
             width: 20vw;
             justify-content: space-between;
+
+            .user-info {
+                width: 10vw;
+                display: flex;
+                justify-content: end;
+                align-items: center;
+            }
         }
 
         .register, .connect {

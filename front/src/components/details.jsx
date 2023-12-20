@@ -48,7 +48,9 @@ export default function Details() {
         return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_wind.png";
       case "FIRE":
         return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_fire.png";  
-      default:
+      case "DIVINE":
+        return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_divine.png";  
+        default:
         return "path/to/default-image.png";
     }
   };

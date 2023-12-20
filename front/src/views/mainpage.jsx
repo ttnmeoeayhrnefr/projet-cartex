@@ -4,11 +4,43 @@ import Marketplace from "./marketplace";
 import Infos from "./infos";
 import Register from "./register";
 import Connect from "./connect";
+import { useState, useEffect } from "react";
 import Details from "../components/details";
 
 import "../style/mainpage.scss";
 
 export default function Mainpage() {
+  const [user_connected, set_user_connected] = useState(false);
+  const storedPseudo = localStorage.getItem("pseudo");
+
+  const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  // DECONNEXION UTILISATEUR ET CLEAR DU LOCALSTORAGE
+  const disconnect = () => {
+    if (user_connected) {
+      if (window.confirm("Vous allez être déconnecté...")) {
+        localStorage.removeItem("pseudo");
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("role");
+        set_user_connected(false);
+        window.location.href = "/";
+      }
+    } else {
+      alert("Aucun utilisateur n'est connecté.");
+    }
+  };
+
+  // VERIFICATION
+  useEffect(() => {
+    const userConnected = localStorage.getItem("pseudo");
+    if (userConnected) {
+      set_user_connected(true);
+      // alert("L'utilisateur est déjà connecté. Veuillez-vous déconnecter pour vous connecter avec un autre compte.");
+    }
+  }, []);
+
   return (
     <div className="content">
       <div className="navbar">
@@ -21,16 +53,30 @@ export default function Mainpage() {
           </ul>
         </div>
         <div className="acc-btn">
-            <Link to="/Register" className="Link">
-              <div className="register">
-                Inscription
+          {storedPseudo ? (
+            <>
+              <div className="user-info">
+                Hi, {capitalizeFirstLetter(storedPseudo)}
               </div>
-            </Link>
-            <Link to="/Connect" className="Link">
-              <div className="connect">
-                Connexion
+              <div className="connect" onClick={disconnect}>
+                Deconnecter
               </div>
+            </>
+          ) : (
+            <>
+              <Link to="/Register" className="Link">
+                <div className="register">
+                  Inscription
+                </div>
+              </Link>
+              <Link to="/Connect" className="Link">
+                <div className="connect">
+                  Connexion
+                </div>
             </Link>
+            </>
+          )}
+            
         </div>
       </div>
       <div className="container">
