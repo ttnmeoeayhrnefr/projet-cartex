@@ -225,6 +225,18 @@ class Utilisateurs
 
     public function __construct($id, $pseudo, $password, $role)
     {
+        if (empty($pseudo)) {
+            throw new InvalidArgumentException("Le pseudo de l'utilisateur est requis.");
+        }
+
+        if (empty($password)) {
+            throw new InvalidArgumentException("Le mot de passe de l'utilisateur est requis.");
+        }
+
+        if ($role !== '0' && $role !== '1') {
+            throw new InvalidArgumentException("Le rôle de l'utilisateur doit être soit 0 soit 1.");
+        }
+        
         $this->id = $id;
         $this->pseudo = $pseudo;
         $this->password = $password;

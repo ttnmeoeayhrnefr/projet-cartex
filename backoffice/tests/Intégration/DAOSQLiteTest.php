@@ -340,4 +340,28 @@ class DAOSQLiteTest extends TestCase
 
         $this->assertEmpty($removedCard);
     }
+
+    public function testAddUserInvalidUsername()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $dao = new DAO($this->pdo);
+
+        $dao->addUser('', 'password', '0');
+    }
+
+    public function testAddUserInvalidPassword()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $dao = new DAO($this->pdo);
+
+        $dao->addUser('pseudo', '', '1');
+    }
+
+    public function testAddUserInvalidRole()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $dao = new DAO($this->pdo);
+
+        $dao->addUser('pseudo', 'password', '2');
+    }
 }
