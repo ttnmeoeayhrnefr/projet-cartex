@@ -138,24 +138,37 @@ export default function MarketPlace() {
               <img src={card.image} alt="" />
             </div>
             <div className="describe">
-            <div className="price" style={{ position: 'relative' }}>
-            {["cardmarket", "tcgplayer", "ebay", "amazon"].map((source, index) => (
-              <span
-                key={index}
-                className={index === currentIndex ? 'active' : ''}
-                style={{
-                  position: 'absolute',
-                  top: '0%',
-                  left: '-1.75vw',
-                  opacity: index === currentPrice ? '1' : '0',
-                  transition: 'opacity 0.5s ease-in-out',
-                  zIndex: '999',
-                }}
-              >
-                {`${card[`${source}_price`]}$`}
-              </span>
-            ))}
-          </div>
+              <div className="price" style={{ position: 'relative'}}>
+                {["cardmarket", "tcgplayer", "ebay", "amazon"].map((source, index) => (
+                  <span
+                    key={index}
+                    className={index === currentIndex ? 'active' : ''}
+                    style={{
+                      position: 'absolute',
+                      top: '-0.1vh',
+                      left: '-1.75vw',
+                      opacity: index === currentPrice ? '1' : '0',
+                      transition: 'opacity 0.5s ease-in-out',
+                      zIndex: '999',
+                    }}
+                  >
+                    <img style={{ position: 'absolute', height: '2.4vh', width: '2.4vh', top: '-0.4vh', left: '-1.25vw' }}
+                      src={
+                        source === 'cardmarket'
+                          ? 'https://static.cardmarket.com/img/5d8d1b8b4cacaf8f53f62ec483d7b124/Downloads/Logos/CardmarketLogoTagline_Blue_Vertical_V23042018.png'
+                          : source === 'tcgplayer'
+                          ? 'https://media.licdn.com/dms/image/C560BAQFfGj-Xuawo6A/company-logo_200_200/0/1634568184091?e=2147483647&v=beta&t=k3f_Je2T1zlBQxrmvx1j0NqNDy06Zq6hpiE7OEH3csI'
+                          : source === 'ebay'
+                          ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAACClBMVEX///8AAAAcHBq83fQ/Pz6QkJA0Ro9XV1YxLipFhb5FicI7Y6RFf7lFgrwWFhNEerVZc6zC4/l+fn0jOos2TI5Fd7L3+P4sLCpCaKdDb6xDc7BCZ6aWlpYMDAj754AyMjFfX17xkpz764P84Hxvb27i4uH///inp6YxP4vhODaCvFdOTk2zs7Pw8PAkJCL29vbwipjylZ7hMi/92nfrboovljzR0dEACzb4sDf6uDi+vr7R1OXY2NggN2MAGDvjQkGhoaCNk7kAAyXufpTvjD3tgD+EhIOjqMc5UJCkxePj1HbmIiafXWP7wVT6zGHug5XoY238vyblT1PiQT9mtFL7w0P/6LXqZ4XrdzIaLYQzSIQAABmXt9pykcB/n8ljg7cdITYcJC4lEQCHYBCxgR8nPWh9GxeNDxM+AABES1VvTgnlskGZNjWxGh4tAAAuPz9ZPQDdni0ACxc5IwDtfYTIHyNQAAArGADAiChFTFUfAADnW17dFAD3pi/qbnamdCTixGUXUCpINCZZJgAgZCQ+pUebS1G7YS8ORRGVKSFICiPWpyPXTCAAHgBWhkSJXypjViFGGgA3KjUfYCJ9Fyb1mDcAICMtDiEZLCAwfzISWCw3PSFlRSaFUC1YGyMelDEANySNwm6l0I+kzqNxtnlNplf+3pUAIVcAFADi8duz17ZqVkcAGn6fpMRd8qZAAAAOE0lEQVR4nO2bi3sTVRbAc4ekEYtTmlLTR6YJNCENSTqQtDEZgkRLA91s0za0WtaWKiooLiJSXNxuy/qo6KLL+qiPfbnryq7srv/jnntn7sy'
+                          : source === 'amazon'
+                          ? 'https://cdn.icon-icons.com/icons2/2429/PNG/512/amazon_logo_icon_147320.png'
+                          : ''}
+                                    alt={`${source} logo`}
+                                  />
+                    {`${card[`${source}_price`]}$`}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
       </Link>
