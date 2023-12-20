@@ -55,9 +55,9 @@
                                             echo "<tr>";
                                             echo "<td>" . $cd['id_carte'] . "</td>";
                                             echo "<td>" . $cd['nom'] . "</td>";
-                                            echo "<td><img src='" . $cd['image'] . "'></td>";
-                                            echo "<td><img src='" . $cd['image_petite'] . "'></td>";
-                                            echo "<td><img src='" . $cd['image_cropped'] . "'></td>";
+                                            echo "<td><img class='carteImg' src='" . $cd['image'] . "'></td>";
+                                            echo "<td><img class='carteImg' src='" . $cd['image_petite'] . "'></td>";
+                                            echo "<td><img class='carteImg' src='" . $cd['image_cropped'] . "'></td>";
                                             echo "<td>" . $cd['id_carte_konami'] . "</td>";
                                             echo "<td>" . $cd['description'] . "</td>";
                                             echo "<td>" . $cd['type'] . "</td>";
