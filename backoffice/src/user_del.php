@@ -1,9 +1,16 @@
+<?php
+    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
+
+    $id = $_GET['user'];
+?>
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Card - AdminPanel</title>
+        <title>UserRemove - AdminPanel</title>
         <link rel="stylesheet" href="style.scss">
     </head>
     <body>
@@ -13,28 +20,34 @@
                     <h1>Panneau d'administration</h1>
                 </div>
                 <div class="disconnect-btn">
-                    <img src="" alt="">
+                    <a href="panel.php" id="aDisc">
+                        <img src="assets/logout.svg" alt="logout" id="disco">
+                    </a>
                 </div>
             </div>
             <div class="panel-sct">
                 <div class="home-sct">
                     <div class="left-btn">
-                        <img src="assets/l_chevron.svg" alt="left button" id="l_chev3">
+                        <a href="user_panel.php" id="a2l">
+                            <img src="assets/l_chevron.svg" alt="left button" id="l_chev2">
+                        </a>
                     </div>
                     <div class="content-sct">
                         <div class="user-sct">
                             <div class="title-sct">
                                 <h2 id="Usr">
-                                    Gestion cartes Yu-Gi-Oh !  
+                                    Suppression utilisateur  
                                 </h2>
                             </div>
                             <div class="gest-sct">
-                                <div class="template"></div>
+                                <div class="userSupSct">
+                                    <div class="msg">
+                                        <h2>Voulez-vous vraiment supprimer cet utilisateur ?</h2>
+                                        <a href="request.php?id=<?php echo $id ?>&req=3">Oui j'en suis sûr !</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="right-btn">
-                        <img src="assets/r_chevron.svg" alt="right button" id="r_chev3">
                     </div>
                 </div>
             </div>
