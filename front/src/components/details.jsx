@@ -24,7 +24,15 @@ export default function Details() {
     return <div className="loading-cards"><p>Chargement en <span className="primary">cours</span>...</p></div>;
   }
 
-  console.log(cardDetails)
+  const getBarWidth = (value) => {
+    if (value === null) {
+      return "0%";
+    } else {
+      const maxWidth = 7000;
+      const widthPercentage = (value / maxWidth) * 100;
+      return `${widthPercentage}%`;
+    }
+  };
 
   return (
     <div className="content-details">
@@ -40,7 +48,7 @@ export default function Details() {
         <div className="stars">
           {Array.from({ length: cardDetails.etoiles }, (_, index) => (
             <img
-              key={index} // Assurez-vous d'ajouter une clé unique pour chaque élément généré
+              key={index}
               src="https://www.db.yugioh-card.com/yugiohdb/external/image/parts/icon_level.png"
               alt={`Star ${index + 1}`}
             />
@@ -56,9 +64,19 @@ export default function Details() {
           <p>Attribut: { cardDetails.attribut === null ? "Spell" : cardDetails.attribut }</p>
         </div>
         <div className="stats">
-          <p>Attaque: { cardDetails.attaque === null ? "/": cardDetails.attaque }</p>
-          <p>Défense: { cardDetails.defense === null ? "/": cardDetails.defense }</p>
-        </div>
+          <div className="attack">
+              <p>Attaque: </p>
+            <div className="attack-bar" style={{ width: getBarWidth(cardDetails.attaque) }}>
+              <span>{cardDetails.attaque === null ? "/" : cardDetails.attaque}</span>
+            </div>
+          </div>
+          <div className="defense">
+              <p>Défense: </p>
+            <div className="defense-bar" style={{ width: getBarWidth(cardDetails.defense) }}>
+              <span>{cardDetails.defense === null ? "/" : cardDetails.defense}</span>
+            </div>
+          </div>
+      </div>
         <div className="price">
           <div className="cardmarket">
             <div className="img">
