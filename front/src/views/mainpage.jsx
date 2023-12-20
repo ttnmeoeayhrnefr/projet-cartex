@@ -4,6 +4,7 @@ import Marketplace from "./marketplace";
 import Infos from "./infos";
 import Register from "./register";
 import Connect from "./connect";
+import Details from "../components/details";
 
 import "../style/mainpage.scss";
 
@@ -39,6 +40,7 @@ export default function Mainpage() {
           <Route path="/Infos" element={<Infos />}></Route>
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/Connect" element={<Connect />}></Route>
+          <Route path="/details/:cardId" element={<Details />} />
         </Routes>
       </div>
     </div>

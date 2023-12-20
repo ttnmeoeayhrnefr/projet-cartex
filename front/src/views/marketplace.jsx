@@ -1,6 +1,8 @@
 import '../style/marketplace.scss'
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from 'axios'
+import { Link } from "react-router-dom";
+
 
 export default function MarketPlace() {
     // const generateCardList = () => {
@@ -32,6 +34,7 @@ export default function MarketPlace() {
     const [currentIndex, setCurrentIndex] = useState([]);
     const [search, setSearch] = useState("");
     const [filteredCards, setFilteredCards] = useState([]);
+    const [selectedCardId, setSelectedCardId] = useState(null);
     // const [activeFilter, setActiveFilter] = useState(null);
 
 
@@ -107,29 +110,36 @@ export default function MarketPlace() {
       setFilteredCards(sortedCards);
     };
 
-    const generateCardList = () => {
-      return filteredCards.map((card) => (
-        <div className="card" key={card.id}>
-          <div className="title">
-            <span>{card.nom}</span>
-            <p>#{card.id_carte_konami}</p>
-          </div>
-          <div className="img">
-            <img src={card.image} alt="" />
-          </div>
-          <div className="describe">
-            <div className="price">
-                {["cardmarket", "tcgplayer", "ebay", "amazon"].map((source, index) => (
-                    <span key={index} className={index === currentIndex ? 'active' : ''}>
-                    {`${card[`${source}_price`]}$`}
-                    </span>
-                ))}
-            </div>
-          </div>
-        </div>
-      ));
+    const handleCardClick = (cardId) => {
+      console.log(cardId)
+      setSelectedCardId(cardId);
+      window.location.href = `/details/${cardId}`;
     };
 
+    const generateCardList = () => {
+      return filteredCards.map((card) => (
+        <Link to={`/details/${card.id_carte}`} key={card.id_carte}>
+          <div className="card" key={card.id_carte} onClick={() => handleCardClick(card.id_carte)}>
+            <div className="title">
+              <span>{card.nom}</span>
+              <p>#{card.id_carte_konami}</p>
+            </div>
+            <div className="img">
+              <img src={card.image} alt="" />
+            </div>
+            <div className="describe">
+              <div className="price">
+                {["cardmarket", "tcgplayer", "ebay", "amazon"].map((source, index) => (
+                  <span key={index} className={index === currentIndex ? 'active' : ''}>
+                    {`${card[`${source}_price`]}$`}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+      </Link>
+      ));
+    };
 
     return (
         <div className="content-mkp">
