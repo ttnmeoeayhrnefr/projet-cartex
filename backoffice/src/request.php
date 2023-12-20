@@ -72,7 +72,7 @@ include "./DAO.php";
                 $collection = $_POST['cardCollection'];
                 $rareté = $_POST['cardRarete'];
                 $card = $DAO->updateCardById($nom,$image,$image_small,$image_cropped,$id_Konami,$description,$type,$race,$attack,$defense,$etoile,$archetype,$attribut,$prix_cardmarket,$prix_ebay,$prix_amazon,$prix_tcgPlayer,$collection,$rareté,$carteId);
-                // header('location: ' . $cardHome);
+                header('location: ' . $cardHome);
                 echo $carteId;
                 break;
             case 6:

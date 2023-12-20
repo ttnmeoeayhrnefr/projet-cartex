@@ -409,7 +409,6 @@ class DAO
             }
         }
 
-<<<<<<< HEAD
         public function updateCardById($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$cNom,$rare,$idCarte) {
             try {
                 $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_petite = :image_small, image_cropped = :image_cropped, id_carte_konami = :id_konami,
@@ -441,37 +440,6 @@ class DAO
                 echo "Erreur lors de la modification de la carte par son id :" . $e->getMessage();
                 return false;
             }
-=======
-    public function updateCardById($idCarte, $nom, $image, $image_small, $image_cropped, $id_konami, $description, $type, $race, $attack, $defense, $stars, $archetype, $attribute, $cardmarket_price, $ebay_price, $amazon_price, $tcgplayer_price)
-    {
-        try {
-            $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_small = :image_small, image_cropped = :image_cropped, id_konami = :id_konami,
-                description = :description, type = :type, race = :race, attack = :attack, defense = :defense, stars = :stars, archetype = :archetype, attribute = :attribute,
-                cardmarket_price = :cardmarket_price, ebay_price = :ebay_price, amazon_price = :amazon_price, tcgplayer_price = :tcgplayer_price WHERE id_carte = :id");
-            $row->bindParam(":nom", $nom);
-            $row->bindParam(":image", $image);
-            $row->bindParam(":image_small", $image_small);
-            $row->bindParam(":image_cropped", $image_cropped);
-            $row->bindParam(":id_konami", $id_konami);
-            $row->bindParam(":description", $description);
-            $row->bindParam(":type", $type);
-            $row->bindParam(":race", $race);
-            $row->bindParam(":attack", $attack);
-            $row->bindParam(":defense", $defense);
-            $row->bindParam(":stars", $stars);
-            $row->bindParam(":archetype", $archetype);
-            $row->bindParam(":attribute", $attribute);
-            $row->bindParam(":cardmarket_price", $cardmarket_price);
-            $row->bindParam(":ebay_price", $ebay_price);
-            $row->bindParam(":amazon_price", $amazon_price);
-            $row->bindParam(":tcgplayer_price", $tcgplayer_price);
-            $row->bindParam(":id_carte", $idCarte);
-            $row->execute();
-            return true;
-        } catch (PDOException $e) {
-            echo "Erreur lors de la modification de la carte par son id :" . $e->getMessage();
-            return false;
->>>>>>> 13e1dbfc6617e7c579552b0ec5f589f6b5f9e918
         }
     }
 
