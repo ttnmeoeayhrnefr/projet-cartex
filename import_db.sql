@@ -31,7 +31,8 @@ CREATE TABLE carte (
   amazon_price decimal(10, 2) DEFAULT NULL,
   set_nom varchar(255) DEFAULT NULL,
   set_rarete varchar(255) DEFAULT NULL,
-  PRIMARY KEY(id_carte)
+  PRIMARY KEY(id_carte),
+  FOREIGN KEY(id_user) REFERENCES utilisateur(id_user)
 );
 
 CREATE TABLE deck (
