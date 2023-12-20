@@ -325,8 +325,10 @@
                 $row->bindParam(":tcgplayer_price", $tcgplayer_price);
                 $row->bindParam(":id_carte", $idCarte);
                 $row->execute();
+                return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la création de la carte par son id :" . $e->getMessage();
+                return false;
             }
         }
 
@@ -337,6 +339,7 @@
                 return $row->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
+                return [];
             }
         }
 
@@ -348,6 +351,7 @@
                 return $row->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
+                return [];
             }
         }
 
@@ -375,8 +379,10 @@
                 $row->bindParam(":tcgplayer_price", $tcgplayer_price);
                 $row->bindParam(":id_carte", $idCarte);
                 $row->execute();
+                return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la modification de la carte par son id :" . $e->getMessage();
+                return false;
             }
         }
 
