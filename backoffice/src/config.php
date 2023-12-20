@@ -1,5 +1,6 @@
 <?php
-require './backoffice/vendor/autoload.php';
+// require './backoffice/vendor/autoload.php';
+require '/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 

@@ -1,6 +1,6 @@
 <?php
-include "./config.php";
-include "./DAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
 $DAO = new DAO($connexion);
 $card = $DAO->listAllCards();
@@ -28,15 +28,6 @@ $card = $DAO->listAllCards();
                 </a>
             </div>
         </div>
-        <div class="panel-sct">
-            <div class="home-sct">
-                <div class="left-btn">
-                    <a href="user_panel.php" id="a3l">
-                        <img src="assets/l_chevron.svg" alt="left button" id="l_chev3">
-                    </a>
-                </div>
-<<<<<<< HEAD
-            </div>
             <div class="panel-sct">
                 <div class="home-sct">
                     <div class="left-btn">
@@ -89,39 +80,12 @@ $card = $DAO->listAllCards();
                                         echo "</table>";
                                     ?>
                                 </div>
-=======
-                <div class="content-sct">
-                    <div class="user-sct">
-                        <div class="title-sct">
-                            <h2 id="Usr">
-                                Gestion cartes Yu-Gi-Oh !
-                            </h2>
-                        </div>
-                        <div class="gest-sct">
-                            <div class="cardUpdateSct">
-                                <?php
-                                echo "<table>";
-                                echo "<td><a href='card_add.php'>Ajouter carte</a></td>";
-                                echo "<tr><th>ID</th><th>Nom</th><th>Description</th><th>Ebay_Price</th><th>Actions</th></tr>";
-                                foreach ($card as $cd) {
-                                    echo "<tr>";
-                                    echo "<td>" . $cd['id_carte'] . "</td>";
-                                    echo "<td>" . $cd['nom'] . "</td>";
-                                    echo "<td>" . $cd['description'] . "</td>";
-                                    echo "<td>" . $cd['ebay_price'] . "</td>";
-                                    echo "<td><a href='card_add.php?userId=" . $cd['id_user'] . "'>Modifier carte</a></td>";
-                                    echo "<td><a href='request.php'>Supprimer carte</a></td>";
-                                    echo "</tr>";
-                                }
-                                echo "</table>";
-                                ?>
->>>>>>> Théo/Tests
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="right-btn">
-                    <img src="assets/r_chevron.svg" alt="right button" id="r_chev3">
+                    <div class="right-btn">
+                        <img src="assets/r_chevron.svg" alt="right button" id="r_chev3">
+                    </div>
                 </div>
             </div>
         </div>

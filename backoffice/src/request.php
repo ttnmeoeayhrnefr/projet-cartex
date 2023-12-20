@@ -1,9 +1,11 @@
 <?php
-include "./config.php";
-include "./DAO.php";
+// include "./config.php";
+// include "./DAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
-    $userHome = "/projet-cartex/backoffice/src/user_panel.php";
-    $cardHome = "/projet-cartex/backoffice/src/card_panel.php";
+    $userHome = "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/user_panel.php";
+    $cardHome = "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/card_panel.php";
     
     if (isset($_GET['req'])) {
         switch ($_GET['req']) {
