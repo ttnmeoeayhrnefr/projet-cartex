@@ -363,8 +363,9 @@ class DAO
     {
         try {
             $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_small, image_cropped, id_konami, description, type, race, attack, defense, stars, archetype,
-                attribute, cardmarket_price, ebay_price, amazon_price, tcgplayer_price) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
-                :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price) WHERE id_carte = :id");
+            attribute, cardmarket_price, ebay_price, amazon_price, tcgplayer_price) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
+            :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price)");
+
             $row->bindParam(":nom", $nom);
             $row->bindParam(":image", $image);
             $row->bindParam(":image_small", $image_small);
