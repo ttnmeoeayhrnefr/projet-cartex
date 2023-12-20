@@ -16,6 +16,28 @@
         .slogan {
             font-size: 3rem;
             font-weight: 600;
+            position: relative;
+
+            .cursor {
+                display: inline-block;
+                width: 0.5em;
+                height: 1em;
+                margin-left: 2px;
+                animation: blink 0.4s;
+                position: absolute;
+                bottom: .5rem;
+                font-size: 3.5rem;
+                color: var(--color-primary);
+              }
+            
+              @keyframes blink {
+                0% {
+                  opacity: 0;
+                }
+                100%{
+                    opacity: 1;
+                }
+              }
         }
 
         .describe {

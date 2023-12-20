@@ -6,6 +6,8 @@ import axios from 'axios';
 export default function Homepage() {
     const [cards, setCards] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [visibleLetters, setVisibleLetters] = useState([]);
+    const [showCursor, setShowCursor] = useState(true);
   
     useEffect(() => {
       const fetchRandomCards = async () => {
@@ -28,12 +30,42 @@ export default function Homepage() {
       };
     }, []); 
 
+  useEffect(() => {
+    const sloganText = "Collectionneurs, joueurs, et amateurs, CarteX a la carte qu'il vous faut.";
+    const sloganArray = sloganText.split('');
+
+    const animationTimeouts = sloganArray.map((letter, index) => {
+      return setTimeout(() => {
+        setVisibleLetters((prevVisibleLetters) => [
+          ...prevVisibleLetters,
+          { letter, isPrimary: index >= sloganText.indexOf('CarteX') && index < sloganText.indexOf('CarteX') + 6 },
+        ]);
+
+        if (index === sloganArray.length - 1) {
+          setInterval(() => {
+            setShowCursor((prevShowCursor) => !prevShowCursor);
+          }, 500);
+        }
+      }, index * 100);
+    });
+
+    return () => {
+      animationTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+    };
+  }, []);
+
+
     return (
         <div className="content">
             <div className="home-hook">
                 <div className="left">
                     <div className="slogan">
-                        <p>Je n'ai pas d'<span className='primary'>idée</span> de<br/> slogan, t'as <span className='primary'>capté</span> ou quoi ?</p>
+                        {visibleLetters.map(({ letter, isPrimary }, index) => (
+                            <span key={index} className={isPrimary ? 'primary' : ''}>
+                            {letter}
+                            </span>
+                        ))}
+                        {showCursor && <span className="cursor">|</span>}
                     </div>
                     <div className="describe">
                         <p>Je ne sais pas ce que je raconte mais c'est la pour faire crari. 
