@@ -60,7 +60,7 @@
                                                 </select>
                                             </div>
                                             <div class="submitSct">
-                                                <input type="submit" value="Créer utilisateur">
+                                                <input type="submit" value="Modifier utilisateur">
                                             </div>
                                         </div>
                                     </form>

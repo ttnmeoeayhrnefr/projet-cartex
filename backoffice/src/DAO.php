@@ -299,11 +299,11 @@
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
 
-        public function addCard($idCarte,$nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price) {
+        public function addCard($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$collection,$rarete) {
             try {
-                $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_small, image_cropped, id_konami, description, type, race, attack, defense, stars, archetype,
-                attribute, cardmarket_price, ebay_price, amazon_price, tcgplayer_price) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
-                :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price) WHERE id_carte = :id");
+                $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_petite, image_cropped, id_carte_konami, description, type, race, attaque, defense, etoiles, archetype,
+                attribut, cardmarket_price, ebay_price, amazon_price, tcgplayer_price, set_nom, set_rarete) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
+                :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price, :set_nom, :set_rarete)");
                 $row->bindParam(":nom", $nom);
                 $row->bindParam(":image", $image);
                 $row->bindParam(":image_small", $image_small);
@@ -321,7 +321,8 @@
                 $row->bindParam(":ebay_price", $ebay_price);
                 $row->bindParam(":amazon_price", $amazon_price);
                 $row->bindParam(":tcgplayer_price", $tcgplayer_price);
-                $row->bindParam(":id_carte", $idCarte);
+                $row->bindParam(":set_nom", $collection);
+                $row->bindParam(":set_rarete", $rarete);
                 $row->execute();
                 return true;
             } catch (PDOException $e) {
@@ -346,7 +347,7 @@
                 $row = $this->bdd->prepare("SELECT * FROM carte WHERE id_carte = :id_carte");
                 $row->bindParam(":id_carte", $idCarte);
                 $row->execute();
-                return $row->fetchAll(PDO::FETCH_ASSOC);
+                return $row->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
                 return [];
@@ -387,7 +388,7 @@
         public function removeCardById($idCarte) {
             try {
                 $row = $this->bdd->prepare("DELETE FROM carte WHERE id_carte = :id_carte");
-                $row->binParam(":id_carte", $idCarte);
+                $row->bindParam(":id_carte", $idCarte);
                 $row->execute();
                 return true;
             } catch (PDOException $e) {

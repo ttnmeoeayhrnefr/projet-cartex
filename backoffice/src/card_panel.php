@@ -71,8 +71,8 @@
                                             echo "<td>" . $cd['amazon_price'] . "</td>";
                                             echo "<td>" . $cd['set_nom'] . "</td>";
                                             echo "<td>" . $cd['set_rarete'] . "</td>";
-                                            echo "<td><a href='card_add.php?userId=" . $cd['id_user'] . "'>Modifier carte</a></td>";
-                                            echo "<td><a href='request.php'>Supprimer carte</a></td>";
+                                            echo "<td><a href='card_update.php?card=" . $cd['id_carte'] . "'>Modifier carte</a></td>";
+                                            echo "<td><a href='card_del.php?cardId=" . $cd['id_carte'] .  "'>Supprimer carte</a></td>";
                                             echo "</tr>";
                                         }
                                         echo "</table>";
