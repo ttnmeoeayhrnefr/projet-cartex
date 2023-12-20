@@ -38,9 +38,20 @@ const Personnalisation = () => {
     }
   };
 
-  const handleDelete = (cardId) => {
-    // Mettez en œuvre la logique pour supprimer la carte avec l'ID cardId
-    console.log(`Suppression de la carte avec l'ID ${cardId}`);
+  const handleDelete = async (cardId) => {
+    try {
+      // Demander confirmation à l'utilisateur
+      if (window.confirm("Êtes-vous sûr de vouloir supprimer cette carte ?")) {
+        // Mettez en œuvre la logique pour supprimer la carte
+        await axios.delete(`http://localhost:3001/cartes/${cardId}`);
+        console.log("Carte supprimée avec succès");
+
+        // Mettez à jour l'état pour refléter la suppression
+        setUserCards((prevCards) => prevCards.filter((card) => card.id_carte !== cardId));
+      }
+    } catch (error) {
+      console.error("Erreur lors de la suppression de la carte", error);
+    }
   };
 
   const handleCreate = () => {

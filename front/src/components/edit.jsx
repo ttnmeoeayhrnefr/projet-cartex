@@ -55,8 +55,8 @@ const EditionCarte = () => {
         setEditedEtoiles(cardDetails.etoiles);
         setEditedArchetype(cardDetails.archetype);
         setEditedAttribut(cardDetails.attribut);
-        setEditedCardMarketPrice(cardDetails.card_market_price);
-        setEditedTgcPlayerPrice(cardDetails.tgc_player_price);
+        setEditedCardMarketPrice(cardDetails.cardmarket_price);
+        setEditedTgcPlayerPrice(cardDetails.tcgplayer_price);
         setEditedEbayPrice(cardDetails.ebay_price);
         setEditedAmazonPrice(cardDetails.amazon_price);
         setEditedSetNom(cardDetails.set_nom);
@@ -85,7 +85,7 @@ const EditionCarte = () => {
         archetype: editedArchetype,
         attribut: editedAttribut,
         cardmarket_price: editedCardMarketPrice,
-        tgcplayer_price: editedTgcPlayerPrice,
+        tcgplayer_price: editedTgcPlayerPrice,
         ebay_price: editedEbayPrice,
         amazon_price: editedAmazonPrice,
         set_nom: editedSetNom,
@@ -139,7 +139,7 @@ const EditionCarte = () => {
       />
       <br />
       <label>Description de la carte:</label>
-      <input
+      <textarea
         value={editedDescription}
         onChange={(e) => setEditedDescription(e.target.value)}
       />
