@@ -5,12 +5,12 @@
         <env name="DB_HOST" value="127.0.0.1"></env>
         <env name="DB_PORT" value=""></env>
         <env name="DB_DATABASE" value="test"></env>
-        <env name="DB_USERNAME" value="test"></env>
-        <env name="DB_PASSWORD" value="test"></env> -->
+        <env name="DB_USERNAME" value="root"></env>
+        <env name="DB_PASSWORD" value="root"></env> -->
     </php>
     <testsuites>
         <testsuite name="Unit Tests">
-            <directory>tests/Integration</directory>
+            <directory>tests/Intégration</directory>
         </testsuite>
     </testsuites>
 </phpunit>
