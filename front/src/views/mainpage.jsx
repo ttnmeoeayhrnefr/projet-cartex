@@ -56,10 +56,10 @@ export default function Mainpage() {
           {storedPseudo ? (
             <>
               <div className="user-info">
-                Connecté en tant que {capitalizeFirstLetter(storedPseudo)}
+                Hi, {capitalizeFirstLetter(storedPseudo)}
               </div>
-              <div className="disconnect">
-                <button onClick={disconnect}>Se déconnecter</button>
+              <div className="connect" onClick={disconnect}>
+                Deconnecter
               </div>
             </>
           ) : (
