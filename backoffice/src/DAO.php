@@ -234,8 +234,9 @@
         }
         public function listUserById($id_user) {
             try {
-                $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE id_user = ?");
-                $row->execute([$id_user]);
+                $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE id_user = :id_user");
+                $row->bindParam(":id_user", $id_user);
+                $row->execute();
                 return $row->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo "Erreur lors de l'affichage des utilisateurs par id: " . $e->getMessage();
