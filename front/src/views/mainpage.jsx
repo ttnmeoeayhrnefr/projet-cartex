@@ -10,6 +10,8 @@ import Details from "../components/details";
 import "../style/mainpage.scss";
 import Personnalisation from "./personnalisation";
 import Edit from "../components/edit";
+import Booster from "./booster";
+import ListeCarte from "./listecarte";
 
 export default function Mainpage() {
   const [user_connected, set_user_connected] = useState(false);
@@ -53,6 +55,8 @@ export default function Mainpage() {
             <li><Link to="/Marketplace">Marketplace</Link></li>
             <li><Link to="/Infos">Infos</Link></li>
             <li><Link to="/Personnalisation">Personnalisation</Link></li>
+            <li><Link to="/Booster">Booster</Link></li>
+            <li><Link to="/ListeCarte">Liste Carte</Link></li>
           </ul>
         </div>
         <div className="acc-btn">
@@ -90,6 +94,8 @@ export default function Mainpage() {
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/Connect" element={<Connect />}></Route>
           <Route path="/Personnalisation" element={<Personnalisation/>}></Route>
+          <Route path="/Booster" element={<Booster/>}></Route>
+          <Route path="/ListeCarte" element={<ListeCarte/>}></Route>
           <Route path="/details/:cardId" element={<Details />} />
           <Route path="/edit/:cardId" element={<Edit />} />
         </Routes>

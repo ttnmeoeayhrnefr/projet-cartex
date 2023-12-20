@@ -8,7 +8,7 @@ export default function Connexion() {
   // VARIABLES POUR CONNEXION DECONNEXION UTILISATEUR
   const [pseudo, set_pseudo] = useState("");
   const [mdp, set_mdp] = useState("");
-  const [user_connected, set_user_connected] = useState(false);
+  // const [user_connected, set_user_connected] = useState(false);
 
   const handleConnexion = async (event) => {
     event.preventDefault();

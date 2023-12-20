@@ -93,6 +93,24 @@ app.get('/cartes/random/random', async (req, res) => {
     }
 });
 
+//GET 5 RANDOM CARDS FOR BOOSTER
+app.get('/cartes/random/booster', async (req, res) => {
+  let conn;
+  try {
+      console.log('Lancement de la connexion');
+      conn = await pool.getConnection();
+      console.log('Lancement de la requête');
+      const rows = await conn.query('SELECT * FROM carte ORDER BY RAND() LIMIT 5');
+      console.log(rows);
+      res.status(200).json(rows);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Erreur lors de la récupération des cartes aléatoires.' });
+  } finally {
+      if (conn) conn.release();
+  }
+});
+
 //GET CARDS BY ID USER 
 app.get('/cartes/utilisateurs/:id', async (req, res) => {
   let conn;
@@ -507,6 +525,99 @@ app.post("/connexion", async (req, res) => {
     res.status(500).json({ message: "Erreur lors de l'authentification" });
   }
 });
+
+
+
+//CRUD LISTE CARTE
+app.get("/listeCarte/:id", async (req, res) => {
+  let conn;
+  try {
+    console.log("lancement de la console");
+    conn = await pool.getConnection();
+    console.log("lancement de la requête");
+    const rows = await conn.query("select * from listeCard where id_user = ?", [req.params.id]);
+    console.log(rows);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// app.get("/cartes/details/:id", async (req, res) => {
+//   let conn;
+//   try {
+//     console.log("lancement de la console");
+//     conn = await pool.getConnection();
+//     console.log("lancement de la requête");
+//     const rows = await conn.query(
+//     `
+//       SELECT carte.*
+//       FROM carte
+//       JOIN listecard ON carte.id_carte = listeCard.id_carte
+//       WHERE listecard.id_user = ?
+//     `,
+//       [req.params.id]
+//     );
+//     console.log(rows);
+//     res.status(200).json(rows);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
+
+app.post("/listeCarte", async (req, res) => {
+  let conn;
+  try {
+    console.log("lancement de la console");
+    conn = await pool.getConnection();
+    console.log("lancement de la requête");
+    const rows = await conn.query(
+      "INSERT INTO listeCard (id_user, id_carte) VALUES (?, ?)",
+      [req.body.id_user, req.body.id_carte]
+    );
+    console.log(rows);
+    res.status(200).json("L'ajout a bien été effectué");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/cartes/details/:id", async (req, res) => {
+  let conn;
+  try {
+    console.log("lancement de la console");
+    conn = await pool.getConnection();
+    
+    // Récupération de la liste des cartes de l'utilisateur
+    const listeCardRows = await conn.query("SELECT * FROM listeCard WHERE id_user = ?", [req.params.id]);
+    console.log("Liste des cartes de l'utilisateur:", listeCardRows);
+
+    // Récupération des détails des cartes en utilisant une jointure
+    const carteRows = await conn.query(
+      `
+        SELECT carte.*
+        FROM carte
+        JOIN listeCard ON carte.id_carte = listeCard.id_carte
+        WHERE listeCard.id_user = ?
+      `,
+      [req.params.id]
+    );
+    console.log("Détails des cartes de l'utilisateur:", carteRows);
+
+    // Envoi des données au client
+    res.status(200).json({
+      listeCard: listeCardRows,
+      carteDetails: carteRows,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur interne du serveur" });
+  } finally {
+    // Assurez-vous de libérer la connexion après utilisation
+    if (conn) conn.release();
+  }
+});
+
 
 
 
