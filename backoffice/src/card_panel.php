@@ -84,7 +84,9 @@
                         </div>
                     </div>
                     <div class="right-btn">
-                        <img src="assets/r_chevron.svg" alt="right button" id="r_chev3">
+                        <a href="pro_panel.php">
+                            <img src="assets/r_chevron.svg" alt="right button" id="r_chev3">
+                        </a>
                     </div>
                 </div>
             </div>
