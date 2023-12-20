@@ -1,6 +1,9 @@
 <?php
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
+
+    $DAO = new DAO($connexion);
+    $User = $DAO->listUserById($_GET['user']);
 ?>
 
 <!DOCTYPE html>
@@ -34,26 +37,26 @@
                         <div class="user-sct">
                             <div class="title-sct">
                                 <h2 id="Usr">
-                                    Nouvel utilisateur  
+                                    Modification utilisateur  
                                 </h2>
                             </div>
                             <div class="gest-sct">
                                 <div class="template">
-                                    <form action="request.php?req=1" method="post">
+                                    <form action="request.php?id=<?php echo $User['id_user']; ?>&req=2" method="post">
                                         <div class="userUpdateSct">
                                             <div class="userPseudoSct">
                                                 <label for="userPseudo">Pseudo</label>
-                                                <input type="text" name="userPseudo" id="usrPseudo" value="" required>
+                                                <input type="text" name="userPseudo" id="usrPseudo" value="<?php echo $User['pseudo']; ?>" required>
                                             </div>
                                             <div class="userPwdSct">
                                                 <label for="userMdp">Mot de passe</label>
-                                                <input type="password" name="userMdp" id="usrMdp" value="" required>
+                                                <input type="password" name="userMdp" id="usrMdp" value="<?php echo $User['mdp']; ?>" required>
                                             </div>
                                             <div class="userRoleSct">
                                                 <label for="userRole">Rôle</label>
                                                 <select name="userRole" id="usrRole" required>
-                                                    <option value="0">Utilisateur</option>
-                                                    <option value="1">Admin</option>
+                                                    <option value="0" <?php echo ($User['role'] == 0) ? 'selected' : ''; ?>>Utilisateur</option>
+                                                    <option value="1" <?php echo ($User['role'] == 1) ? 'selected' : ''; ?>>Admin</option>
                                                 </select>
                                             </div>
                                             <div class="submitSct">

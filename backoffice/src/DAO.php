@@ -237,7 +237,7 @@
                 $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE id_user = :id_user");
                 $row->bindParam(":id_user", $id_user);
                 $row->execute();
-                return $row->fetchAll(PDO::FETCH_ASSOC);
+                return $row->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo "Erreur lors de l'affichage des utilisateurs par id: " . $e->getMessage();
                 return [];
@@ -255,10 +255,8 @@
                 $row->bindParam(':mdp', $mdp);
                 $row->bindParam(':role', $role);
                 $row->execute();
-                return true; 
             } catch (PDOException $e) {
                 echo "Erreur lors de l'ajout de l'utilisateur: " . $e->getMessage();
-                return false;
             }
         }   
 
@@ -266,13 +264,13 @@
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
         
-        public function updateUserById($pseudo, $mdp, $role, $id_user) {
+        public function updateUserById($pseudo, $mdp, $role, $id) {
             try {
                 $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = :pseudo, mdp = :mdp, role = :role WHERE id_user = :id_user");
                 $row->bindParam(':pseudo', $pseudo);
                 $row->bindParam(':mdp', $mdp);
                 $row->bindParam(':role', $role);
-                $row->bindParam(':id_user', $id_user);
+                $row->bindParam(':id_user', $id);
                 $row->execute();
                 return true;
             } catch (PDOException $e) {

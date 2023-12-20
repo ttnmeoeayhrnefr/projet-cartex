@@ -205,6 +205,21 @@ body {
 
                             }
                             
+                            .userSupSct {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                height: 100%;
+                                width: 100%;
+
+                                .msg {
+                                    display: flex;
+                                    flex-direction: ;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                            }
+
                             .userUpdateSct {
                                 height: 65%;
                                 width: 65%;

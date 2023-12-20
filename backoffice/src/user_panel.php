@@ -52,8 +52,8 @@
                                             echo "<td>" . $us['pseudo'] . "</td>";
                                             echo "<td>" . $us['mdp'] . "</td>";
                                             echo "<td>" . $us['role'] . "</td>";
-                                            echo "<td><a href='user_add.php?userId=" . $us['id_user'] . "'>Modifier utilisateur</a></td>";
-                                            echo "<td><a href='request.php'>Supprimer utilisateur</a></td>";
+                                            echo "<td><a href='user_update.php?user=" . $us['id_user'] . "'>Modifier utilisateur</a></td>";
+                                            echo "<td><a href='user_del.php?user=" . $us['id_user'] . "'>Supprimer utilisateur</a></td>";
                                             echo "</tr>";
                                         }
                                         echo "</table>";
