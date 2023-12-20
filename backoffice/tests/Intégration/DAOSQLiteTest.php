@@ -90,4 +90,248 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('user4', $addedUser[0]['pseudo']);
         $this->assertEquals('role4', $addedUser[0]['role']);
     }
+
+    public function testUpdateUserById()
+    {
+        $dao = new DAO($this->pdo);
+
+        $dao->addUser('userToUpdate', 'passwordToUpdate', 'oldRole');
+
+        $userId = $this->pdo->lastInsertId();
+
+        $result = $dao->updateUserById('updatedUser', 'updatedPassword', 'newRole', $userId);
+
+        $this->assertTrue($result);
+
+        $updatedUser = $dao->listUserById($userId);
+
+        $this->assertNotEmpty($updatedUser);
+        $this->assertEquals('updatedUser', $updatedUser[0]['pseudo']);
+        $this->assertEquals('newRole', $updatedUser[0]['role']);
+    }
+
+    public function testRemoveUserById()
+    {
+        $dao = new DAO($this->pdo);
+
+        $dao->addUser('userToRemove', 'passwordToRemove', 'roleToRemove');
+
+        $userId = $this->pdo->lastInsertId();
+
+        $result = $dao->removeUserById($userId);
+
+        $this->assertTrue($result);
+
+        $removedUser = $dao->listUserById($userId);
+
+        $this->assertEmpty($removedUser);
+    }
+
+    public function testAddCard()
+    {
+        $dao = new DAO($this->pdo);
+
+        $result = $dao->addCard(
+            1,
+            'name',
+            'image.jpg',
+            'small_image.jpg',
+            'cropped_image.jpg',
+            '1234',
+            'description',
+            'type',
+            'race',
+            1,
+            2,
+            3,
+            'archetype',
+            'attribute',
+            1,
+            2,
+            3,
+            4
+        );
+
+        $this->assertTrue($result);
+
+        $addedCard = $dao->listCardById(1);
+
+        $this->assertNotEmpty($addedCard);
+        $this->assertEquals('name', $addedCard[0]['nom']);
+        $this->assertEquals('type', $addedCard[0]['type']);
+    }
+
+    public function testListAllCards()
+    {
+        $dao = new DAO($this->pdo);
+
+        $dao->addCard(
+            1,
+            'name',
+            'image.jpg',
+            'small_image.jpg',
+            'cropped_image.jpg',
+            '1234',
+            'description',
+            'type',
+            'race',
+            1,
+            2,
+            3,
+            'archetype',
+            'attribute',
+            1,
+            2,
+            3,
+            4
+        );
+
+        $dao->addCard(
+            2,
+            'name2',
+            'image2.jpg',
+            'small_image2.jpg',
+            'cropped_image2.jpg',
+            '12342',
+            'description2',
+            'type2',
+            'race2',
+            12,
+            22,
+            32,
+            'archetype2',
+            'attribute2',
+            12,
+            22,
+            32,
+            42
+        );
+
+        $cards = $dao->listAllCards();
+
+        $this->assertCount(2, $cards);
+
+        $this->assertEquals('name', $cards[0]['nom']);
+        $this->assertEquals('type2', $cards[1]['type']);
+    }
+
+    public function testListCardById()
+    {
+        $dao = new DAO($this->pdo);
+
+        $dao->addCard(
+            1,
+            'name',
+            'image.jpg',
+            'small_image.jpg',
+            'cropped_image.jpg',
+            '1234',
+            'description',
+            'type',
+            'race',
+            1,
+            2,
+            3,
+            'archetype',
+            'attribute',
+            1,
+            2,
+            3,
+            4
+        );
+
+        $card = $dao->listCardById(1);
+
+        $this->assertNotEmpty($card);
+        $this->assertEquals('name', $card[0]['nom']);
+    }
+
+    public function testUpdateCardById()
+    {
+        $dao = new DAO($this->pdo);
+
+        $dao->addCard(
+            1,
+            'name',
+            'image.jpg',
+            'small_image.jpg',
+            'cropped_image.jpg',
+            '1234',
+            'description',
+            'type',
+            'race',
+            1,
+            2,
+            3,
+            'archetype',
+            'attribute',
+            1,
+            2,
+            3,
+            4
+        );
+
+        $result = $dao->updateCardById(
+            2,
+            'name2',
+            'image2.jpg',
+            'small_image2.jpg',
+            'cropped_image2.jpg',
+            '12342',
+            'description2',
+            'type2',
+            'race2',
+            12,
+            22,
+            32,
+            'archetype2',
+            'attribute2',
+            12,
+            22,
+            32,
+            42
+        );
+
+        $this->assertTrue($result);
+
+        $updatedCard = $dao->listCardById(1);
+
+        $this->assertNotEmpty($updatedCard);
+        $this->assertEquals('name2', $updatedCard[0]['nom']);
+        $this->assertEquals('type2', $updatedCard[0]['type']);
+    }
+
+    public function testRemoveCardById()
+    {
+        $dao = new DAO($this->pdo);
+
+        $dao->addCard(
+            1,
+            'name',
+            'image.jpg',
+            'small_image.jpg',
+            'cropped_image.jpg',
+            '1234',
+            'description',
+            'type',
+            'race',
+            1,
+            2,
+            3,
+            'archetype',
+            'attribute',
+            1,
+            2,
+            3,
+            4
+        );
+
+        $result = $dao->removeCardById(1);
+
+        $this->assertTrue($result);
+
+        $removedCard = $dao->listCardById(1);
+
+        $this->assertEmpty($removedCard);
+    }
 }
