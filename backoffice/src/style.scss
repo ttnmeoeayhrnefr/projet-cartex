@@ -26,6 +26,26 @@ body {
                 align-items: center;
 
             }
+
+            .disconnect-btn {
+                position: absolute;
+                height: 15vh;
+                width: 15vh;
+                margin-left: 90vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                #aDisc {
+
+                    #disco {
+                        height: 5vh;
+                        width: 5vh;
+                    }
+                }
+
+
+            }
         }
 
         .panel-sct {
@@ -59,14 +79,6 @@ body {
                         height: auto;
                         align-items: center;
 
-                        label {
-    
-                        }
-    
-                        input {
-    
-                        }
-
                     }
 
                     .pwd-sct {
@@ -75,23 +87,13 @@ body {
                         height: auto;
                         align-items: center;
 
-                        label {
-    
-                        }
-    
-                        input {
-    
-                        }
-
                     }
 
                 }
 
                 .submit-sct {
                     height: 25%;
-                    input {
 
-                    }
                 }
             }
 
@@ -113,16 +115,32 @@ body {
                         width: 6vh;
                     }
 
-                    #l_chev2 {
-                        opacity: 1;
-                        height: 6vh;
-                        width: 6vh;
+                    #a2l {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        #l_chev2 {
+                            opacity: 1;
+                            height: 6vh;
+                            width: 6vh;
+                        }
                     }
 
-                    #l_chev3 {
-                        opacity: 1;
-                        height: 6vh;
-                        width: 6vh;
+                    #a3l {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        #l_chev3 {
+                            opacity: 1;
+                            height: 6vh;
+                            width: 6vh;
+                        }
                     }
                 }
                 .content-sct {
@@ -167,7 +185,7 @@ body {
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            
+
                             #Usr {
                                 font-weight: 200;
                                 font-size: 6vh;
@@ -177,12 +195,52 @@ body {
                         .gest-sct {
                             height: 85%;
                             width: 100% ;
-                            background-color: pink;
+
+                            .cardUpdateSct {
+                                height: 100%;
+                                width: 100%;
+                                overflow: scroll;
+                            }
 
                             .template {
-                               background-color: red;
                                height: 100%;
                                width: 100%; 
+                               display: flex;
+                               justify-content: center;
+                               align-items: center;
+
+                            }
+                            
+                            .userSupSct {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                height: 100%;
+                                width: 100%;
+
+                                .msg {
+                                    display: flex;
+                                    flex-direction: ;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                            }
+
+                            .userUpdateSct {
+                                height: 65%;
+                                width: 65%;
+                                // display: flex;
+                                // flex-direction: column;
+                                // justify-content: space-evenly;
+                                // align-items: center;
+
+                                #userUpdateInputSct {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: space-around;
+                                    height: 30%;
+                                }
                             }
                         }
                     }
@@ -194,17 +252,34 @@ body {
                     justify-content: center;
                     align-items: center ;
 
-                    #r_chev1 {
-                        opacity: 1;
-                        height: 6vh;
-                        width: 6vh;
-                        // background-color: green;
+                    #a1r {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        
+                        #r_chev1 {
+                            opacity: 1;
+                            height: 6vh;
+                            width: 6vh;
+                            // background-color: green;
+                        }
+
                     }
 
-                    #r_chev2 {
-                        opacity: 1;
-                        height: 6vh;
-                        width: 6vh;
+                    #a2r {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        #r_chev2 {
+                            opacity: 1;
+                            height: 6vh;
+                            width: 6vh;
+                        }
                     }
 
                     #r_chev3 {

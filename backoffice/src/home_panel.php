@@ -12,6 +12,11 @@
                 <div class="logo-sct">
                     <h1>Panneau d'administration</h1>
                 </div>
+                <div class="disconnect-btn">
+                    <a href="panel.php" id="aDisc">
+                        <img src="assets/logout.svg" alt="logout" id="disco">
+                    </a>
+                </div>
             </div>
             <div class="panel-sct">
                 <div class="home-sct">
@@ -35,7 +40,9 @@
                         </div>
                     </div>
                     <div class="right-btn">
-                        <img src="assets/r_chevron.svg" alt="right button" id="r_chev1">
+                        <a href="user_panel.php" id="a1r">
+                            <img src="assets/r_chevron.svg" alt="right button" id="r_chev1">
+                        </a>
                     </div>
                 </div>
             </div>
