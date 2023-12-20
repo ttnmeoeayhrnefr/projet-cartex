@@ -34,6 +34,25 @@ export default function Details() {
     }
   };
 
+  const getAttributeImage = (attribute) => {
+    switch (attribute) {
+      case "DARK":
+        return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_dark.png";
+      case "EARTH":
+        return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_earth.png";
+      case "LIGHT":
+        return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_light.png";
+      case "WATER":
+        return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_water.png";
+      case "WIND":
+        return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_wind.png";
+      case "FIRE":
+        return "https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_fire.png";  
+      default:
+        return "path/to/default-image.png";
+    }
+  };
+
   return (
     <div className="content-details">
       <div className="card-img">
@@ -60,8 +79,18 @@ export default function Details() {
         </div>
         <div className="elements">
           <p>Race: { cardDetails.race }</p>
-          <p>Archetype: { cardDetails.archetype === null ? "Aucun" : cardDetails.archetype }</p>
-          <p>Attribut: { cardDetails.attribut === null ? "Spell" : cardDetails.attribut }</p>
+          <p>Type: { cardDetails.type === null ? "Aucun" : cardDetails.type }</p>
+          <p>Attribut: 
+            {cardDetails.type === "Spell Card" &&
+              <img src='https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_spell.png' alt="Spell Card" />
+            }
+            {cardDetails.type === "Trap Card" &&
+              <img src='https://www.db.yugioh-card.com/yugiohdb/external/image/parts/attribute/attribute_icon_trap.png' alt="Trap Card" />
+            }
+            {cardDetails.type !== "Spell Card" && cardDetails.type !== "Trap Card" &&
+              <img src={getAttributeImage(cardDetails.attribut)} alt={`${cardDetails.attribut}`} />
+            }
+          </p>
         </div>
         <div className="stats">
           <div className="attack">
