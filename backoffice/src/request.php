@@ -1,8 +1,6 @@
 <?php
-    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
-    include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
-    
-    $DAO = new DAO($connexion);
+include "./config.php";
+include "./DAO.php";
 
     $userHome = "/projet-cartex/backoffice/src/user_panel.php";
     $cardHome = "/projet-cartex/backoffice/src/card_panel.php";

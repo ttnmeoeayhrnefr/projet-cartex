@@ -1,5 +1,5 @@
 <?php
-require '/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/vendor/autoload.php';
+require './backoffice/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
@@ -19,4 +19,3 @@ try {
     echo "Erreur de connexion à la base de données: " . $e->getMessage();
     die();
 }
-?>
