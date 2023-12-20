@@ -1,12 +1,12 @@
-DROP USER IF EXISTS 'ProjetCarteX' @'localhost';
+DROP USER IF EXISTS 'ProjetCarteX'@'localhost';
 
-CREATE USER 'ProjetCarteX' @'localhost' IDENTIFIED BY 'ProjetCarteX';
-
-GRANT ALL PRIVILEGES ON ProjetCarteX.* TO 'ProjetCarteX' @'localhost';
+CREATE USER 'ProjetCarteX'@'localhost' IDENTIFIED BY 'ProjetCarteX';
 
 DROP DATABASE IF EXISTS ProjetCarteX;
 
 CREATE DATABASE ProjetCarteX;
+
+GRANT ALL PRIVILEGES ON ProjetCarteX.* TO 'ProjetCarteX'@'localhost';
 
 USE ProjetCarteX;
 
