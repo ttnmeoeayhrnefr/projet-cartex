@@ -93,7 +93,23 @@ app.get('/cartes/random/random', async (req, res) => {
     }
 });
 
-
+//GET CARDS BY ID USER 
+app.get('/cartes/utilisateurs/:id', async (req, res) => {
+  let conn;
+  try {
+    console.log('Lancement de la connexion');
+    conn = await pool.getConnection();
+    console.log('Lancement de la requête');
+    const rows = await conn.query('SELECT * FROM carte WHERE id_user = ?', [req.params.id]);
+    console.log(rows);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erreur lors de la récupération des cartes de l\'utilisateur.' });
+  } finally {
+    if (conn) conn.release();
+  }
+});
 
 // POST NEW CARD
 app.post("/cartes", async (req, res) => {
@@ -106,6 +122,7 @@ app.post("/cartes", async (req, res) => {
         const queryParams = [
             req.body.nom,
             req.body.type || null,
+            req.body.description || null,
             req.body.image || null,
             req.body.image_cropped || null,
             req.body.image_petite || null,
@@ -121,13 +138,15 @@ app.post("/cartes", async (req, res) => {
             req.body.ebay_price || null,
             req.body.amazon_price || null,
             req.body.set_nom || null,
-            req.body.set_rarete || null
+            req.body.set_rarete || null,
+            req.body.id_user
         ];
 
         const rows = await conn.query(`
             INSERT INTO carte (
                 nom,
                 type,
+                description,
                 image,
                 image_cropped,
                 image_petite,
@@ -143,8 +162,9 @@ app.post("/cartes", async (req, res) => {
                 ebay_price,
                 amazon_price,
                 set_nom,
-                set_rarete
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                set_rarete,
+                id_user
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `, queryParams);
 
         console.log(rows);
@@ -167,6 +187,7 @@ app.put("/cartes/:id", async (req, res) => {
         const {
             nom,
             type,
+            description,
             image,
             image_cropped,
             image_petite,
@@ -183,13 +204,15 @@ app.put("/cartes/:id", async (req, res) => {
             amazon_price,
             set_nom,
             set_rarete,
+            id_user,
         } = req.body;
 
         const rows = await conn.query(
-            "UPDATE carte SET nom = ?, type = ?, image = ?, image_cropped = ?, image_petite = ?, race = ?, archetype = ?, id_carte_konami = ?, attaque = ?, defense = ?, etoiles = ?, attribut = ?, cardmarket_price = ?, tcgplayer_price = ?, ebay_price = ?, amazon_price = ?, set_nom = ?, set_rarete = ? WHERE id_carte = ?",
+            "UPDATE carte SET nom = ?, type = ?, description = ?, image = ?, image_cropped = ?, image_petite = ?, race = ?, archetype = ?, id_carte_konami = ?, attaque = ?, defense = ?, etoiles = ?, attribut = ?, cardmarket_price = ?, tcgplayer_price = ?, ebay_price = ?, amazon_price = ?, set_nom = ?, set_rarete = ?, id_user = ? WHERE id_carte = ?",
             [
                 nom,
                 type,
+                description,
                 image,
                 image_cropped,
                 image_petite,
@@ -206,6 +229,7 @@ app.put("/cartes/:id", async (req, res) => {
                 amazon_price,
                 set_nom,
                 set_rarete,
+                id_user,
                 req.params.id
             ]
         );
@@ -248,10 +272,11 @@ app.put("/cartes/nom/:nom", async (req, res) => {
             amazon_price,
             set_nom,
             set_rarete,
+            id_user,
         } = req.body;
 
         const rows = await conn.query(
-            "UPDATE carte SET nom = ?, type = ?, image = ?, image_cropped = ?, image_petite = ?, race = ?, archetype = ?, id_carte_konami = ?, attaque = ?, defense = ?, etoiles = ?, attribut = ?, cardmarket_price = ?, tcgplayer_price = ?, ebay_price = ?, amazon_price = ?, set_nom = ?, set_rarete = ? WHERE nom = ?",
+            "UPDATE carte SET nom = ?, type = ?, image = ?, image_cropped = ?, image_petite = ?, race = ?, archetype = ?, id_carte_konami = ?, attaque = ?, defense = ?, etoiles = ?, attribut = ?, cardmarket_price = ?, tcgplayer_price = ?, ebay_price = ?, amazon_price = ?, set_nom = ?, set_rarete = ?, id_user = ? WHERE nom = ?",
             [
                 nom,
                 type,
@@ -271,6 +296,7 @@ app.put("/cartes/nom/:nom", async (req, res) => {
                 amazon_price,
                 set_nom,
                 set_rarete,
+                id_user,
                 req.params.nom
             ]
         );
