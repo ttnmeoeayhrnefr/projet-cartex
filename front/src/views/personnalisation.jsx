@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../style/personnalisation.scss"
 
 const Personnalisation = () => {
   const [userCards, setUserCards] = useState([]);
@@ -8,7 +9,6 @@ const Personnalisation = () => {
     const fetchUserCards = async () => {
       try {
         const storedUserId = localStorage.getItem("id_user");
-        console.log(storedUserId);
 
         if (storedUserId) {
           const response = await axios.get(`http://localhost:3001/cartes/utilisateurs/${storedUserId}`);
@@ -48,21 +48,36 @@ const Personnalisation = () => {
     console.log("Création d'une nouvelle carte");
   };
 
-  return (
-    <div className="personnalisation-page">
-      <h1>Cartes personnalisées</h1>
-      {userCards.map((card) => (
-        <div key={card.id_carte} className="card-item">
-          <p>Nom de la carte : {card.nom}</p>
-          <img src={card.image} alt={card.nom} />
-          <p>Description : {card.description}</p>
-          <button onClick={() => handleEdit(card.id_carte)}>Modifier</button>
-          <button onClick={() => handleDelete(card.id_carte)}>Supprimer</button>
+    return (
+        <div className="personnalisation-page">
+            <div className="container">
+                <h1>Cartes personnalisées</h1>
+                <div className="container-cards">
+                    {userCards.map((card) => (
+                      <div key={card.id_carte} className="card-item">
+                          <p>Nom de la carte : {card.nom}</p>
+                          <img src={card.image} alt={card.nom} />
+                          <p>Description : {card.description}</p>
+                          <button onClick={() => handleEdit(card.id_carte)}>Modifier</button>
+                          <button onClick={() => handleDelete(card.id_carte)}>Supprimer</button>
+                      </div>
+                  ))}
+                <div className="card-item">
+                      <span onClick={handleCreate}>+</span>
+                </div>
+                <div className="card-item">
+                  <div className="name">
+                        <p>Nom</p>
+                  </div>
+                        <div className="img"></div>
+                        <p>Description: zefndklsjgbdkjn oazken dlskqj bnjkqs dfbsdq jkbqsf djkb</p>
+                        <button >Modifier</button>
+                        <button >Supprimer</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      ))}
-      <button onClick={handleCreate}>Créer une nouvelle carte</button>
-    </div>
-  );
+    );
 };
 
 export default Personnalisation;

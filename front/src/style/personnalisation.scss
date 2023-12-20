@@ -1,0 +1,46 @@
+.personnalisation-page {
+    height: 100vh;
+    width: 100vw;
+
+    .container {
+        width: auto;
+        margin: 0rem 2rem 2rem 2rem;
+        padding-top: 8rem;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        
+        h1 {
+            margin: 0 0 2rem 0;
+        }
+
+        .container-cards {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card-item {
+            border: 2px solid var(--color-border);
+            background-color: var(--color-bg-box);
+            height: 23rem;
+            width: 13rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            margin-right: 1.4rem;
+            cursor: pointer;
+            transition: all .1s ease-in-out;
+            display: grid;
+            place-items: center;
+
+            span {
+                border: 2px solid var(--color-primary);
+                height: 5rem;
+                width: 5rem;
+                display: grid;
+                place-items: center;
+                border-radius: 50%;
+                font-size: 3rem;
+            }
+        }
+    }
+}
