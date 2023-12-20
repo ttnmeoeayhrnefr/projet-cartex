@@ -148,7 +148,7 @@ class Cards
     }
     public function setImageSmall($image_small)
     {
-        $this->$image_small = $$image_small;
+        $this->$image_small = $image_small;
     }
     public function setImageCropped($image_cropped)
     {
