@@ -364,4 +364,13 @@ class DAOSQLiteTest extends TestCase
 
         $dao->addUser('pseudo', 'password', '2');
     }
+
+    public function testAddCardInvalidArgument()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $dao = new DAO($this->pdo);
+
+        $dao->addCard('', 'image.jpg', 'image_small.jpg', 'image_cropped.jpg', '1234', 'description', 'type', 'race', 1, 2, 3, 'archetype', 'attribute', 1, 2, 3, 4, 'collection', 'rareté');
+    }
 }

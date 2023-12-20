@@ -366,6 +366,29 @@ class DAO
 
 
         public function addCard($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$collection,$rarete) {
+
+            $required = [
+                'nom' => $nom,
+                'image' => $image,
+                'image_small' => $image_small,
+                'image_cropped' => $image_cropped,
+                'id_konami' => $id_konami,
+                'description' => $description,
+                'type' => $type,
+                'cardmarket_price' => $cardmarket_price,
+                'tcgplayer_price' => $tcgplayer_price,
+                'ebay_price' => $ebay_price,
+                'amazon_price' => $amazon_price,
+                'collection' => $collection,
+                'rarete' => $rarete
+            ];
+        
+            foreach ($required as $field => $value) {
+                if (empty($value)) {
+                    throw new InvalidArgumentException("Le champ '$field' de la carte est requis.");
+                }
+            }
+
             try {
                 $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_petite, image_cropped, id_carte_konami, description, type, race, attaque, defense, etoiles, archetype,
                 attribut, cardmarket_price, ebay_price, amazon_price, tcgplayer_price, set_nom, set_rarete) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
