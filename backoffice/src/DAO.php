@@ -236,7 +236,7 @@ class Utilisateurs
         if ($role !== '0' && $role !== '1') {
             throw new InvalidArgumentException("Le rôle de l'utilisateur doit être soit 0 soit 1.");
         }
-        
+
         $this->id = $id;
         $this->pseudo = $pseudo;
         $this->password = $password;
@@ -287,62 +287,66 @@ class DAO
         $this->bdd = $bdd;
     }
 
-        public function listAllUsers() {
-            try {
-                $row = $this->bdd->prepare("SELECT * FROM utilisateur");
-                $row->execute();
-                return $row->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'affichage des utilisateurs: " . $e->getMessage();
-                return [];
-            }
+    public function listAllUsers()
+    {
+        try {
+            $row = $this->bdd->prepare("SELECT * FROM utilisateur");
+            $row->execute();
+            return $row->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'affichage des utilisateurs: " . $e->getMessage();
+            return [];
         }
-        public function listUserById($id_user) {
-            try {
-                $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE id_user = :id_user");
-                $row->bindParam(":id_user", $id_user);
-                $row->execute();
-                return $row->fetch(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'affichage des utilisateurs par id: " . $e->getMessage();
-                return [];
-            }
-        }   
+    }
+    public function listUserById($id_user)
+    {
+        try {
+            $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE id_user = :id_user");
+            $row->bindParam(":id_user", $id_user);
+            $row->execute();
+            return $row->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'affichage des utilisateurs par id: " . $e->getMessage();
+            return [];
+        }
+    }
 
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public function addUser($pseudo, $mdp, $role) {
-            try {
-                $row = $this->bdd->prepare("INSERT INTO utilisateur(pseudo, mdp, role) VALUES(:pseudo, :mdp, :role)");
-                $row->bindParam(':pseudo', $pseudo);
-                $row->bindParam(':mdp', $mdp);
-                $row->bindParam(':role', $role);
-                $row->execute();
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'ajout de l'utilisateur: " . $e->getMessage();
-            }
-        }   
+    public function addUser($pseudo, $mdp, $role)
+    {
+        try {
+            $row = $this->bdd->prepare("INSERT INTO utilisateur(pseudo, mdp, role) VALUES(:pseudo, :mdp, :role)");
+            $row->bindParam(':pseudo', $pseudo);
+            $row->bindParam(':mdp', $mdp);
+            $row->bindParam(':role', $role);
+            $row->execute();
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'ajout de l'utilisateur: " . $e->getMessage();
+        }
+    }
 
 
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        
-        
-        public function updateUserById($pseudo, $mdp, $role, $id) {
-            try {
-                $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = :pseudo, mdp = :mdp, role = :role WHERE id_user = :id_user");
-                $row->bindParam(':pseudo', $pseudo);
-                $row->bindParam(':mdp', $mdp);
-                $row->bindParam(':role', $role);
-                $row->bindParam(':id_user', $id);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la mise à jour de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
-        }    
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    public function updateUserById($pseudo, $mdp, $role, $id)
+    {
+        try {
+            $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = :pseudo, mdp = :mdp, role = :role WHERE id_user = :id_user");
+            $row->bindParam(':pseudo', $pseudo);
+            $row->bindParam(':mdp', $mdp);
+            $row->bindParam(':role', $role);
+            $row->bindParam(':id_user', $id);
+            $row->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la mise à jour de l'utilisateur: " . $e->getMessage();
+            return false;
+        }
+    }
 
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -365,60 +369,77 @@ class DAO
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public function addCard($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$collection,$rarete) {
+    public function addCard($nom, $image, $image_small, $image_cropped, $id_konami, $description, $type, $race, $attack, $defense, $stars, $archetype, $attribute, $cardmarket_price, $ebay_price, $amazon_price, $tcgplayer_price, $collection, $rarete)
+    {
 
-            $required = [
-                'nom' => $nom,
-                'image' => $image,
-                'image_small' => $image_small,
-                'image_cropped' => $image_cropped,
-                'id_konami' => $id_konami,
-                'description' => $description,
-                'type' => $type,
-                'cardmarket_price' => $cardmarket_price,
-                'tcgplayer_price' => $tcgplayer_price,
-                'ebay_price' => $ebay_price,
-                'amazon_price' => $amazon_price,
-                'collection' => $collection,
-                'rarete' => $rarete
-            ];
-        
-            foreach ($required as $field => $value) {
-                if (empty($value)) {
-                    throw new InvalidArgumentException("Le champ '$field' de la carte est requis.");
-                }
-            }
+        $required = [
+            'nom' => $nom,
+            'image' => $image,
+            'image_small' => $image_small,
+            'image_cropped' => $image_cropped,
+            'id_konami' => $id_konami,
+            'description' => $description,
+            'type' => $type,
+            'cardmarket_price' => $cardmarket_price,
+            'tcgplayer_price' => $tcgplayer_price,
+            'ebay_price' => $ebay_price,
+            'amazon_price' => $amazon_price,
+            'collection' => $collection,
+            'rarete' => $rarete
+        ];
 
-            try {
-                $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_petite, image_cropped, id_carte_konami, description, type, race, attaque, defense, etoiles, archetype,
-                attribut, cardmarket_price, ebay_price, amazon_price, tcgplayer_price, set_nom, set_rarete) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
-                :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price, :set_nom, :set_rarete)");
-                $row->bindParam(":nom", $nom);
-                $row->bindParam(":image", $image);
-                $row->bindParam(":image_small", $image_small);
-                $row->bindParam(":image_cropped", $image_cropped);
-                $row->bindParam(":id_konami", $id_konami);
-                $row->bindParam(":description", $description);
-                $row->bindParam(":type", $type);
-                $row->bindParam(":race", $race);
-                $row->bindParam(":attack", $attack);
-                $row->bindParam(":defense", $defense);
-                $row->bindParam(":stars", $stars);
-                $row->bindParam(":archetype", $archetype);
-                $row->bindParam(":attribute", $attribute);
-                $row->bindParam(":cardmarket_price", $cardmarket_price);
-                $row->bindParam(":ebay_price", $ebay_price);
-                $row->bindParam(":amazon_price", $amazon_price);
-                $row->bindParam(":tcgplayer_price", $tcgplayer_price);
-                $row->bindParam(":set_nom", $collection);
-                $row->bindParam(":set_rarete", $rarete);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la création de la carte par son id :" . $e->getMessage();
-                return false;
+        foreach ($required as $field => $value) {
+            if (empty($value)) {
+                throw new InvalidArgumentException("Le champ '$field' de la carte est requis.");
             }
         }
+
+        if ($type === 'monstre') {
+            $requiredMonsterType = [
+                'race' => $race,
+                'attack' => $attack,
+                'defense' => $defense,
+                'stars' => $stars,
+                'attribute' => $attribute
+            ];
+
+            foreach ($requiredMonsterType as $field => $value) {
+                if (empty($value)) {
+                    throw new InvalidArgumentException("Le champ '$field' est obligatoire pour une carte de type 'monstre'.");
+                }
+            }
+        }
+
+        try {
+            $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_petite, image_cropped, id_carte_konami, description, type, race, attaque, defense, etoiles, archetype,
+                attribut, cardmarket_price, ebay_price, amazon_price, tcgplayer_price, set_nom, set_rarete) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
+                :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price, :set_nom, :set_rarete)");
+            $row->bindParam(":nom", $nom);
+            $row->bindParam(":image", $image);
+            $row->bindParam(":image_small", $image_small);
+            $row->bindParam(":image_cropped", $image_cropped);
+            $row->bindParam(":id_konami", $id_konami);
+            $row->bindParam(":description", $description);
+            $row->bindParam(":type", $type);
+            $row->bindParam(":race", $race);
+            $row->bindParam(":attack", $attack);
+            $row->bindParam(":defense", $defense);
+            $row->bindParam(":stars", $stars);
+            $row->bindParam(":archetype", $archetype);
+            $row->bindParam(":attribute", $attribute);
+            $row->bindParam(":cardmarket_price", $cardmarket_price);
+            $row->bindParam(":ebay_price", $ebay_price);
+            $row->bindParam(":amazon_price", $amazon_price);
+            $row->bindParam(":tcgplayer_price", $tcgplayer_price);
+            $row->bindParam(":set_nom", $collection);
+            $row->bindParam(":set_rarete", $rarete);
+            $row->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la création de la carte par son id :" . $e->getMessage();
+            return false;
+        }
+    }
 
     public function listAllCards()
     {
@@ -432,17 +453,18 @@ class DAO
         }
     }
 
-        public function listCardById($idCarte) {
-            try {
-                $row = $this->bdd->prepare("SELECT * FROM carte WHERE id_carte = :id_carte");
-                $row->bindParam(":id_carte", $idCarte);
-                $row->execute();
-                return $row->fetch(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
-                return [];
-            }
+    public function listCardById($idCarte)
+    {
+        try {
+            $row = $this->bdd->prepare("SELECT * FROM carte WHERE id_carte = :id_carte");
+            $row->bindParam(":id_carte", $idCarte);
+            $row->execute();
+            return $row->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
+            return [];
         }
+    }
 
     public function updateCardById($idCarte, $nom, $image, $image_small, $image_cropped, $id_konami, $description, $type, $race, $attack, $defense, $stars, $archetype, $attribute, $cardmarket_price, $ebay_price, $amazon_price, $tcgplayer_price)
     {
@@ -476,37 +498,37 @@ class DAO
         }
     }
 
-        public function removeCardById($idCarte) {
-            try {
-                $row = $this->bdd->prepare("DELETE FROM carte WHERE id_carte = :id_carte");
-                $row->bindParam(":id_carte", $idCarte);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la suppression de la carte par son id :" . $e->getMessage();
-                return false;
-            }
+    public function removeCardById($idCarte)
+    {
+        try {
+            $row = $this->bdd->prepare("DELETE FROM carte WHERE id_carte = :id_carte");
+            $row->bindParam(":id_carte", $idCarte);
+            $row->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la suppression de la carte par son id :" . $e->getMessage();
+            return false;
         }
-        // Cqrtes
-        // private $id;
-        // private $nom;
-        // private $image;
-        // private $image_small;
-        // private $image_cropped;
-        // private $id_konami;
-        // private $description;
-        // private $type;
-        // private $race;
-        // private $attack;
-        // private $defense;
-        // private $stars;
-        // private $archetype;
-        // private $attribute;
-        // private $cardmarket_price;
-        // private $tcgplayer_price;
-        // private $ebay_price;
-        // private $amazon_price;
-        // private $set_nom;
-        // private $set_rarete;
     }
-?>
+    // Cqrtes
+    // private $id;
+    // private $nom;
+    // private $image;
+    // private $image_small;
+    // private $image_cropped;
+    // private $id_konami;
+    // private $description;
+    // private $type;
+    // private $race;
+    // private $attack;
+    // private $defense;
+    // private $stars;
+    // private $archetype;
+    // private $attribute;
+    // private $cardmarket_price;
+    // private $tcgplayer_price;
+    // private $ebay_price;
+    // private $amazon_price;
+    // private $set_nom;
+    // private $set_rarete;
+}

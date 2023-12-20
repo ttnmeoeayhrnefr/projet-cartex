@@ -373,4 +373,13 @@ class DAOSQLiteTest extends TestCase
 
         $dao->addCard('', 'image.jpg', 'image_small.jpg', 'image_cropped.jpg', '1234', 'description', 'type', 'race', 1, 2, 3, 'archetype', 'attribute', 1, 2, 3, 4, 'collection', 'rareté');
     }
+
+    public function testAddCardExceptionForMonsterType()
+{
+    $dao = new DAO($this->pdo);
+
+    $this->expectException(InvalidArgumentException::class);
+    $dao->addCard('name', 'image.jpg', 'image_small.jpg', 'image_cropped.jpg', '1234', 'description', 'type', '', '', '', '', 'archetype', '', 1, 2, 3, 4, 'collection', 'rareté');
+}
+
 }
