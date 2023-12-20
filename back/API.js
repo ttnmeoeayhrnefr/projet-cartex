@@ -20,30 +20,22 @@ async function main() {
 
         conn = await pool.getConnection();
         for (const card of cards) {
-            const cardSet = card.card_sets ? card.card_sets[0] : {};
-            const cardImage = card.card_images ? card.card_images[0] : {};
-            const cardPrice = card.card_prices ? card.card_prices[0] : {};
+            let cardDescription = card.desc; // Déclarer cardDescription ici
 
-            //Verifie si la carte existe déjà dans la base de données
+            // Verifie si la carte existe déjà dans la base de données
             const queryCheck = `SELECT * FROM Carte WHERE nom = ?`;
             const queryParamsCheck = [card.name];
             const resultCheck = await conn.query(queryCheck, queryParamsCheck);
 
             if (resultCheck.length > 0) {
-                continue;
+                // Si la carte existe, mettez à jour la description
+                const updateQuery = `UPDATE Carte SET description = ? WHERE nom = ?`;
+                const updateParams = [cardDescription, card.name];
+                await conn.query(updateQuery, updateParams);
+                console.log(`La description de la carte ${card.name} a été mise à jour.`);
             } else {
-                console.log(`Ajout de la carte ${card.name} à la base de données`);
+                console.log(`La carte ${card.name} n'existe pas dans la base de données.`);
             }
-
-            const query = `INSERT INTO Carte (nom, type, image, image_cropped, image_petite, race, archetype, id_carte_konami, attaque, defense, etoiles, attribut, cardmarket_price, tcgplayer_price, ebay_price, amazon_price, set_nom, set_rarete) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-            const queryParams = [
-                card.name, card.type, cardImage.image_url, cardImage.image_url_cropped, cardImage.image_url_small,
-                card.race, card.archetype, card.id, card.atk, card.def, card.level, card.attribute,
-                cardPrice.cardmarket_price, cardPrice.tcgplayer_price, cardPrice.ebay_price, cardPrice.amazon_price,
-                cardSet.set_name, cardSet.set_rarity
-            ];
-
-            await conn.query(query, queryParams);
         }
     } catch (error) {
         console.error("Erreur lors de la récupération des données de l'API ou de l'interaction avec la base de données:", error);
@@ -53,5 +45,3 @@ async function main() {
 }
 
 main();
-
-

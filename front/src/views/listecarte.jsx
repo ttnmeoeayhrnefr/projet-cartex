@@ -19,8 +19,14 @@ const ListeCarte = () => {
       try {
         console.log(userId);
         const response = await axios.get(`http://localhost:3001/cartes/details/${userId}`);
-        setUserCards(response.data);
-        console.log(response.data);
+        
+        if (response.data && response.data.listeCard && response.data.carteDetails) {
+
+          setUserCards(response.data.carteDetails);
+          console.log(response.data);
+        } else {
+          console.error("La structure de la réponse du serveur est incorrecte.");
+        }
       } catch (error) {
         console.error('Erreur lors de la récupération des cartes', error);
       }
