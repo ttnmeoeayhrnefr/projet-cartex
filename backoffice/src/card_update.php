@@ -42,7 +42,7 @@
                             </div>
                             <div class="gest-sct">
                                 <div class="template">
-                                    <form action="request.php?id=<?php echo $card['id_carte']; ?>&req=4" method="post">
+                                    <form action="request.php?id=<?php echo $card['id_carte']; ?>&req=5" method="post">
                                         <div class="cardUpdateSct">
                                             <div class="cardNomSct">
                                                 <label for="cardNom">Nom</label>
@@ -121,7 +121,7 @@
                                                 <input type="text" name="cardRarete" id="cardRarete" value="<?php echo $card['set_rarete'] ?>">
                                             </div>
                                             <div class="submitSct">
-                                                <input type="submit" value="Créer carte">
+                                                <input type="submit" value="Modifier carte">
                                             </div>
                                         </div>
                                         </div>

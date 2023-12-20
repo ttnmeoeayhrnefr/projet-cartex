@@ -354,11 +354,11 @@
             }
         }
 
-        public function updateCardById($idCarte,$nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price) {
+        public function updateCardById($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$cNom,$rare,$idCarte) {
             try {
-                $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_small = :image_small, image_cropped = :image_cropped, id_konami = :id_konami,
-                description = :description, type = :type, race = :race, attack = :attack, defense = :defense, stars = :stars, archetype = :archetype, attribute = :attribute,
-                cardmarket_price = :cardmarket_price, ebay_price = :ebay_price, amazon_price = :amazon_price, tcgplayer_price = :tcgplayer_price WHERE id_carte = :id");
+                $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_petite = :image_small, image_cropped = :image_cropped, id_carte_konami = :id_konami,
+                description = :description, type = :type, race = :race, attaque = :attack, defense = :defense, etoiles = :stars, archetype = :archetype, attribut = :attribute,
+                cardmarket_price = :cardmarket_price, ebay_price = :ebay_price, amazon_price = :amazon_price, tcgplayer_price = :tcgplayer_price, set_nom = :setnom, set_rarete = :set_rare WHERE id_carte = :id_carte");
                 $row->bindParam(":nom", $nom);
                 $row->bindParam(":image", $image);
                 $row->bindParam(":image_small", $image_small);
@@ -376,6 +376,8 @@
                 $row->bindParam(":ebay_price", $ebay_price);
                 $row->bindParam(":amazon_price", $amazon_price);
                 $row->bindParam(":tcgplayer_price", $tcgplayer_price);
+                $row->bindParam(":setnom", $cNom);
+                $row->bindParam(":set_rare", $rare);
                 $row->bindParam(":id_carte", $idCarte);
                 $row->execute();
                 return true;
