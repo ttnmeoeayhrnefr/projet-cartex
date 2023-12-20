@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import Details from "../components/details";
 
 import "../style/mainpage.scss";
+import Personnalisation from "./personnalisation";
+import Edit from "../components/edit";
 
 export default function Mainpage() {
   const [user_connected, set_user_connected] = useState(false);
@@ -50,6 +52,7 @@ export default function Mainpage() {
             <li><Link to="/">Accueil</Link></li>
             <li><Link to="/Marketplace">Marketplace</Link></li>
             <li><Link to="/Infos">Infos</Link></li>
+            <li><Link to="/Personnalisation">Personnalisation</Link></li>
           </ul>
         </div>
         <div className="acc-btn">
@@ -86,7 +89,9 @@ export default function Mainpage() {
           <Route path="/Infos" element={<Infos />}></Route>
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/Connect" element={<Connect />}></Route>
+          <Route path="/Personnalisation" element={<Personnalisation/>}></Route>
           <Route path="/details/:cardId" element={<Details />} />
+          <Route path="/edit/:cardId" element={<Edit />} />
         </Routes>
       </div>
     </div>
