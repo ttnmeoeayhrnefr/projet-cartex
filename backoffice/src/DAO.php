@@ -307,17 +307,20 @@ class DAO
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public function addUser($pseudo, $mdp, $role) {
-            try {
-                $row = $this->bdd->prepare("INSERT INTO utilisateur(pseudo, mdp, role) VALUES(:pseudo, :mdp, :role)");
-                $row->bindParam(':pseudo', $pseudo);
-                $row->bindParam(':mdp', $mdp);
-                $row->bindParam(':role', $role);
-                $row->execute();
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'ajout de l'utilisateur: " . $e->getMessage();
-            }
-        }   
+    public function addUser($pseudo, $mdp, $role) {
+        try {
+            $hash = password_hash($mdp, PASSWORD_BCRYPT);
+            $row = $this->bdd->prepare("INSERT INTO utilisateur(pseudo, mdp, role) VALUES(:pseudo, :mdp, :role)");
+            $row->bindParam(':pseudo', $pseudo);
+            $row->bindParam(':mdp', $hash);
+            $row->bindParam(':role', $role);
+            $row->execute();
+            echo "Utilisateur ajouté avec succès.";
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'ajout de l'utilisateur: " . $e->getMessage();
+        }
+    }
+      
 
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -325,9 +328,10 @@ class DAO
         
         public function updateUserById($pseudo, $mdp, $role, $id) {
             try {
+                $hash = password_hash($mdp, PASSWORD_BCRYPT);
                 $row = $this->bdd->prepare("UPDATE utilisateur SET pseudo = :pseudo, mdp = :mdp, role = :role WHERE id_user = :id_user");
                 $row->bindParam(':pseudo', $pseudo);
-                $row->bindParam(':mdp', $mdp);
+                $row->bindParam(':mdp', $hash); 
                 $row->bindParam(':role', $role);
                 $row->bindParam(':id_user', $id);
                 $row->execute();
@@ -336,7 +340,8 @@ class DAO
                 echo "Erreur lors de la mise à jour de l'utilisateur: " . $e->getMessage();
                 return false;
             }
-        }    
+        }
+         
 
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

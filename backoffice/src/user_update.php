@@ -50,7 +50,7 @@
                                             </div>
                                             <div class="userPwdSct">
                                                 <label for="userMdp">Mot de passe</label>
-                                                <input type="password" name="userMdp" id="usrMdp" value="<?php echo $User['mdp']; ?>" required>
+                                                <input type="password" name="userMdp" id="usrMdp" value="" placeholder="Nouveau mot de passe obligatoire" required>
                                             </div>
                                             <div class="userRoleSct">
                                                 <label for="userRole">Rôle</label>
