@@ -45,13 +45,32 @@
                                     <?php
                                         echo "<table>";
                                         echo "<td><a href='card_add.php'>Ajouter carte</a></td>";
-                                        echo "<tr><th>ID</th><th>Nom</th><th>Description</th><th>Ebay_Price</th><th>Actions</th></tr>";
+                                        echo "<tr><th>ID</th><th>Nom</th><th>Image</th><th>Img Petite</th><th>Img Cropped</th>
+                                        <th>Id Konami</th><th>Description</th><th>Type</th><th>Race</th><th>Attaque</th><th>Défense</th>
+                                        <th>Étoile</th><th>Archetype</th><th>Attribut</th><th>Prix Cardmarket</th><th>Prix Tcgplayer</th>
+                                        <th>Prix Ebay</th><th>Prix Amazon</th><th>Catégorie Collection</th><th>Rareté</th><th>Actions</th></tr>";
                                         foreach ($card as $cd) {
                                             echo "<tr>";
                                             echo "<td>" . $cd['id_carte'] . "</td>";
                                             echo "<td>" . $cd['nom'] . "</td>";
+                                            echo "<td>" . $cd['image'] . "</td>";
+                                            echo "<td>" . $cd['image_petite'] . "</td>";
+                                            echo "<td>" . $cd['image_cropped'] . "</td>";
+                                            echo "<td>" . $cd['id_carte_konami'] . "</td>";
                                             echo "<td>" . $cd['description'] . "</td>";
+                                            echo "<td>" . $cd['type'] . "</td>";
+                                            echo "<td>" . $cd['race'] . "</td>";
+                                            echo "<td>" . $cd['attaque'] . "</td>";
+                                            echo "<td>" . $cd['defense'] . "</td>";
+                                            echo "<td>" . $cd['etoiles'] . "</td>";
+                                            echo "<td>" . $cd['archetype'] . "</td>";
+                                            echo "<td>" . $cd['attribut'] . "</td>";
+                                            echo "<td>" . $cd['cardmarket_price'] . "</td>";
+                                            echo "<td>" . $cd['tcgplayer_price'] . "</td>";
                                             echo "<td>" . $cd['ebay_price'] . "</td>";
+                                            echo "<td>" . $cd['amazon_price'] . "</td>";
+                                            echo "<td>" . $cd['set_nom'] . "</td>";
+                                            echo "<td>" . $cd['set_rarete'] . "</td>";
                                             echo "<td><a href='card_add.php?userId=" . $cd['id_user'] . "'>Modifier carte</a></td>";
                                             echo "<td><a href='request.php'>Supprimer carte</a></td>";
                                             echo "</tr>";

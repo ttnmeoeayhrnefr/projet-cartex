@@ -196,6 +196,12 @@ body {
                             height: 85%;
                             width: 100% ;
 
+                            .cardUpdateSct {
+                                height: 100%;
+                                width: 100%;
+                                overflow: scroll;
+                            }
+
                             .template {
                                height: 100%;
                                width: 100%; 
