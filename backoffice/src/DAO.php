@@ -452,7 +452,7 @@ class DAO
     {
         try {
             $row = $this->bdd->prepare("DELETE FROM carte WHERE id_carte = :id_carte");
-            $row->binParam(":id_carte", $idCarte);
+            $row->bindParam(":id_carte", $idCarte);
             $row->execute();
             return true;
         } catch (PDOException $e) {
