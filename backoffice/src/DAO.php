@@ -1,226 +1,279 @@
 <?php
-    include '/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php';
-    
-    // try {
-    //     echo "TRUE";
-    // } catch (PDOException $e) {
-    //     echo "WRONG" . $e->getMessage();
-    // }
-    class Cards {
-        private $id;
-        private $nom;
-        private $image;
-        private $image_small;
-        private $image_cropped;
-        private $id_konami;
-        private $description;
-        private $type;
-        private $race;
-        private $attack;
-        private $defense;
-        private $stars;
-        private $archetype;
-        private $attribute;
-        private $cardmarket_price;
-        private $tcgplayer_price;
-        private $ebay_price;
-        private $amazon_price;
-        private $set_nom;
-        private $set_rarete;
+include './config.php';
 
-        public function __construct($id, $nom, $image, $image_small, $image_cropped, $id_konami, $description, $type, $race, $attack, $defense, $stars, $archetype, $attribute, $cardmarket_price, $tcgplayer_price, $amazon_price, $ebay_price, $set_nom, $set_rarete) {
-            $this->id = $id;
-            $this->nom = $nom;
-            $this->image = $image;
-            $this->$image_small = $image_small;
-            $this->image_cropped = $image_cropped;
-            $this->id_konami = $id_konami;
-            $this->description = $description;
-            $this->type = $type;
-            $this->race = $race;
-            $this->attack = $attack;
-            $this->defense = $defense;
-            $this->stars = $stars;
-            $this->archetype = $archetype;
-            $this->attribute = $attribute;
-            $this->cardmarket_price = $cardmarket_price;
-            $this->ebay_price = $ebay_price;
-            $this->amazon_price = $amazon_price;
-            $this->tcgplayer_price = $tcgplayer_price;
-            $this->set_nom = $set_nom;
-            $this->set_rarete = $set_rarete;
-        }
+// try {
+//     echo "TRUE";
+// } catch (PDOException $e) {
+//     echo "WRONG" . $e->getMessage();
+// }
+class Cards
+{
+    private $id;
+    private $nom;
+    private $image;
+    private $image_small;
+    private $image_cropped;
+    private $id_konami;
+    private $description;
+    private $type;
+    private $race;
+    private $attack;
+    private $defense;
+    private $stars;
+    private $archetype;
+    private $attribute;
+    private $cardmarket_price;
+    private $tcgplayer_price;
+    private $ebay_price;
+    private $amazon_price;
+    private $set_nom;
+    private $set_rarete;
 
-        public function getId() {
-            return $this->id;
-        }
-        public function getNom() {
-            return $this->nom;
-        }
-        public function getImage() {
-            return $this->image;
-        }
-        public function getImageSmall() {
-            return $this->image_small;
-        }
-        public function getImageCropped() {
-            return $this->image_cropped;
-        }
-        public function getIdKonami() {
-            return $this->id_konami;
-        }
-        public function getDescription() {
-            return $this->description;
-        }
-        public function getType() {
-            return $this->type;
-        }
-        public function getRace() {
-            return $this->race;
-        }
-        public function getAttack() {
-            return $this->attack;
-        }
-        public function getDefense() {
-            return $this->defense;
-        }
-        public function getStars() {
-            return $this->stars;
-        }
-        public function getArchetype() {
-            return $this->archetype;
-        }
-        public function getAttribute() {
-            return $this->attribute;
-        }
-        public function getEbayPrice() {
-            return $this->ebay_price;
-        }
-        public function getAmazonPrice() {
-            return $this->amazon_price;
-        }
-        public function getCardmarketPrice() {
-            return $this->cardmarket_price;
-        }
-        public function getTcgPlayerPrice() {
-            return $this->tcgplayer_price;
-        }
-        public function getSetNom() {
-            return $this->set_nom;
-        }
-        public function getSetRarete() {
-            return $this->set_rarete;
-        }
-
-        public function setId($id) {
-            $this->id = $id;
-        }
-        public function setNom($nom) {
-            $this->nom = $nom;
-        }
-        public function setImage($image) {
-            $this->image = $image;
-        }
-        public function setImageSmall($image_small) {
-            $this->$image_small = $$image_small;
-        }
-        public function setImageCropped($image_cropped) {
-            $this->image_cropped = $image_cropped;
-        }
-        public function setIdKonami($id_konami) {
-            $this->id_konami = $id_konami;
-        }
-        public function setDescription($description) {
-            $this->description = $description;
-        }
-        public function setType($type) {
-            $this->type = $type;
-        }
-        public function setRace($race) {
-            $this->race = $race;
-        }
-        public function setAttack($attack) {
-            $this->attack = $attack;
-        }
-        public function setDefense($defense) {
-            $this->defense = $defense;
-        }
-        public function setStars($stars) {
-            $this->stars = $stars;
-        }
-        public function setArchetype($archetype) {
-            $this->archetype = $archetype;
-        }
-        public function setAttribute($attribute) {
-            $this->attribute = $attribute;
-        }
-        public function setCardmarketPrice($cardmarket_price) {
-            $this->cardmarket_price = $cardmarket_price;
-        }
-        public function setEbayPrice($ebay_price) {
-            $this->ebay_price = $ebay_price;
-        }
-        public function setAmazonPrice($amazon_price) {
-            $this->amazon_price = $amazon_price;
-        }
-        public function setTcgplayerPrice($tcgplayer_price) {
-            $this->tcgplayer_price = $tcgplayer_price;
-        }
-        public function setSetNom($set_nom) {
-            $this->set_nom = $set_nom;
-        }
-        public function setSetRarete($set_rarete) {
-            $this->set_rarete = $set_rarete;
-        }
+    public function __construct($id, $nom, $image, $image_small, $image_cropped, $id_konami, $description, $type, $race, $attack, $defense, $stars, $archetype, $attribute, $cardmarket_price, $tcgplayer_price, $amazon_price, $ebay_price, $set_nom, $set_rarete)
+    {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->image = $image;
+        $this->$image_small = $image_small;
+        $this->image_cropped = $image_cropped;
+        $this->id_konami = $id_konami;
+        $this->description = $description;
+        $this->type = $type;
+        $this->race = $race;
+        $this->attack = $attack;
+        $this->defense = $defense;
+        $this->stars = $stars;
+        $this->archetype = $archetype;
+        $this->attribute = $attribute;
+        $this->cardmarket_price = $cardmarket_price;
+        $this->ebay_price = $ebay_price;
+        $this->amazon_price = $amazon_price;
+        $this->tcgplayer_price = $tcgplayer_price;
+        $this->set_nom = $set_nom;
+        $this->set_rarete = $set_rarete;
     }
 
-    class Utilisateurs {
-        private $id;
-        private $pseudo;
-        private $password;
-        private $role;
-
-        public function __construct($id, $pseudo, $password, $role) {
-            $this->id = $id;
-            $this->pseudo = $pseudo;
-            $this->password = $password;
-            $this->role = $role;
-        }
-
-        public function getId() {
-            return $this->id;
-        }
-        public function getPseudo() {
-            return $this->pseudo;
-        }
-        public function getPassword() {
-            return $this->password;
-        }
-        public function getRole() {
-            return $this->role;
-        }
-        
-        public function setId($id) {
-            $this->id = $id;
-        }
-        public function setPseudo($pseudo) {
-            $this->pseudo = $pseudo;
-        }
-        public function setPassword($password) {
-            $this->password = $password;
-        }
-        public function setRole($role) {
-            $this->role = $role;
-        }
-
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    public function getImage()
+    {
+        return $this->image;
+    }
+    public function getImageSmall()
+    {
+        return $this->image_small;
+    }
+    public function getImageCropped()
+    {
+        return $this->image_cropped;
+    }
+    public function getIdKonami()
+    {
+        return $this->id_konami;
+    }
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    public function getType()
+    {
+        return $this->type;
+    }
+    public function getRace()
+    {
+        return $this->race;
+    }
+    public function getAttack()
+    {
+        return $this->attack;
+    }
+    public function getDefense()
+    {
+        return $this->defense;
+    }
+    public function getStars()
+    {
+        return $this->stars;
+    }
+    public function getArchetype()
+    {
+        return $this->archetype;
+    }
+    public function getAttribute()
+    {
+        return $this->attribute;
+    }
+    public function getEbayPrice()
+    {
+        return $this->ebay_price;
+    }
+    public function getAmazonPrice()
+    {
+        return $this->amazon_price;
+    }
+    public function getCardmarketPrice()
+    {
+        return $this->cardmarket_price;
+    }
+    public function getTcgPlayerPrice()
+    {
+        return $this->tcgplayer_price;
+    }
+    public function getSetNom()
+    {
+        return $this->set_nom;
+    }
+    public function getSetRarete()
+    {
+        return $this->set_rarete;
     }
 
-    class DAO {
-        private $bdd;
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+    public function setImageSmall($image_small)
+    {
+        $this->$image_small = $image_small;
+    }
+    public function setImageCropped($image_cropped)
+    {
+        $this->image_cropped = $image_cropped;
+    }
+    public function setIdKonami($id_konami)
+    {
+        $this->id_konami = $id_konami;
+    }
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+    public function setRace($race)
+    {
+        $this->race = $race;
+    }
+    public function setAttack($attack)
+    {
+        $this->attack = $attack;
+    }
+    public function setDefense($defense)
+    {
+        $this->defense = $defense;
+    }
+    public function setStars($stars)
+    {
+        $this->stars = $stars;
+    }
+    public function setArchetype($archetype)
+    {
+        $this->archetype = $archetype;
+    }
+    public function setAttribute($attribute)
+    {
+        $this->attribute = $attribute;
+    }
+    public function setCardmarketPrice($cardmarket_price)
+    {
+        $this->cardmarket_price = $cardmarket_price;
+    }
+    public function setEbayPrice($ebay_price)
+    {
+        $this->ebay_price = $ebay_price;
+    }
+    public function setAmazonPrice($amazon_price)
+    {
+        $this->amazon_price = $amazon_price;
+    }
+    public function setTcgplayerPrice($tcgplayer_price)
+    {
+        $this->tcgplayer_price = $tcgplayer_price;
+    }
+    public function setSetNom($set_nom)
+    {
+        $this->set_nom = $set_nom;
+    }
+    public function setSetRarete($set_rarete)
+    {
+        $this->set_rarete = $set_rarete;
+    }
+}
 
-        public function __construct($bdd) {
-            $this->bdd = $bdd;
-        }
+class Utilisateurs
+{
+    private $id;
+    private $pseudo;
+    private $password;
+    private $role;
+
+    public function __construct($id, $pseudo, $password, $role)
+    {
+        $this->id = $id;
+        $this->pseudo = $pseudo;
+        $this->password = $password;
+        $this->role = $role;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
+    }
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+}
+
+class DAO
+{
+    private $bdd;
+
+    public function __construct($bdd)
+    {
+        $this->bdd = $bdd;
+    }
 
         public function listAllUsers() {
             try {
@@ -245,7 +298,7 @@
         }   
 
 
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         public function addUser($pseudo, $mdp, $role) {
@@ -280,30 +333,31 @@
         }    
 
 
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public function removeUserById($id_user) {
-            try {
-                $row = $this->bdd->prepare("DELETE FROM utilisateur WHERE id_user = :id_user");
-                $row->bindParam(':id_user', $id_user);
-                $row->execute();
-                return true;
-            } catch (PDOException $e) {
-                echo "Erreur lors de la suppression de l'utilisateur: " . $e->getMessage();
-                return false;
-            }
+    public function removeUserById($id_user)
+    {
+        try {
+            $row = $this->bdd->prepare("DELETE FROM utilisateur WHERE id_user = :id_user");
+            $row->bindParam(':id_user', $id_user);
+            $row->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la suppression de l'utilisateur: " . $e->getMessage();
+            return false;
         }
+    }
 
 
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        public function addCard($idCarte,$nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price) {
+
+        public function addCard($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$collection,$rarete) {
             try {
-                $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_small, image_cropped, id_konami, description, type, race, attack, defense, stars, archetype,
-                attribute, cardmarket_price, ebay_price, amazon_price, tcgplayer_price) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
-                :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price) WHERE id_carte = :id");
+                $row = $this->bdd->prepare("INSERT INTO carte(nom, image, image_petite, image_cropped, id_carte_konami, description, type, race, attaque, defense, etoiles, archetype,
+                attribut, cardmarket_price, ebay_price, amazon_price, tcgplayer_price, set_nom, set_rarete) VALUES (:nom, :image, :image_small, :image_cropped, :id_konami, :description, :type, 
+                :race, :attack, :defense, :stars, :archetype, :attribute, :cardmarket_price, :ebay_price, :amazon_price, :tcgplayer_price, :set_nom, :set_rarete)");
                 $row->bindParam(":nom", $nom);
                 $row->bindParam(":image", $image);
                 $row->bindParam(":image_small", $image_small);
@@ -321,7 +375,8 @@
                 $row->bindParam(":ebay_price", $ebay_price);
                 $row->bindParam(":amazon_price", $amazon_price);
                 $row->bindParam(":tcgplayer_price", $tcgplayer_price);
-                $row->bindParam(":id_carte", $idCarte);
+                $row->bindParam(":set_nom", $collection);
+                $row->bindParam(":set_rarete", $rarete);
                 $row->execute();
                 return true;
             } catch (PDOException $e) {
@@ -330,34 +385,35 @@
             }
         }
 
-        public function listAllCards() {
-            try {
-                $row = $this->bdd->prepare("SELECT * FROM carte");
-                $row->execute();
-                return $row->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
-                return [];
-            }
+    public function listAllCards()
+    {
+        try {
+            $row = $this->bdd->prepare("SELECT * FROM carte");
+            $row->execute();
+            return $row->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
+            return [];
         }
+    }
 
         public function listCardById($idCarte) {
             try {
                 $row = $this->bdd->prepare("SELECT * FROM carte WHERE id_carte = :id_carte");
                 $row->bindParam(":id_carte", $idCarte);
                 $row->execute();
-                return $row->fetchAll(PDO::FETCH_ASSOC);
+                return $row->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo "Erreur lors de la récupération des cartes :" . $e->getMessage();
                 return [];
             }
         }
 
-        public function updateCardById($idCarte,$nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price) {
+        public function updateCardById($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$cNom,$rare,$idCarte) {
             try {
-                $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_small = :image_small, image_cropped = :image_cropped, id_konami = :id_konami,
-                description = :description, type = :type, race = :race, attack = :attack, defense = :defense, stars = :stars, archetype = :archetype, attribute = :attribute,
-                cardmarket_price = :cardmarket_price, ebay_price = :ebay_price, amazon_price = :amazon_price, tcgplayer_price = :tcgplayer_price WHERE id_carte = :id");
+                $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_petite = :image_small, image_cropped = :image_cropped, id_carte_konami = :id_konami,
+                description = :description, type = :type, race = :race, attaque = :attack, defense = :defense, etoiles = :stars, archetype = :archetype, attribut = :attribute,
+                cardmarket_price = :cardmarket_price, ebay_price = :ebay_price, amazon_price = :amazon_price, tcgplayer_price = :tcgplayer_price, set_nom = :setnom, set_rarete = :set_rare WHERE id_carte = :id_carte");
                 $row->bindParam(":nom", $nom);
                 $row->bindParam(":image", $image);
                 $row->bindParam(":image_small", $image_small);
@@ -375,6 +431,8 @@
                 $row->bindParam(":ebay_price", $ebay_price);
                 $row->bindParam(":amazon_price", $amazon_price);
                 $row->bindParam(":tcgplayer_price", $tcgplayer_price);
+                $row->bindParam(":setnom", $cNom);
+                $row->bindParam(":set_rare", $rare);
                 $row->bindParam(":id_carte", $idCarte);
                 $row->execute();
                 return true;
@@ -383,11 +441,12 @@
                 return false;
             }
         }
+    
 
         public function removeCardById($idCarte) {
             try {
                 $row = $this->bdd->prepare("DELETE FROM carte WHERE id_carte = :id_carte");
-                $row->binParam(":id_carte", $idCarte);
+                $row->bindParam(":id_carte", $idCarte);
                 $row->execute();
                 return true;
             } catch (PDOException $e) {
