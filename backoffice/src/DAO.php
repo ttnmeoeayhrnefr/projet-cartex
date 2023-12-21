@@ -430,6 +430,11 @@ class DAO
                 $row->bindParam(":set_nom", $collection);
                 $row->bindParam(":set_rarete", $rarete);
                 $row->execute();
+                $row2 = $this->bdd->prepare("SELECT id_carte FROM carte WHERE nom = :nom");
+                $row2->bindParam(':nom', $nom);
+                $row2->execute();
+                $result = $row2->fetch(PDO::FETCH_ASSOC);
+                return $result['id_carte'];
                 return true;
             } catch (PDOException $e) {
                 echo "Erreur lors de la création de la carte par son id :" . $e->getMessage();
