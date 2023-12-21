@@ -2,6 +2,7 @@ const express = require("express");
 const mariadb = require("mariadb");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
+const { reset } = require("nodemon");
 require("dotenv").config();
 const app = express();
 const port = 3001;
@@ -137,53 +138,52 @@ app.post("/cartes", async (req, res) => {
         conn = await pool.getConnection();
         console.log("lancement de la requête");
 
-        const queryParams = [
-            req.body.nom,
-            req.body.type || null,
-            req.body.description || null,
-            req.body.image || null,
-            req.body.image_cropped || null,
-            req.body.image_petite || null,
-            req.body.race || null,
-            req.body.archetype || null,
-            req.body.id_carte_konami || null,
-            req.body.attaque || null,
-            req.body.defense || null,
-            req.body.etoiles || null,
-            req.body.attribut || null,
-            req.body.cardmarket_price || null,
-            req.body.tcgplayer_price || null,
-            req.body.ebay_price || null,
-            req.body.amazon_price || null,
-            req.body.set_nom || null,
-            req.body.set_rarete || null,
-            req.body.id_user
-        ];
+        const {
+          nom,
+          type,
+          description,
+          image,
+          image_cropped,
+          image_petite,
+          id_carte_konami,
+          attaque,
+          defense,
+          etoiles,
+          attribut,
+          cardmarket_price,
+          tcgplayer_price,
+          ebay_price,
+          amazon_price,
+          set_nom,
+          set_rarete,
+          id_user
+        } = req.body;
 
-        const rows = await conn.query(`
-            INSERT INTO carte (
-                nom,
-                type,
-                description,
-                image,
-                image_cropped,
-                image_petite,
-                race,
-                archetype,
-                id_carte_konami,
-                attaque,
-                defense,
-                etoiles,
-                attribut,
-                cardmarket_price,
-                tcgplayer_price,
-                ebay_price,
-                amazon_price,
-                set_nom,
-                set_rarete,
-                id_user
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `, queryParams);
+    
+      const rows = await conn.query(`
+      INSERT INTO carte (
+        nom,
+        type,
+        description,
+        image,
+        image_cropped,
+        image_petite,
+        id_carte_konami,
+        attaque,
+        defense,
+        etoiles,
+        cardmarket_price,
+        tcgplayer_price,
+        ebay_price,
+        amazon_price,
+        set_nom,
+        id_user
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `, [req.body.nom, req.body.type, req.body.description, req.body.image, req.body.image_cropped, req.body.image_petite, req.body.id_carte_konami, req.body.attaque, req.body.defense, req.body.etoiles, req.body.cardmarket_price, req.body.tcgplayer_price, req.body.ebay_price, req.body.amazon_price, req.body.set_nom, req.body.id_user]);
+  
+    
+    console.log(rows)
+  
 
         console.log(rows);
         res.status(200).json("L'ajout a bien été effectué");
@@ -254,6 +254,7 @@ app.put("/cartes/:id", async (req, res) => {
 
         console.log(rows);
         res.status(200).json("La modification a bien été effectuée");
+
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: "Erreur lors de la modification de la carte dans la base de données." });
@@ -261,6 +262,8 @@ app.put("/cartes/:id", async (req, res) => {
         if (conn) conn.release();
     }
 });
+
+
 
 
 // PUT CARD BY NAME
