@@ -205,111 +205,125 @@ export default function Create() {
           <div className="content-create">
       <div className="visualisation">
         <div className="img">
-            <p>{cardName}</p>
-            {cardStars && (
-            <div className="stars-container">
-              {[...Array(parseInt(cardStars))].map((_, index) => (
-                <StarImage key={index} filled />
-              ))}
-            </div>
-            )}
-            <p>Collection: {cardCollection}</p>
-            <p>Rareté: {cardRarity}</p>
-            <p>Description: {cardDescription}</p>
-            <p>Cardmarket Price: {cardCmktPrice}</p>
-            <p>Tcgplayer Price: {cardTcgPrice}</p>
-            <p>Ebay Price: {cardEbayPrice}</p>
-            <p>Amazon Price: {cardAmazonPrice}</p>
-            <p>Attaque: {cardAttack}</p>
-            <p>Défense: {cardDefense}</p>
-            {cardType && (
-              <img
-                src={typeImageMap[cardType.toLowerCase()]}
-                alt={`Type: ${cardType}`}
-                className="type-image"
-              />
-            )}
-            {cardImage && (
-              <img
-                src={cardImage}
-                alt="Card preview"
-                className="card-image"
-              />
-            )}
+          <div className="card-container">
+            <div className="card-body">
+              <div className="card">
+                {cardType && (
+                  <img
+                    src={typeImageMap[cardType.toLowerCase()]}
+                    alt={`Type: ${cardType}`}
+                    className="card-type"
+                  />
+                )}
+                {cardImage && (
+                  <img
+                    src={cardImage}
+                    alt="Card preview"
+                    className="card-image"
+                  />
+                )}
+              </div>
+              <div className="card-header">
+                <p className='card-name'>{cardName}</p>
+                {cardStars && (
+                  <div className="stars-container">
+                    {[...Array(parseInt(cardStars))].map((_, index) => (
+                      <StarImage key={index} filled />
+                    ))}
+                  </div>
+                )}
+              </div>
+                {/* <p>Collection: {cardCollection}</p>
+                <p>Rareté: {cardRarity}</p> */}
+              </div>
+              <div className="card-stats">
+                <p className='attaque'>{cardAttack}</p>
+                <p className='defense'>{cardDefense}</p>
+              </div>
+              <div className="card-description">
+                <p className='description'>{cardDescription}</p>
+              </div>
+              {/* <div className="card-prices">
+                <p>Cardmarket Price: {cardCmktPrice}</p>
+                <p>Tcgplayer Price: {cardTcgPrice}</p>
+                <p>Ebay Price: {cardEbayPrice}</p>
+                <p>Amazon Price: {cardAmazonPrice}</p>
+              </div> */}
             </div>
           </div>
-            <div className="choices">
-              <div className="first-box">
-                <div className="name">
-                  <input
-                    type="text"
-                    placeholder="Nom..."
+      </div>
+        <div className="choices">
+          <div className="first-box">
+            <div className="name">
+              <input
+                type="text"
+                placeholder="Nom..."
+                required
+                value={cardName}
+                onChange={handleNameChange}
+              />
+            </div>
+              <div className="etoiles">
+                <select
+                  type="text"
+                  placeholder="Etoiles..."
+                  required
+                  value={cardStars}
+                  onChange={handleStarsChange}
+                  defaultValue=""
+                >
+                <option value="" disabled hidden>
+                  Choisir un nombre d'étoiles...
+                </option>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+                ))}
+                </select>
+              </div>
+                <div className="type">
+                  <select
+                    name="type"
+                    id="type"
                     required
-                    value={cardName}
-                    onChange={handleNameChange}
-                  />
-                  </div>
-                <div className="etoiles">
-                    <select
-                      type="text"
-                      placeholder="Etoiles..."
-                      required
-                      value={cardStars}
-                      onChange={handleStarsChange}
-                      defaultValue=""
-                    >
+                    value={cardType}
+                    onChange={handleTypeChange}
+                  >
                     <option value="" disabled hidden>
-                      Choisir un nombre d'étoiles...
+                      Choisir un type...
                     </option>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((value) => (
-                      <option key={value} value={value}>
-                        {value}
-                      </option>
-                    ))}
+                    <option value="monstre">Monstre</option>
+                    <option value="monstre_effet">Monstre Effet</option>
+                    <option value="magie">Magie</option>
+                    <option value="piege">Piège</option>
+                    <option value="fusion">Fusion</option>
+                    <option value="link">Link</option>
+                    <option value="ritual">Ritual</option>
+                    <option value="synchro">Synchro</option>
+                    <option value="xyz">Xyz</option>
                     </select>
                   </div>
-                    <div className="type">
-                      <select
-                        name="type"
-                        id="type"
-                        required
-                        value={cardType}
-                        onChange={handleTypeChange}
-                      >
-                      <option value="" disabled hidden>
-                        Choisir un type...
-                      </option>
-                      <option value="monstre">Monstre</option>
-                      <option value="monstre_effet">Monstre Effet</option>
-                      <option value="magie">Magie</option>
-                      <option value="piege">Piège</option>
-                      <option value="fusion">Fusion</option>
-                      <option value="link">Link</option>
-                      <option value="ritual">Ritual</option>
-                      <option value="synchro">Synchro</option>
-                      <option value="xyz">Xyz</option>
-                      </select>
+                </div>
+                  <div className="set">
+                    <div className="collection">
+                      <input
+                        type="text"
+                        placeholder="Collection"
+                        value={cardCollection}
+                        onChange={handleCollectionChange}
+                        />
                     </div>
-                  </div>
-                    <div className="set">
-                      <div className="collection">
+                      <div className="rarete">
                         <input
                           type="text"
-                          placeholder="Collection"
-                          value={cardCollection}
-                          onChange={handleCollectionChange}
-                          />
+                          placeholder="Rareté..."
+                          required
+                          value={cardRarity}
+                          onChange={handleRarityChange}
+                        />
                       </div>
-                        <div className="rarete">
-                          <input
-                            type="text"
-                            placeholder="Rareté..."
-                            required
-                            value={cardRarity}
-                            onChange={handleRarityChange}
-                          />
-                          </div>
-                        </div>    
+                    </div>    
               <div className="stats">
                 <div className="image">
                   <input
