@@ -17,17 +17,49 @@ class DAOTest extends TestCase
 
     private function configureDatabase(): void
     {
-        $this->pdo = new PDO(
-            sprintf(
-                'mysql:host=%s;port=%s;dbname=%s',
-                getenv('DB_HOST'),
-                getenv('DB_PORT'),
-                getenv('DB_DATABASE')
-            ),
-            getenv('DB_USERNAME'),
-            getenv('DB_PASSWORD')
-        );
-
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Your database configuration code here
     }
+
+    public function testAddUser()
+    {
+        $pseudo = 'test_user';
+        $password = 'test_password';
+        $role = '0';
+
+        $this->dao->addUser($pseudo, $password, $role);
+
+        $user = $this->dao->listUserById(1);
+
+        $this->assertEquals($pseudo, $user['pseudo']);
+        $this->assertTrue(password_verify($password, $user['mdp']));
+        $this->assertEquals($role, $user['role']);
+    }
+
+    public function testUpdateUserById()
+    {
+        $pseudo = 'updated_user';
+        $password = 'updated_password';
+        $role = '1';
+        $id = 1;
+
+        $this->dao->updateUserById($pseudo, $password, $role, $id);
+
+        $updatedUser = $this->dao->listUserById($id);
+
+        $this->assertEquals($pseudo, $updatedUser['pseudo']);
+        $this->assertTrue(password_verify($password, $updatedUser['mdp']));
+        $this->assertEquals($role, $updatedUser['role']);
+    }
+
+    public function testRemoveUserById()
+    {
+        $id = 1;
+
+        $this->assertTrue($this->dao->removeUserById($id));
+        $user = $this->dao->listUserById($id);
+
+        $this->assertEmpty($user);
+    }
+
+    // Add more tests for other methods as needed
 }
