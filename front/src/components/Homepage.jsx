@@ -90,12 +90,12 @@ export default function Homepage() {
                 <div className="title">
                     <h1>Rechercher</h1>
                 </div>
-                <div className="container">
-                {cards.slice(currentIndex, currentIndex + 6).map((card, index) => (
+                <div className="container" style={{ transform: `translateX(-${currentIndex * (100 / cards.length)}%)` }}>
+                    {cards.map((card) => (
                     <div key={card.id_carte} className="cards">
                         <img src={card.image} alt={card.nom} />
                     </div>
-                ))}
+                    ))}
                 </div>
             </div>
             <div className="marketplace-hook">
