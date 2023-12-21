@@ -46,15 +46,14 @@ const Booster = () => {
     }
   };
 
-  // Utiliser useEffect pour définir un intervalle pour mettre à jour l'index de la carte
   useEffect(() => {
     let intervalId;
     if (isCardsContainerVisible && currentCardIndex < boosterCards.length - 1) {
       intervalId = setInterval(() => {
         setCurrentCardIndex((prevIndex) => prevIndex + 1);
-      }, 1000); // Changez la durée (en millisecondes) selon vos préférences
+      }, 500);
     }
-    return () => clearInterval(intervalId); // Nettoyer l'intervalle lorsque le composant est démonté
+    return () => clearInterval(intervalId);
   }, [isCardsContainerVisible, currentCardIndex, boosterCards.length]);
 
   return (
