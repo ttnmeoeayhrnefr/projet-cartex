@@ -1,3 +1,7 @@
+.content-home {
+    align-items: start;
+}
+
 .home-hook {
     width: 100vw;
     height: 80vh;
@@ -131,34 +135,29 @@
 }
 
 .carrousel-home {
-    width: 100vw;
-    height: 60vh;
+    width: auto;
+    height: 50vh;
+    overflow: hidden;
 
     .title {
         margin-left: 5rem;
     }
 
     .container {
-        width: 100vw;
+        width: auto;
         height: 50vh;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 1.25s ease-in-out;
+        animation: scrollAnimation 60s linear infinite;
+        margin-left: 5rem;
 
         .cards {
-            height: 40h;
+            height: 40vh;
             width: 13vw;
             margin-left: 2rem;
             border-radius: 10px;
             cursor: default;
             display: grid;
             place-items: center;
-
-            &.visible {
-                opacity: 1;
-                visibility: visible;
-              }
 
             p {
                 font-size: 2rem;
@@ -171,11 +170,21 @@
             }
         }
     }
+
+    @keyframes scrollAnimation {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
 }
+
 
 .marketplace-hook {
     width: 100vw;
-    height: 15rem;
+    height: 10rem;
 
     .btn {
         width: 100vw;
