@@ -66,26 +66,21 @@ const Personnalisation = () => {
                 <div className="container-cards">
                     {userCards.map((card) => (
                       <div key={card.id_carte} className="card-item">
-                          <p>Nom de la carte : {card.nom}</p>
-                          <img src={card.image} alt={card.nom} />
-                          <p>Description : {card.description}</p>
-                          <span className="btn-cards" onClick={() => handleEdit(card.id_carte)}>Modifier</span >
-                          <span className="btn-cards" onClick={() => handleDelete(card.id_carte)}>Supprimer</span >
+                          <div className="name">
+                                <p>{card.nom}</p>
+                          </div>
+                          <div className="img">
+                            <img src={card.image} alt={card.nom} />
+                          </div>
+                          <div className="describe">
+                              <p>{card.description}</p>
+                          </div>
+                          <div className="btn">
+                              <span className="btn-cards" onClick={() => handleEdit(card.id_carte)}>Modifier</span >
+                              <span className="btn-cards" onClick={() => handleDelete(card.id_carte)}>Supprimer</span >
+                          </div>
                       </div>
                   ))}
-                <div className="card-item">
-                    <div className="name">
-                          <p>Nom</p>
-                    </div>
-                        <div className="img"></div>
-                        <div className="describe">
-                            <p>zefndklsjgbdkjn oazken dlskqj bnjkqs dfbsdq jkbqsf djkb</p>
-                        </div>
-                        <div className="btn">
-                            <span className="btn-cards" >Modifier</span >
-                            <span className="btn-cards">Supprimer</span >
-                        </div>
-                    </div>
                     <div className="card-item-more">
                           <span className="more" onClick={handleCreate}>+</span>
                     </div>
