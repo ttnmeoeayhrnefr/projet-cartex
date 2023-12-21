@@ -131,31 +131,6 @@
                 display: flex;
                 justify-content: end;
                 font-size: .7rem;
-
-                // .price {
-                //     display: flex;
-                //     overflow: hidden;
-                //   }
-                  
-                //   .price span {
-                //     flex: 0 0 100%;
-                //     opacity: 0;
-                //     text-align: end;
-                //     transition: opacity 0.5s ease-in-out;
-                //   }
-                  
-                //   .price span.active {
-                //     opacity: 1;
-                //   }
-                  
-                //   @keyframes rotatePrice {
-                //     0% {
-                //       transform: translateY(0);
-                //     }
-                //     100% {
-                //       transform: translateY(-100%);
-                //     }
-                //   }
             }
 
             &:hover {

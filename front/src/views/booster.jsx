@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '../style/booster.scss'
 
 const Booster = () => {
   const [boosterCards, setBoosterCards] = useState([]);
@@ -37,7 +38,7 @@ const Booster = () => {
   };
 
   return (
-    <div>
+    <div className="booster-page">
       <h1>Ouvrir un Booster</h1>
       <img src="https://product-images.tcgplayer.com/fit-in/437x437/181266.jpg" alt="booster" onClick={openBooster}/>
       <div>
