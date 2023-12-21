@@ -174,8 +174,19 @@ export default function Homepage() {
                     <div className="text">
                         <h1>Achetez et vendez vos cartes en toute tranquilité sur CarteX</h1>
                         <div className="btn">
-                            <Link to='/Register' className='btn1'>Inscription</Link>
-                            <Link to='/Marketplace' className='btn2'>Marketplace</Link>
+                        {storedPseudo ? (
+                            <>
+                            <span className="btn1" onClick={disconnect}>
+                                Deconnecter
+                            </span>
+                            <Link className='btn2' to='/Marketplace' id='btn-home'>Marketplace</Link>
+                            </>
+                        ) : (
+                            <>
+                            <Link to="/Register" id='btn1'>Inscription</Link>
+                            <Link to='/Marketplace' id='btn2'>Marketplace</Link>
+                            </>
+                        )}
                         </div>
                     </div>
                     <div className="img">
