@@ -277,24 +277,26 @@ class DAOSQLiteTest extends TestCase
         );
 
         $result = $dao->updateCardById(
+            'new_name',
+            'new_image.jpg',
+            'new_small_image.jpg',
+            'new_image_cropped.jpg',
+            'new_id_konami',
+            'new_description',
+            'new_type',
+            'new_race',
             2,
-            'name2',
-            'image2.jpg',
-            'small_image2.jpg',
-            'cropped_image2.jpg',
-            '12342',
-            'description2',
-            'type2',
-            'race2',
-            12,
-            22,
-            32,
-            'archetype2',
-            'attribute2',
-            12,
-            22,
-            32,
-            42
+            3,
+            4,
+            'new_archetype',
+            'new_attribute',
+            2,
+            3,
+            4,
+            5,
+            'new_cnom',
+            'new_rare',
+            1
         );
 
         $this->assertTrue($result);

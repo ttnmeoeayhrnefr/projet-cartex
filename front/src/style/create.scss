@@ -1,0 +1,41 @@
+.create-page {
+    height: 100vh;
+    width: 100vw;
+
+    .container {
+        width: auto;
+        margin: 0 2rem;
+        margin-top: 8rem;
+        height: auto;
+
+        h1 {
+            margin: 0 0 2rem 0;
+        }
+
+        .content-create {
+            width: 100%;
+            height: auto;
+            display: flex;
+
+            .visualisation {
+                width: 40%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+                .img {
+                    height: 70vh;
+                    background-color: var(--color-primary);
+                    width: 30vw;
+                    border-radius: 10px;
+                }
+            }
+
+            .choices {
+                width: 60%;
+                height: 100%;
+            }
+        }
+    }
+}

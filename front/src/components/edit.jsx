@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import '../style/edit.scss';
 
 const EditionCarte = () => {
   const { cardId } = useParams();
@@ -93,8 +94,7 @@ const EditionCarte = () => {
         id_user: editedIdUtilisateur,
       });
       console.log("Carte mise à jour avec succès");
-      // Redirection vers la page de personnalisation ou une autre page après l'édition
-      window.location.href = "/personnalisation"; // À adapter selon votre structure de routage
+      window.location.href = "/personnalisation";
     } catch (error) {
       console.error("Erreur lors de la mise à jour de la carte", error);
     }

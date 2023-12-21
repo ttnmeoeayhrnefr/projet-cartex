@@ -82,7 +82,7 @@ app.get('/cartes/random/random', async (req, res) => {
         console.log('Lancement de la connexion');
         conn = await pool.getConnection();
         console.log('Lancement de la requête');
-        const rows = await conn.query('SELECT * FROM carte ORDER BY RAND() LIMIT 10');
+        const rows = await conn.query('SELECT * FROM carte ORDER BY RAND() LIMIT 300');
         console.log(rows);
         res.status(200).json(rows);
     } catch (err) {

@@ -144,14 +144,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: transform 0.5s ease-in-out;
+        transition: transform 1.25s ease-in-out;
 
         .cards {
-            height: 40vh;
+            height: 40h;
             width: 13vw;
             margin-left: 2rem;
             border-radius: 10px;
-            cursor: pointer;
+            cursor: default;
             display: grid;
             place-items: center;
 
