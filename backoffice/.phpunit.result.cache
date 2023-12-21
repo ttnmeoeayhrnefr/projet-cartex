@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Warning":6},"times":{"Warning":0.009}}
+{"version":1,"defects":{"Warning":6,"DAOTest::testAddUser":4,"DAOTest::testUpdateUserById":4,"DAOTest::testRemoveUserById":4},"times":{"Warning":0.009,"DAOTest::testAddUser":0.055,"DAOTest::testUpdateUserById":0.052,"DAOTest::testRemoveUserById":0}}

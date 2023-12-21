@@ -1,6 +1,6 @@
 <?php
 
-require_once("./src/DAO.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php");
 
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +17,7 @@ class DAOTest extends TestCase
 
     private function configureDatabase(): void
     {
-        // Your database configuration code here
+        require_once("/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php");
     }
 
     public function testAddUser()
@@ -60,6 +60,4 @@ class DAOTest extends TestCase
 
         $this->assertEmpty($user);
     }
-
-    // Add more tests for other methods as needed
 }
