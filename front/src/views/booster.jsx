@@ -17,14 +17,14 @@ const Booster = () => {
 
   const handleAddToUserList = async (card) => {
     try {
-      // Envoyer une requête pour ajouter la carte à la table "listeCard"
+  
       console.log("Tentative d'ajout à la liste :", card);
       const response = await axios.post("http://localhost:3001/listeCarte", {
         id_user: userId,
         id_carte: card.id_carte,
       });
 
-      // Si l'ajout dans la base de données est réussi, mettez à jour l'état local
+
       if (response.status === 200) {
         console.log("Ajout réussi !");
         setUserCardList([...userCardList, card]);

@@ -8,6 +8,8 @@ export default function Homepage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleLetters, setVisibleLetters] = useState([]);
     const [showCursor, setShowCursor] = useState(true);
+    const storedPseudo = localStorage.getItem("pseudo");
+    const [user_connected, set_user_connected] = useState(false);
   
     useEffect(() => {
       const fetchRandomCards = async () => {
@@ -54,6 +56,30 @@ export default function Homepage() {
     };
   }, []);
 
+    // DECONNEXION UTILISATEUR ET CLEAR DU LOCALSTORAGE
+    const disconnect = () => {
+        if (user_connected) {
+          if (window.confirm("Vous allez être déconnecté...")) {
+            localStorage.removeItem("pseudo");
+            localStorage.removeItem("user_id");
+            localStorage.removeItem("role");
+            set_user_connected(false);
+            window.location.href = "/";
+          }
+        } else {
+          alert("Aucun utilisateur n'est connecté.");
+        }
+      };
+    
+      // VERIFICATION
+      useEffect(() => {
+        const userConnected = localStorage.getItem("pseudo");
+        if (userConnected) {
+          set_user_connected(true);
+          // alert("L'utilisateur est déjà connecté. Veuillez-vous déconnecter pour vous connecter avec un autre compte.");
+        }
+      }, []);
+
 
     return (
         <div className="content">
@@ -72,8 +98,21 @@ export default function Homepage() {
                         En tout cas ce site il a l'air bien lourd sah ! Je sais pas ce que vous en pensez mais on va forcement avoir 20.</p>
                     </div>
                     <div className="btn-home">
-                        <Link to="/Register" id='btn-home'>Inscription</Link>
-                        <Link to='/Marketplace' id='btn-home'>Marketplace</Link>
+                        {/* <Link to="/Register" id='btn-home'>Inscription</Link>
+                        <Link to='/Marketplace' id='btn-home'>Marketplace</Link> */}
+                        {storedPseudo ? (
+                            <>
+                            <div className="connect" onClick={disconnect}>
+                                Deconnecter
+                            </div>
+                            <Link to='/Marketplace' id='btn-home'>Marketplace</Link>
+                            </>
+                        ) : (
+                            <>
+                            <Link to="/Register" id='btn-home'>Inscription</Link>
+                            <Link to='/Marketplace' id='btn-home'>Marketplace</Link>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className="right">
