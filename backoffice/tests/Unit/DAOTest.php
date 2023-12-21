@@ -17,7 +17,6 @@ class DAOTest extends TestCase
 
     private function configureDatabase(): void
     {
-        // Your database configuration code here
     }
 
     public function testAddUser()
@@ -61,5 +60,4 @@ class DAOTest extends TestCase
         $this->assertEmpty($user);
     }
 
-    // Add more tests for other methods as needed
 }
