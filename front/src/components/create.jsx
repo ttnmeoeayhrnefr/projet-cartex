@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import '../style/create.scss';
 import axios from 'axios';
 import { useEffect } from 'react';
+import html2canvas from 'html2canvas';
 
 // Composant pour afficher une étoile
 const StarImage = ({ filled }) => {
@@ -40,6 +41,7 @@ export default function Create() {
     const [cardDefense, setCardDefense] = useState('');
     const [cardImage, setCardImage] = useState('');
     const [userId, setUserId] = useState('');
+    const cardRef = useRef(null);
 
     useEffect(() => {
         const fetchUserId = () => {
@@ -198,12 +200,24 @@ export default function Create() {
         setUserId('');
     };
 
+    const handleScreenshot = async () => {
+      try {
+          const canvas = await html2canvas(cardRef.current);
+          const dataUrl = canvas.toDataURL();
+
+          // Maintenant, vous pouvez envoyer dataUrl à votre backend ou l'utiliser comme vous le souhaitez
+          console.log(dataUrl);
+      } catch (error) {
+          console.error('Erreur lors de la capture d\'écran :', error);
+      }
+    };
+
     return (
     <div className="create-page">
       <div className="container">
           <h1>Création d'une carte</h1>
           <div className="content-create">
-      <div className="visualisation">
+      <div className="visualisation" ref={cardRef}>
         <div className="img">
           <div className="card-container">
             <div className="card-body">
@@ -233,8 +247,6 @@ export default function Create() {
                   </div>
                 )}
               </div>
-                {/* <p>Collection: {cardCollection}</p>
-                <p>Rareté: {cardRarity}</p> */}
               </div>
               <div className="card-stats">
                 <p className='attaque'>{cardAttack}</p>
@@ -243,12 +255,6 @@ export default function Create() {
               <div className="card-description">
                 <p className='description'>{cardDescription}</p>
               </div>
-              {/* <div className="card-prices">
-                <p>Cardmarket Price: {cardCmktPrice}</p>
-                <p>Tcgplayer Price: {cardTcgPrice}</p>
-                <p>Ebay Price: {cardEbayPrice}</p>
-                <p>Amazon Price: {cardAmazonPrice}</p>
-              </div> */}
             </div>
           </div>
       </div>
@@ -397,8 +403,9 @@ export default function Create() {
                   />
                 </div>
               </div>
-              <div className="submit" onClick={handleSubmit}>
+              <div className="submit" onClick={() => { handleScreenshot(); handleSubmit(); }}>
                   <span>CREER</span>
+                  
               </div>
                 </div>
             </div>
