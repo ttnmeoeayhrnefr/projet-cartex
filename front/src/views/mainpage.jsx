@@ -55,9 +55,9 @@ export default function Mainpage() {
             <li><Link to="/">Accueil</Link></li>
             <li><Link to="/Marketplace">Marketplace</Link></li>
             <li><Link to="/Infos">Infos</Link></li>
-            <li><Link to="/Personnalisation">Personnalisation</Link></li>
+            <li><Link to="/Personnalisation">Création</Link></li>
             <li><Link to="/Booster">Booster</Link></li>
-            <li><Link to="/ListeCarte">Liste Carte</Link></li>
+            <li><Link to="/ListeCarte">Collection</Link></li>
           </ul>
         </div>
         <div className="acc-btn">
