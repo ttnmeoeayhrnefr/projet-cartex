@@ -11,6 +11,10 @@ vendor
 .env.local
 .env.storage.local
 
+/tests/Unit/.env
+/tests/Unit/.env.local
+/tests/Unit/.env.storage.local
+
 /src/.env
 /src/.env.local
 /src/.env.storage.local

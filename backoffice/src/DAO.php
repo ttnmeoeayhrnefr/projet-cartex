@@ -296,7 +296,7 @@ class DAO
                 $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE id_user = :id_user");
                 $row->bindParam(":id_user", $id_user);
                 $row->execute();
-                return $row->fetch(PDO::FETCH_ASSOC);
+                return $row->fetch(PDO::FETCH_ASSOC) ?: [];
             } catch (PDOException $e) {
                 echo "Erreur lors de l'affichage des utilisateurs par id: " . $e->getMessage();
                 return [];
@@ -315,6 +315,11 @@ class DAO
             $row->bindParam(':mdp', $hash);
             $row->bindParam(':role', $role);
             $row->execute();
+            $row2 = $this->bdd->prepare("SELECT id_user FROM utilisateur WHERE pseudo = :pseudo");
+            $row2->bindParam(':pseudo', $pseudo);
+            $row2->execute();
+            $result = $row2->fetch(PDO::FETCH_ASSOC);
+            return $result['id_user'];
             echo "Utilisateur ajouté avec succès.";
         } catch (PDOException $e) {
             echo "Erreur lors de l'ajout de l'utilisateur: " . $e->getMessage();

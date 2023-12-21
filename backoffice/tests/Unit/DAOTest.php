@@ -17,7 +17,22 @@ class DAOTest extends TestCase
 
     private function configureDatabase(): void
     {
-        require_once("/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php");
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+
+        try {
+            $hote = $_ENV['DB_HOST'];
+            $port = $_ENV['DB_PORT'];
+            $utilisateur = $_ENV['DB_USER'];
+            $motDePasse = $_ENV['DB_PASS'];
+            $nomDeLaBase = $_ENV['DB_NAME'];
+
+            $this->pdo = new PDO("mysql:host=$hote;port=$port;dbname=$nomDeLaBase", $utilisateur, $motDePasse);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Erreur de connexion à la base de données: " . $e->getMessage();
+            die();
+        }
     }
 
     public function testAddUser()
@@ -25,39 +40,48 @@ class DAOTest extends TestCase
         $pseudo = 'test_user';
         $password = 'test_password';
         $role = '0';
-
-        $this->dao->addUser($pseudo, $password, $role);
-
-        $user = $this->dao->listUserById(1);
-
+    
+        $userId = $this->dao->addUser($pseudo, $password, $role);
+    
+        $this->assertNotEmpty($userId, 'id_user ne doit pas etre vide');
+    
+        $user = $this->dao->listUserById($userId);
+    
+        $this->assertNotEmpty($user, 'utilisateur ne doit pas etre vide');
         $this->assertEquals($pseudo, $user['pseudo']);
-        $this->assertTrue(password_verify($password, $user['mdp']));
+        $this->assertTrue(password_verify($password, $user['mdp']), 'verification du mdp raté');
         $this->assertEquals($role, $user['role']);
+
+        return $userId;
     }
+    
 
-    public function testUpdateUserById()
-    {
-        $pseudo = 'updated_user';
-        $password = 'updated_password';
-        $role = '1';
-        $id = 1;
+public function testUpdateUserById()
+{
+    $pseudo = 'updated_user';
+    $password = 'updated_password';
+    $role = '1';
 
-        $this->dao->updateUserById($pseudo, $password, $role, $id);
+    $id = $this->testAddUser();
 
-        $updatedUser = $this->dao->listUserById($id);
+    $this->dao->updateUserById($pseudo, $password, $role, $id);
 
-        $this->assertEquals($pseudo, $updatedUser['pseudo']);
-        $this->assertTrue(password_verify($password, $updatedUser['mdp']));
-        $this->assertEquals($role, $updatedUser['role']);
-    }
+    $updatedUser = $this->dao->listUserById($id);
 
-    public function testRemoveUserById()
-    {
-        $id = 1;
+    $this->assertNotEmpty($updatedUser, 'l utilisateur modifié ne doit pas etre vide');
+    $this->assertEquals($pseudo, $updatedUser['pseudo']);
+    $this->assertTrue(password_verify($password, $updatedUser['mdp']), 'verification du mdp raté');
+    $this->assertEquals($role, $updatedUser['role']);
+}
 
-        $this->assertTrue($this->dao->removeUserById($id));
-        $user = $this->dao->listUserById($id);
+public function testRemoveUserById()
+{
+    $id = $this->testAddUser();
 
-        $this->assertEmpty($user);
-    }
+    $this->assertTrue($this->dao->removeUserById($id));
+    $user = $this->dao->listUserById($id);
+
+    $this->assertEmpty($user, 'utilisateur devrait être vide à id correspondant apres suppression');
+}
+
 }
