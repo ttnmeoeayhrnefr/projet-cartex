@@ -90,3 +90,136 @@ button {
         -moz-box-shadow: 1px 1px 20px -0px rgba(243,217,135,0.82);
     }
 }
+
+.common {
+    box-shadow: 1px 1px 40px -0px rgba(238, 244, 255, 0.3);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(238, 244, 255, 0.3);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(238, 244, 255, 0.3);
+    animation: blink 0.4s;
+}
+
+.rare {
+    box-shadow: 1px 1px 40px -0px rgba(86, 134, 223, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(86, 134, 223, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(86, 134, 223, 0.82);
+    animation: blink 0.4s;
+}
+
+.srare {
+    box-shadow: 1px 1px 40px -0px rgba(29, 94, 215, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(29, 94, 215, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(29, 94, 215, 0.82);
+    animation: blink 0.4s;
+}
+
+.urare {
+    box-shadow: 1px 1px 40px -0px rgba(226, 151, 45, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(226, 151, 45, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(226, 151, 45, 0.82);
+    animation: blink 0.4s;
+}
+
+.ultrare {
+    box-shadow: 1px 1px 40px -0px rgba(198, 57, 172, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(198, 57, 172, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(198, 57, 172, 0.82);
+    animation: blink 0.4s;
+}
+
+.qcsrare {
+    box-shadow: 1px 1px 60px -0px rgba(255, 0, 0, 0.82);
+    -webkit-box-shadow: 1px 1px 60px -0px rgba(255, 0, 0, 0.82);
+    -moz-box-shadow: 1px 1px 60px -0px rgba(255, 0, 0, 0.82);
+    animation: blink 0.4s;
+}
+
+.sctrare {
+    box-shadow: 1px 1px 40px -0px rgba(203, 255, 214, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(203, 255, 214, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(203, 255, 214, 0.82);
+    animation: blink 0.4s;
+}
+
+.grare {
+    box-shadow: 1px 1px 40px -0px rgba(247, 242, 155, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(247, 242, 155, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(247, 242, 155, 0.82);
+    animation: blink 0.4s;
+}
+
+.esrare {
+    box-shadow: 1px 1px 40px -0px rgba(227, 126, 187, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(227, 126, 187, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(227, 126, 187, 0.82);
+    animation: blink 0.4s;
+}
+
+.gsctrare {
+    box-shadow: 1px 1px 40px -0px rgba(230, 233, 45, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(230, 233, 45, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(230, 233, 45, 0.82);
+    animation: blink 0.4s;
+}
+
+.clsrare {
+    box-shadow: 1px 1px 40px -0px rgba(207, 42, 42, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(207, 42, 42, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(207, 42, 42, 0.82);
+    animation: blink 0.4s;
+}
+
+.dtnprare {
+    box-shadow: 1px 1px 40px -0px rgba(196, 47, 255, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(196, 47, 255, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(196, 47, 255, 0.82);
+    animation: blink 0.4s;
+}
+
+.psrare {
+    box-shadow: 1px 1px 40px -0px rgba(45, 39, 118, 0.82);
+    -webkit-box-shadow: 1px 1px 40px -0px rgba(45, 39, 118, 0.82);
+    -moz-box-shadow: 1px 1px 40px -0px rgba(45, 39, 118, 0.82);
+    animation: blink 0.4s;
+}
+
+.mrare {
+    box-shadow: 
+        1px 1px 40px -0px violet,
+        1px 1px 40px -0px indigo,
+        1px 1px 40px -0px blue,
+        1px 1px 40px -0px green,
+        1px 1px 40px -0px yellow,
+        1px 1px 40px -0px orange,
+        1px 1px 40px -0px red;
+        animation: blink 0.4s;
+}
+
+.dtrprare {
+    box-shadow: 1px 1px 60px -0px rgba(26, 247, 255, 0.82);
+    -webkit-box-shadow: 1px 1px 60px -0px rgba(26, 247, 255, 0.82);
+    -moz-box-shadow: 1px 1px 60px -0px rgba(26, 247, 255, 0.82);
+    animation: blink 0.4s;
+}
+
+.dtuprare {
+    box-shadow: 1px 1px 60px -0px rgba(255, 3, 125, 0.82);
+    -webkit-box-shadow: 1px 1px 60px -0px rgba(255, 3, 125, 0.82);
+    -moz-box-shadow: 1px 1px 60px -0px rgba(255, 3, 125, 0.82);
+    animation: blink 0.4s;
+}
+
+.defaut {
+    box-shadow: 1px 1px 60px -0px rgba(0, 0, 0, 0.82);
+    -webkit-box-shadow: 1px 1px 60px -0px rgba(0, 0, 0, 0.82);
+    -moz-box-shadow: 1px 1px 60px -0px rgba(0, 0, 0, 0.82);
+    animation: blink 0.4s;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

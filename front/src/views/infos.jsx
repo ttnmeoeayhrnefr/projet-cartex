@@ -59,14 +59,15 @@ export default function Infos() {
                         </div>
                     </div>
                     <div id="container-colab">
-                        <div className="img"></div>
+                        <div className="img">
+                            <img src="https://cdn.discordapp.com/attachments/1186238206912499782/1187382330403340358/pp.jpg?ex=6596aef8&is=658439f8&hm=d11858c2965138ce6469f2b689c274cf21d1e100af3115368add6835843b88fc&" alt="" />
+                        </div>
                         <div className="name">
                             <p>MENANT--FERRY Théo</p>
                             <p>Ecole IPSSI - Paris</p>
                             <p>BTC2 25.1</p>
                             <div>
                                 <a href="https://github.com/ttnmeoeayhrnefr"><img src="https://img.icons8.com/?size=256&id=12599&format=png" alt="" /></a>
-                                <a href="https://github.com/Korzeremi"><img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/linkedin-2.png" alt="" /></a>
                             </div>
                         </div>
                     </div>

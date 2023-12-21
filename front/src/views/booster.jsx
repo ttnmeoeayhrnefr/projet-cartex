@@ -56,6 +56,47 @@ const Booster = () => {
     return () => clearInterval(intervalId);
   }, [isCardsContainerVisible, currentCardIndex, boosterCards.length]);
 
+  const getRarityClass = (rarity) => {
+    switch (rarity) {
+      case 'Common':
+        return 'common';
+      case 'Rare':
+        return 'rare';
+      case 'Super Rare':
+        return 'srare';
+      case 'Ultra Rare':
+        return 'urare';
+      case "Ultimate Rare":
+        return 'ultrare';
+      case 'Quarter Century Secret Rare':
+        return 'qcsrare';
+      case 'Short Print':
+        return 'sprint';
+      case 'Secret Rare':
+        return 'sctrare';
+      case 'Gold Rare':
+        return 'grare';
+      case 'Extra Secret Rare':
+        return 'esrare';
+      case 'Gold Secret Rare':
+        return 'gsctrare';
+      case "Collector's Rare":
+        return 'clsrare';
+      case 'Duel Terminal Normal Parallel Rare':
+        return 'dtnprare';
+      case 'Prismatic Secret Rare':
+        return 'psrare';
+      case 'Mosaic Rare':
+        return 'mrare';
+      case 'Duel Terminal Rare Parallel Rare':
+        return 'dtrprare';
+      case 'Duel Terminal Ultra Parallel Rare':
+        return 'dtuprare';
+      default:
+        return 'defaut';
+    }
+  };
+
   return (
     <div className="booster-page">
       {isHeaderVisible && (
@@ -72,18 +113,18 @@ const Booster = () => {
       {isCardsContainerVisible && (
         <div className="cards-container">
             <div className="cards">
-                {boosterCards.slice(0, currentCardIndex + 1).map((card, index) => (
-                  <div className="card" key={index}>
-                    <div className="img">
-                      <img src={card.image} alt={card.nom} />
-                    </div>
-                    <div className="btn-add">
-                      <button onClick={() => handleAddToUserList(card)}>
-                        Ajouter
-                      </button>
-                    </div>
+              {boosterCards.slice(0, currentCardIndex + 1).map((card, index) => (
+                <div className= "card" key={index}>
+                  <div className={`img ${getRarityClass(card.set_rarete)}`}>
+                    <img src={card.image} alt={card.nom} />
                   </div>
-                ))}
+                  <div className="btn-add">
+                    <button onClick={() => handleAddToUserList(card)}>
+                      Ajouter
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           <div className="btn">
               <button onClick={hideCardsContainer}>Reouvrir</button>
