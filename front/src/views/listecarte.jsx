@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../style/listecards.scss';
 
 const ListeCarte = () => {
   const [userId, setUserId] = useState("");
@@ -36,17 +37,22 @@ const ListeCarte = () => {
   }, [userId]);
 
   return (
-    <div>
-      <h1>Liste de Cartes de l'Utilisateur</h1>
-      <ul>
+    <div className="usercards-page">
+      <div className="header">
+        <h1>Mes Cartes</h1>
+      </div>
+      <div className="cards">
         {userCards.map((userCard, index) => (
-          <li key={index}>
-            <h3>{userCard.nom}</h3>
-            <img src={userCard.image} alt={userCard.nom} />
-            <p>{userCard.description}</p>
-          </li>
+          <div className="card" key={index}>
+            <div className="img">
+              <img src={userCard.image} alt={userCard.nom} />
+            </div>
+            <div className="title">
+              <h3>{userCard.nom}</h3>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
