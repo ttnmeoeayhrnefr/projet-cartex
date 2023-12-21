@@ -1,17 +1,18 @@
 import { Link, Route, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
+import "../style/mainpage.scss";
+
 import Homepage from "../components/Homepage";
 import Marketplace from "./marketplace";
 import Infos from "./infos";
 import Register from "./register";
 import Connect from "./connect";
-import { useState, useEffect } from "react";
 import Details from "../components/details";
-
-import "../style/mainpage.scss";
 import Personnalisation from "./personnalisation";
 import Edit from "../components/edit";
 import Booster from "./booster";
 import ListeCarte from "./listecarte";
+import Create from "../components/create";
 
 export default function Mainpage() {
   const [user_connected, set_user_connected] = useState(false);
@@ -98,6 +99,7 @@ export default function Mainpage() {
           <Route path="/ListeCarte" element={<ListeCarte/>}></Route>
           <Route path="/details/:cardId" element={<Details />} />
           <Route path="/edit/:cardId" element={<Edit />} />
+          <Route path="/create-card" element={<Create />}></Route>
         </Routes>
       </div>
     </div>
