@@ -138,25 +138,76 @@ class DAOTest extends TestCase
     }
     
 
-    public function testUpdateCardById()
+        public function testUpdateCardById()
     {
-        $nom = 'Blue-Eyes White Dragon';
-        $image = 'blue_eyes.jpg';
-        // ... (similarly define other attributes)
-        $setNom = 'Kaiba\'s Collection';
-        $setRare = 'Ultra Rare';
+        $nom = 'Updated Test Card';
+        $image = 'updated_test_card.jpg';
+        $imageSmall = 'updated_test_card_small.jpg';
+        $imageCropped = 'updated_test_card_cropped.jpg';
+        $idKonami = '987654321';
+        $description = 'Updated description for the test card.';
+        $type = 'monstre';
+        $race = 'dragon'; 
+        $attack = 3000; 
+        $defense = 2500; 
+        $stars = 8; 
+        $archetype = 'Updated Archetype';
+        $attribute = 'light'; 
+        $cardmarketPrice = 60.00; 
+        $ebayPrice = 55.00; 
+        $amazonPrice = 58.00; 
+        $tcgplayerPrice = 65.00; 
+        $collection = 'Updated Collection';
+        $rarete = 'Secret Rare'; 
 
         $id = $this->testAddCard();
 
-        $this->dao->updateCardById($nom, $image, /* ... other parameters */, $setNom, $setRare, $id);
+        $this->dao->updateCardById(
+            $nom,
+            $image,
+            $imageSmall,
+            $imageCropped,
+            $idKonami,
+            $description,
+            $type,
+            $race,
+            $attack,
+            $defense,
+            $stars,
+            $archetype,
+            $attribute,
+            $cardmarketPrice,
+            $ebayPrice,
+            $amazonPrice,
+            $tcgplayerPrice,
+            $collection,
+            $rarete,
+            $id
+        );
 
         $updatedCard = $this->dao->listCardById($id);
 
-        $this->assertNotEmpty($updatedCard, 'la carte modifiée ne doit pas etre vide');
+        $this->assertNotEmpty($updatedCard, 'The updated card should not be empty');
         $this->assertEquals($nom, $updatedCard['nom']);
         $this->assertEquals($image, $updatedCard['image']);
-        // Add more assertions based on your data structure
+        $this->assertEquals($imageSmall, $updatedCard['image_petite']);
+        $this->assertEquals($imageCropped, $updatedCard['image_cropped']);
+        $this->assertEquals($idKonami, $updatedCard['id_carte_konami']);
+        $this->assertEquals($description, $updatedCard['description']);
+        $this->assertEquals($type, $updatedCard['type']);
+        $this->assertEquals($race, $updatedCard['race']);
+        $this->assertEquals($attack, $updatedCard['attaque']);
+        $this->assertEquals($defense, $updatedCard['defense']);
+        $this->assertEquals($stars, $updatedCard['etoiles']);
+        $this->assertEquals($attribute, $updatedCard['attribut']);
+        $this->assertEquals($cardmarketPrice, $updatedCard['cardmarket_price']);
+        $this->assertEquals($ebayPrice, $updatedCard['ebay_price']);
+        $this->assertEquals($amazonPrice, $updatedCard['amazon_price']);
+        $this->assertEquals($tcgplayerPrice, $updatedCard['tcgplayer_price']);
+        $this->assertEquals($collection, $updatedCard['set_nom']);
+        $this->assertEquals($rarete, $updatedCard['set_rarete']);
     }
+
 
     public function testRemoveCardById()
     {
