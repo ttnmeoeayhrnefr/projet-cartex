@@ -16,6 +16,7 @@ export default function Register() {
         const new_user = {
             pseudo: pseudo,
             mdp: mdp,
+            role: 0,
         };
 
         // VERIFICATION, PAS DE CREATION D'UTILISATEUR "VIDE" ET EVITE PROBLEME SI DEJA CONNECTE

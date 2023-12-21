@@ -619,7 +619,20 @@ app.get("/cartes/details/:id", async (req, res) => {
 });
 
 
-
+//CRUD DECK
+app.get("/deck/:id", async (req, res) => {
+  let conn;
+  try {
+    console.log("lancement de la console");
+    conn = await pool.getConnection();
+    console.log("lancement de la requête");
+    const rows = await conn.query("select * from deck where id_user = ?", [req.params.id]);
+    console.log(rows);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 app.listen(port, () =>
   console.log(`Le serveur écoute sur : http://localhost:${port}`)

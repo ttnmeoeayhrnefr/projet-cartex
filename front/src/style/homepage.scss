@@ -70,6 +70,26 @@
                 }
             }
         }
+
+        .register, .connect {
+            background-color: var(--color-primary);
+            height: 5vh;
+            width: 9vw;
+            border-radius: 2rem;
+            display: grid;
+            place-items: center;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--color-black);
+            text-transform: uppercase;
+            transition: all .1s ease-in-out;
+
+            &:hover {
+                box-shadow: 1px 1px 40px -0px rgba(243,217,135,0.82);
+                -webkit-box-shadow: 1px 1px 40px -0px rgba(243,217,135,0.82);
+                -moz-box-shadow: 1px 1px 40px -0px rgba(243,217,135,0.82);
+            }
+        }
     }
 
     .right {
