@@ -585,6 +585,23 @@ app.post("/listeCarte", async (req, res) => {
   }
 });
 
+app.delete("/listeCarte/delete/:id", async (req, res) => {
+  let conn;
+  try {
+    console.log("Lancement de la connexion");
+    conn = await pool.getConnection();
+    console.log("Lancement de la requête");
+    const rows = await conn.query(
+      "delete from listecard where id_liste = ?",
+      [req.params.id]
+    );
+    console.log(rows);
+    res.status(200).json("La suppression a bien été effectuée");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.get("/cartes/details/:id", async (req, res) => {
   let conn;
   try {

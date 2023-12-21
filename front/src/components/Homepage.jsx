@@ -15,21 +15,12 @@ export default function Homepage() {
       const fetchRandomCards = async () => {
         try {
           const response = await axios.get('http://localhost:3001/cartes/random/random');
-          setCards(response.data.slice(0, 15));
+          setCards(response.data.slice(0, 30));
         } catch (error) {
           console.error('Erreur lors de la récupération des cartes', error);
         }
-      };
-  
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % (15 - 6 + 1));
-      }, 1000);
-  
+      }; 
       fetchRandomCards();
-  
-      return () => {
-        clearInterval(interval);
-      };
     }, []); 
 
   useEffect(() => {
@@ -82,7 +73,7 @@ export default function Homepage() {
 
 
     return (
-        <div className="content">
+        <div className="content content-home">
             <div className="home-hook">
                 <div className="left">
                     <div className="slogan">
@@ -129,7 +120,7 @@ export default function Homepage() {
                 <div className="title">
                     <h1>Rechercher</h1>
                 </div>
-                <div className="container" style={{ transform: `translateX(-${currentIndex * (100 / cards.length)}%)` }}>
+                <div className="container">
                     {cards.map((card) => (
                     <div key={card.id_carte} className="cards">
                         <img src={card.image} alt={card.nom} />
@@ -183,8 +174,19 @@ export default function Homepage() {
                     <div className="text">
                         <h1>Achetez et vendez vos cartes en toute tranquilité sur CarteX</h1>
                         <div className="btn">
-                            <Link to='/Register' className='btn1'>Inscription</Link>
-                            <Link to='/Marketplace' className='btn2'>Marketplace</Link>
+                        {storedPseudo ? (
+                            <>
+                            <span className="btn1" onClick={disconnect}>
+                                Deconnecter
+                            </span>
+                            <Link className='btn2' to='/Marketplace' id='btn-home'>Marketplace</Link>
+                            </>
+                        ) : (
+                            <>
+                            <Link to="/Register" id='btn1'>Inscription</Link>
+                            <Link to='/Marketplace' id='btn2'>Marketplace</Link>
+                            </>
+                        )}
                         </div>
                     </div>
                     <div className="img">

@@ -62,7 +62,7 @@ const Personnalisation = () => {
     return (
         <div className="personnalisation-page">
             <div className="container">
-                <h1>Cartes personnalisées</h1>
+                <h1>Création</h1>
                 <div className="container-cards">
                     {userCards.map((card) => (
                       <div key={card.id_carte} className="card-item">
