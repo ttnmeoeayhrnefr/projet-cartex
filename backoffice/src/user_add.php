@@ -1,12 +1,13 @@
 <?php
 include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
+// Affichage de la page si admin
 if($_COOKIE['role']==1) {
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Mise a jour de l utilisateur -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
