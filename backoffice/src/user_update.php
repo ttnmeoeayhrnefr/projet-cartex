@@ -2,11 +2,13 @@
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
+    // Affichage de la page si admin
     $DAO = new DAO($connexion);
     $User = $DAO->listUserById($_GET['user']);
     if($_COOKIE['role']==1) {
 ?>
 
+<!-- Mise a jour des utilisateurs -->
 <!DOCTYPE html>
     <html lang="en">
     <head>

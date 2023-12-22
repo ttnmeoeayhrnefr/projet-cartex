@@ -1,7 +1,9 @@
 <?php
+// Inclusion des fichiers de configuration et d'accès aux données
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
+    // Vérification du rôle de l'utilisateur à l'aide d'un cookie
     if($_COOKIE['role']==1) {
 ?>
 
@@ -29,6 +31,7 @@
         </div>
         <div class="panel-sct">
             <div class="home-sct">
+                <!-- Menu de navigation -->
                 <div class="left-btn">
                     <img src="assets/l_chevron.svg" alt="left button" id="l_chev1">
                 </div>
@@ -48,6 +51,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Menu de navigation -->
                 <div class="right-btn">
                     <a href="user_panel.php" id="a1r">
                         <img src="assets/r_chevron.svg" alt="right button" id="r_chev1">
@@ -62,6 +66,6 @@
 
 <?php
     } else {
-        echo "vous n'avez pas les droits";
+        echo "vous n'avez pas les droits"; // Message affiché si l'utilisateur n'a pas les droits
     }
 ?>

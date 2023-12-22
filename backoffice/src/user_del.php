@@ -2,10 +2,12 @@
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
+    // Affichage de la page si admin
     $id = $_GET['user'];
     if($_COOKIE['role']==1) {
 ?>
 
+<!-- Suppresion  utilisateur -->
 <!DOCTYPE html>
     <html lang="en">
     <head>

@@ -1,7 +1,9 @@
 <?php
+// Inclusion des fichiers de configuration et d'accès aux données
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
+    // Vérifie le rôle de l'utilisateur à l'aide des cookies
     if($_COOKIE['role']==1) {
 ?>
 
@@ -15,10 +17,12 @@
     </head>
     <body>
         <div class="page-sct">
+            <!-- Barre de navigation pour le panneau d'administration -->
             <div class="navbar-sct">
                 <div class="logo-sct">
                     <h1>Panneau d'administration</h1>
                 </div>
+                <!-- Bouton de déconnexion -->
                 <div class="disconnect-btn">
                     <a href="disc.php" id="aDisc">
                         <img src="assets/logout.svg" alt="logout" id="disco">
@@ -40,8 +44,10 @@
                                 </h2>
                             </div>
                             <div class="gest-sct">
+                                <!-- Formulaire pour ajouter une nouvelle carte -->
                                 <div class="addCardSct">
                                     <form action="request.php?req=4" method="post">
+                                        <!-- Champs pour saisir les informations de la carte -->
                                         <div class="cardAddSct">
                                             <div class="cardNomSct">
                                                 <label for="cardNom">Nom</label>
@@ -119,6 +125,7 @@
                                                 <label for="cardRarete">Rareté</label>
                                                 <input type="text" name="cardRarete" id="cardRarete" value="">
                                             </div>
+                                            <!-- Bouton de soumission pour créer la carte -->
                                             <div class="submitSct">
                                                 <input type="submit" value="Créer carte">
                                             </div>
@@ -136,6 +143,7 @@
 
 <?php
     } else {
+        // Si l'utilisateur n'a pas le rôle nécessaire (rôle différent de 1), afficher un message d'erreur
         echo "vous n'avez pas les droits";
     }
 ?>
