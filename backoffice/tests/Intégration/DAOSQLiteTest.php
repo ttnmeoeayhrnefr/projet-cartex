@@ -3,17 +3,20 @@
 use PHPUnit\Framework\TestCase;
 
 // require_once("./backoffice/src/DAO.php");
+// Inclusion de la classe DAO nécessaire pour les tests
 require_once("/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php");
 
 class DAOSQLiteTest extends TestCase
 {
-    protected $pdo;
+    protected $pdo; // Instance de PDO pour la connexion à la base de données
 
-    protected function setUp(): void
+    protected function setUp(): void // Méthode setUp() exécutée avant chaque test pour initialiser l'environnement de test
     {
+        // Création d'une base de données SQLite en mémoire
         $this->pdo = new PDO('sqlite::memory:');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        // Création des tables carte et utilisateur pour les tests
         $this->pdo->exec('CREATE TABLE carte (
             id_carte INTEGER(11) PRIMARY KEY,
             nom VARCHAR(255),
@@ -45,6 +48,8 @@ class DAOSQLiteTest extends TestCase
         )');
     }
 
+    // Méthodes de tests pour évaluer les fonctionnalités du DAO
+    // Test la méthode listAllUsers() du DAO
     public function testListAllUsers()
     {
         $dao = new DAO($this->pdo);
@@ -61,6 +66,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('role1', $users[0]['role']);
     }
 
+    // Test la méthode testListUserById() du DAO
     public function testListUserById()
     {
         $dao = new DAO($this->pdo);
@@ -77,6 +83,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('user1', $user[0]['pseudo']);
     }
 
+    // Test la méthode testAddUser() du DAO
     public function testAddUser()
     {
         $dao = new DAO($this->pdo);
@@ -92,6 +99,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('role4', $addedUser[0]['role']);
     }
 
+    // Test la méthode testUpdateUserById() du DAO
     public function testUpdateUserById()
     {
         $dao = new DAO($this->pdo);
@@ -111,6 +119,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('newRole', $updatedUser[0]['role']);
     }
 
+    // Test la méthode testRemoveUserById() du DAO
     public function testRemoveUserById()
     {
         $dao = new DAO($this->pdo);
@@ -128,6 +137,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEmpty($removedUser);
     }
 
+    // Test la méthode testAddCard() du DAO
     public function testAddCard()
     {
         $dao = new DAO($this->pdo);
@@ -163,6 +173,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('type', $addedCard[0]['type']);
     }
 
+    // Test la méthode testListAllCards() du DAO
     public function testListAllCards()
     {
         $dao = new DAO($this->pdo);
@@ -219,6 +230,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('type2', $cards[1]['type']);
     }
 
+    // Test la méthode testListCardById() du DAO
     public function testListCardById()
     {
         $dao = new DAO($this->pdo);
@@ -251,6 +263,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('name', $card[0]['nom']);
     }
 
+    // Test la méthode testUpdateCardById() du DAO
     public function testUpdateCardById()
     {
         $dao = new DAO($this->pdo);
@@ -309,6 +322,7 @@ class DAOSQLiteTest extends TestCase
         $this->assertEquals('type2', $updatedCard[0]['type']);
     }
 
+    // Test la méthode testRemoveCardById() du DAO
     public function testRemoveCardById()
     {
         $dao = new DAO($this->pdo);
@@ -344,6 +358,8 @@ class DAOSQLiteTest extends TestCase
         $this->assertEmpty($removedCard);
     }
 
+    // Tests pour vérifier les cas d'utilisation d'exceptions et d'arguments invalide
+    // Teste l'exception pour un nom d'utilisateur invalide lors de l'ajout d'un utilisateur
     public function testAddUserInvalidUsername()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -352,6 +368,7 @@ class DAOSQLiteTest extends TestCase
         $dao->addUser('', 'password', '0');
     }
 
+    // Teste l'exception pour un mot de passe invalide lors de l'ajout d'un utilisateur
     public function testAddUserInvalidPassword()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -360,6 +377,7 @@ class DAOSQLiteTest extends TestCase
         $dao->addUser('pseudo', '', '1');
     }
 
+    // Teste l'exception pour un rôle invalide lors de l'ajout d'un utilisateur
     public function testAddUserInvalidRole()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -368,6 +386,7 @@ class DAOSQLiteTest extends TestCase
         $dao->addUser('pseudo', 'password', '2');
     }
 
+    // Teste l'exception pour des arguments invalides lors de l'ajout d'une carte
     public function testAddCardInvalidArgument()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -377,6 +396,7 @@ class DAOSQLiteTest extends TestCase
         $dao->addCard('', 'image.jpg', 'image_small.jpg', 'image_cropped.jpg', '1234', 'description', 'type', 'race', 1, 2, 3, 'archetype', 'attribute', 1, 2, 3, 4, 'collection', 'rareté');
     }
 
+    // Teste l'exception pour un type de carte invalide lors de l'ajout d'une carte
     public function testAddCardExceptionForMonsterType()
     {
         $dao = new DAO($this->pdo);

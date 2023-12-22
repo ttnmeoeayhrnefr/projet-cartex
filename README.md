@@ -54,7 +54,7 @@ Si besoin, télécharger à partir des sites officiels :
 
 Récupérer le projet à l’aide de la commande “git clone https://github.com/ttnmeoeayhrnefr/projet-cartex“
 
-Utiliser le script “ScriptProjetCarteX.sql” pour mettre en place la base de données.
+Utiliser le script “ProjetCarteX.sql” pour mettre en place la base de données.
 
 Dans le répertoire “front”, saisir les commandes :
     “npm install”
@@ -74,6 +74,7 @@ Vous êtes prêt à visiter notre site.
 /!\ Logins utiles pour le test du site :
 - purple / purple pour un utilisateur standard
 - admin / admin pour un utilisateur administrateur
+- vous pouvez également crée un compte si vous voulez, par contre il n'y a pas la possibilité d'être admin
 
 REMERCIEMENTS :
 

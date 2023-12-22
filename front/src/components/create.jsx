@@ -19,7 +19,7 @@ const typeImageMap = {
     monstre_effet: 'https://lauqerm.github.io/ygocarder/asset/image/frame/frame-effect.png',
     magie: 'https://lauqerm.github.io/ygocarder/asset/image/frame/frame-spell.png',
     piege: 'https://lauqerm.github.io/ygocarder/asset/image/frame/frame-trap.png',
-    fusion: 'https://discord.com/channels/@me/1186238206912499782/1187343187879137300',
+    fusion: 'https://lauqerm.github.io/ygocarder/asset/image/frame/frame-fusion.png',
     link: 'https://lauqerm.github.io/ygocarder/asset/image/frame/frame-fusion.png',
     ritual: 'https://lauqerm.github.io/ygocarder/asset/image/frame/frame-ritual.png',
     synchro: 'https://lauqerm.github.io/ygocarder/asset/image/frame/frame-synchro.png',
@@ -317,7 +317,7 @@ export default function Create() {
                     <option value="" disabled hidden>
                       Choisir un type...
                     </option>
-                    <option value="monstre">Monstre</option>
+                    <option value="monstre" selected>Monstre</option>
                     <option value="monstre_effet">Monstre Effet</option>
                     <option value="magie">Magie</option>
                     <option value="piege">Piège</option>
