@@ -4,6 +4,7 @@
 
     $DAO = new DAO($connexion);
     $User = $DAO->listUserById($_GET['user']);
+    if($_COOKIE['role']==1) {
 ?>
 
 <!DOCTYPE html>
@@ -73,3 +74,8 @@
         </div>  
     </body>
 </html>
+<?php
+    } else {
+        echo "vous n'avez pas les droits";
+    }
+?>

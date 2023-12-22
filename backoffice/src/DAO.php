@@ -324,6 +324,18 @@ class DAO
                 return [];
             }
         }   
+        public function listUserByUsername($username)
+        {
+            try {
+                $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE pseudo = :username");
+                $row->bindParam(":username", $username);
+                $row->execute();
+                return $row->fetch(PDO::FETCH_ASSOC) ?: [];
+            } catch (PDOException $e) {
+                echo "Erreur lors de l'affichage de l'utilisateur par pseudo: " . $e->getMessage();
+                return [];
+            }
+        }
 
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

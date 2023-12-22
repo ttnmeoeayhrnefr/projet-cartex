@@ -4,6 +4,7 @@ include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.
 
 $DAO = new DAO($connexion);
 $user = $DAO->listAllUsers();
+if($_COOKIE['role']==1) {
 ?>
 
 <!DOCTYPE html>
@@ -76,3 +77,8 @@ $user = $DAO->listAllUsers();
 </body>
 
 </html>
+<?php
+    } else {
+        echo "vous n'avez pas les droits";
+    }
+?>
