@@ -4,6 +4,8 @@ import "../style/personnalisation.scss"
 
 const Personnalisation = () => {
   const [userCards, setUserCards] = useState([]);
+  const [selectedCardId, setSelectedCardId] = useState(null);
+
 
   useEffect(() => {
     const fetchUserCards = async () => {
@@ -59,6 +61,12 @@ const Personnalisation = () => {
     window.location.href = '/Create-card';
   };
 
+  const handleCardClick = (cardId) => {
+    console.log(cardId)
+    setSelectedCardId(cardId);
+    window.location.href = `/details/${cardId}`;
+  };
+
     return (
         <div className="personnalisation-page">
             <div className="container">
@@ -66,13 +74,13 @@ const Personnalisation = () => {
                 <div className="container-cards">
                     {userCards.map((card) => (
                       <div key={card.id_carte} className="card-item">
-                          <div className="name">
+                          <div className="name" onClick={() => handleCardClick(card.id_carte)}>
                                 <p>{card.nom}</p>
                           </div>
-                          <div className="img">
+                          <div className="img" onClick={() => handleCardClick(card.id_carte)}>
                             <img src={card.image} alt={card.nom} />
                           </div>
-                          <div className="describe">
+                          <div className="describe" onClick={() => handleCardClick(card.id_carte)}>
                               <p>{card.description}</p>
                           </div>
                           <div className="btn">

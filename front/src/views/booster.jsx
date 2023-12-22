@@ -102,7 +102,7 @@ const Booster = () => {
       {isHeaderVisible && (
         <div className="header-booster">
           <img
-            src="https://product-images.tcgplayer.com/fit-in/437x437/181266.jpg"
+            src="https://magicians-circle.com/wp-content/uploads/2023/03/BLMR-BOOSTER-1.png"
             alt="booster"
             onClick={openBooster}
           />
