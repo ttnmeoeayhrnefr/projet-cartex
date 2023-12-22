@@ -20,7 +20,7 @@
                     <h1>Panneau d'administration</h1>
                 </div>
                 <div class="disconnect-btn">
-                    <a href="panel.php" id="aDisc">
+                    <a href="disc.php" id="aDisc">
                         <img src="assets/logout.svg" alt="logout" id="disco">
                     </a>
                 </div>
@@ -36,7 +36,7 @@
                         <div class="user-sct">
                             <div class="title-sct">
                                 <h2 id="card">
-                                    Nouvel carte  
+                                    Nouvelle carte  
                                 </h2>
                             </div>
                             <div class="gest-sct">

@@ -4,6 +4,13 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log - AdminPanel</title>
+    <link rel="stylesheet" href="style.scss">
+</head>
 <body>
     <div class="page-sct">
         <div class="navbar-sct">
