@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
-import '../style/create.scss';
-import axios from 'axios';
-import { useEffect } from 'react';
-import html2canvas from 'html2canvas';
+import React, { useRef, useState } from 'react';      // Importation de useState pour gérer les états des champs de formulaire
+import '../style/create.scss';                       // Importation du fichier de style     
+import axios from 'axios';                         // Importation d'axios pour les requêtes HTTP
+import { useEffect } from 'react';              // Importation de useEffect pour gérer les effets de bord 
+import html2canvas from 'html2canvas';      // Importation d'html2canvas pour la capture d'écran
 
 // Composant pour afficher une étoile
 const StarImage = ({ filled }) => {
@@ -26,6 +26,7 @@ const typeImageMap = {
     xyz: 'https://lauqerm.github.io/ygocarder/asset/image/frame/frame-xyz.png',
 };
 
+// Composant pour créer une carte
 export default function Create() {
     const [cardType, setCardType] = useState('');
     const [cardName, setCardName] = useState('');
@@ -43,80 +44,97 @@ export default function Create() {
     const [userId, setUserId] = useState('');
     const cardRef = useRef(null);
 
+    // Récupère l'ID de l'utilisateur stocké dans le localStorage
     useEffect(() => {
         const fetchUserId = () => {
-            const idUserFromLocalStorage = localStorage.getItem('id_user');
+            const idUserFromLocalStorage = localStorage.getItem('id_user');   // Récupère l'ID de l'utilisateur stocké dans le localStorage
             setUserId(idUserFromLocalStorage);
         };
 
         fetchUserId();
     }, []);
 
+
+    // Gère les changements des champs de formulaire
     const handleNameChange = (event) => {
         const newName = event.target.value;
         setCardName(newName);
     };
 
+
+    // Gère les changements des champs de formulaire
     const handleStarsChange = (event) => {
         const newStars = event.target.value;
         setCardStars(newStars);
     };
 
+    // Gère les changements des champs de formulaire
     const handleTypeChange = (event) => {
         const newType = event.target.value;
         setCardType(newType);
     };
 
+    // Gère les changements des champs de formulaire
     const handleCollectionChange = (event) => {
         const newCollection = event.target.value;
         setCardCollection(newCollection);
     };
 
+    // Gère les changements des champs de formulaire
     const handleRarityChange = (event) => {
         const newRarity = event.target.value;
         setCardRarity(newRarity);
     };
 
+    // Gère les changements des champs de formulaire
     const handleDescriptionChange = (event) => {
         const newDescription = event.target.value;
         setCardDescription(newDescription);
     };
 
+    // Gère les changements des champs de formulaire
     const handleCmktPriceChange = (event) => {
         const newCmktPrice = event.target.value;
         setCardCmktPrice(newCmktPrice);
     };
 
+    // Gère les changements des champs de formulaire
     const handleTcgPriceChange = (event) => {
         const newTcgPrice = event.target.value;
         setCardTcgPrice(newTcgPrice);
     };
 
+    // Gère les changements des champs de formulaire
     const handleEbayPriceChange = (event) => {
         const newEbayPrice = event.target.value;
         setCardEbayPrice(newEbayPrice);
     };
 
+    // Gère les changements des champs de formulaire
     const handleAmazonPriceChange = (event) => {
         const newAmazonPrice = event.target.value;
         setCardAmazonPrice(newAmazonPrice);
     };
 
+    // Gère les changements des champs de formulaire
     const handleAttackChange = (event) => {
         const newAttack = event.target.value;
         setCardAttack(newAttack);
     };
 
+    // Gère les changements des champs de formulaire
     const handleDefenseChange = (event) => {
         const newDefense = event.target.value;
         setCardDefense(newDefense);
     };
 
+    // Gère les changements des champs de formulaire
     const handleImageChange = (event) => {
         const imageUrl = event.target.value;
         setCardImage(imageUrl);
     };
 
+    // Fonction pour envoyer les données du formulaire vers la base de données
     const handleSubmit = async () => {
         console.log(
             cardAttack,
@@ -176,10 +194,8 @@ export default function Create() {
         try {
             const response = await axios.post('http://localhost:3001/cartes', requestData);
             console.log(response.data);
-            // Gérez le succès, redirigez ou affichez un message de réussite
         } catch (error) {
             console.error(error);
-            // Gérez l'erreur, affichez un message d'erreur
         }
     };
 
@@ -200,6 +216,7 @@ export default function Create() {
         setUserId('');
     };
 
+    // Fonction pour la capture d'écran, qui ne fonctionne pas bien malheuresement
     const handleScreenshot = async () => {
       try {
           const canvas = await html2canvas(cardRef.current);
@@ -212,6 +229,7 @@ export default function Create() {
       }
     };
 
+    // Affichage du formulaire de création de carte
     return (
     <div className="create-page">
       <div className="container">

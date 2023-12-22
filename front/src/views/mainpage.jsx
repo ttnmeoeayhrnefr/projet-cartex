@@ -1,8 +1,8 @@
-import { Link, Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
-import "../style/mainpage.scss";
+import { Link, Route, Routes } from "react-router-dom";       // Importation de Link, Route et Routes depuis la bibliothèque react-router-dom
+import { useState, useEffect } from "react";             // Importation de useState et useEffect depuis la bibliothèque React
+import "../style/mainpage.scss";             // Importation du fichier mainpage.scss
 
-import Homepage from "../components/Homepage";
+import Homepage from "../components/Homepage";      
 import Marketplace from "./marketplace";
 import Infos from "./infos";
 import Register from "./register";
@@ -14,11 +14,11 @@ import Booster from "./booster";
 import ListeCarte from "./listecarte";
 import Create from "../components/create";
 
-export default function Mainpage() {
-  const [user_connected, set_user_connected] = useState(false);
-  const storedPseudo = localStorage.getItem("pseudo");
+export default function Mainpage() {      // Fonction qui permet d'afficher la page principale
+  const [user_connected, set_user_connected] = useState(false);   // Déclaration de la constante user_connected et de la fonction set_user_connected
+  const storedPseudo = localStorage.getItem("pseudo");    // Déclaration de la constante storedPseudo
 
-  const capitalizeFirstLetter = (str) => {
+  const capitalizeFirstLetter = (str) => {    // Fonction qui permet de mettre la première lettre en majuscule
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
@@ -46,6 +46,7 @@ export default function Mainpage() {
     }
   }, []);
 
+  // Affichage de la page
   return (
     <div className="content">
       <div className="navbar">

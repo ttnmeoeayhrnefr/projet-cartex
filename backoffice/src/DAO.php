@@ -1,8 +1,12 @@
 <?php
 include '/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php';
 
+// Ce fichier contient les définitions de classes pour la gestion des cartes et des utilisateurs.
+
+// Classe représentant une carte.
 class Cards
 {
+    // Propriétés représentant les caractéristiques d'une carte.
     private $id;
     private $nom;
     private $image;
@@ -24,6 +28,7 @@ class Cards
     private $set_nom;
     private $set_rarete;
 
+    // Constructor de la carte
     public function __construct($id, $nom, $image, $image_small, $image_cropped, $id_konami, $description, $type, $race, $attack, $defense, $stars, $archetype, $attribute, $cardmarket_price, $tcgplayer_price, $amazon_price, $ebay_price, $set_nom, $set_rarete)
     {
         $this->id = $id;
@@ -48,6 +53,8 @@ class Cards
         $this->set_rarete = $set_rarete;
     }
 
+    // Méthodes pour obtenir les différentes propriétés de la carte.
+    //GETTERS
     public function getId()
     {
         return $this->id;
@@ -129,6 +136,7 @@ class Cards
         return $this->set_rarete;
     }
 
+    //SETTERS
     public function setId($id)
     {
         $this->id = $id;
@@ -211,23 +219,29 @@ class Cards
     }
 }
 
+// Classe représentant un utilisateur.
 class Utilisateurs
 {
+    // Propriétés liées à un utilisateur.
     private $id;
     private $pseudo;
     private $password;
     private $role;
 
+    // Le constructeur vérifie les données d'entrée pour créer un utilisateur valide.
     public function __construct($id, $pseudo, $password, $role)
     {
+        // Vérification d'entrée d'un pseudo
         if (empty($pseudo)) {
             throw new InvalidArgumentException("Le pseudo de l'utilisateur est requis.");
         }
 
+        // Vérification d'entrée d'un mot de passe
         if (empty($password)) {
             throw new InvalidArgumentException("Le mot de passe de l'utilisateur est requis.");
         }
 
+        // Vérification d'entrée d'un role valide, 0 = utilisateur standard, 1 = administrateur
         if ($role !== '0' && $role !== '1') {
             throw new InvalidArgumentException("Le rôle de l'utilisateur doit être soit 0 soit 1.");
         }
@@ -237,6 +251,7 @@ class Utilisateurs
         $this->role = $role;
     }
 
+    //GETTERS
     public function getId()
     {
         return $this->id;
@@ -258,6 +273,8 @@ class Utilisateurs
     {
         $this->id = $id;
     }
+
+    //SETTERS
     public function setPseudo($pseudo)
     {
         $this->pseudo = $pseudo;
@@ -272,15 +289,18 @@ class Utilisateurs
     }
 }
 
+// Classe DAO pour interagir avec la base de données.
 class DAO
 {
     private $bdd;
 
+    // Constructeur
     public function __construct($bdd)
     {
         $this->bdd = $bdd;
     }
 
+        // Méthodes pour effectuer des opérations sur les utilisateurs et les cartes.
         public function listAllUsers() {
             try {
                 $row = $this->bdd->prepare("SELECT * FROM utilisateur");
@@ -291,6 +311,8 @@ class DAO
                 return [];
             }
         }
+
+        //fonction pour afficher les utilisateurs par id
         public function listUserById($id_user) {
             try {
                 $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE id_user = :id_user");
@@ -302,11 +324,23 @@ class DAO
                 return [];
             }
         }   
+        public function listUserByUsername($username)
+        {
+            try {
+                $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE pseudo = :username");
+                $row->bindParam(":username", $username);
+                $row->execute();
+                return $row->fetch(PDO::FETCH_ASSOC) ?: [];
+            } catch (PDOException $e) {
+                echo "Erreur lors de l'affichage de l'utilisateur par pseudo: " . $e->getMessage();
+                return [];
+            }
+        }
 
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+    //fonction pour ajouter un utilisateur
     public function addUser($pseudo, $mdp, $role) {
         try {
             $hash = password_hash($mdp, PASSWORD_BCRYPT);
@@ -330,7 +364,7 @@ class DAO
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
-        
+        //fonction pour modifier un utilisateur par id
         public function updateUserById($pseudo, $mdp, $role, $id) {
             try {
                 $hash = password_hash($mdp, PASSWORD_BCRYPT);
@@ -351,7 +385,7 @@ class DAO
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+    //fonction pour supprimer un utilisateur par id
     public function removeUserById($id_user)
     {
         try {
@@ -368,7 +402,7 @@ class DAO
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+    //fonction pour ajouter une carte
         public function addCard($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$collection,$rarete) {
             if ($type === 'monstre') {
                 $requiredMonsterType = [
@@ -442,6 +476,7 @@ class DAO
             }
         }
 
+        //fonction pour lister toutes les cartes
     public function listAllCards()
     {
         try {
@@ -454,6 +489,7 @@ class DAO
         }
     }
 
+    //fonction pour lister les cartes par id
         public function listCardById($idCarte) {
             try {
                 $row = $this->bdd->prepare("SELECT * FROM carte WHERE id_carte = :id_carte");
@@ -466,6 +502,7 @@ class DAO
             }
         }
 
+        //fonction pour modifier une carte par id
         public function updateCardById($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$cNom,$rare,$idCarte) {
             try {
                 $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_petite = :image_small, image_cropped = :image_cropped, id_carte_konami = :id_konami,
@@ -499,6 +536,7 @@ class DAO
             }
         }
     
+        //fonction pour supprimer une carte par id
 
         public function removeCardById($idCarte) {
             try {

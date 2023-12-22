@@ -2,40 +2,88 @@ Bonjour,
 
 Ceci est notre rendu de projet CarteX.
 
-Objectif : Développer une application web de gestion de cartes Yu-Gi-Oh! en groupe avec quelques fonctionnalités de base comme un système de recherche, d'ajout et de suppression ou encore la gestion de droits utilisateur et administrateur. Travailler avec des informations récupérées à partir de l'API https://db.ygoprodeck.com/api/v7/cardinfo.php et les stocker dans une base de données MySQL en local.
+Objectif : Créer un gestionnaire de cartes Yu-Gi-Oh! et intégrer l’API externe https://db.ygoprodeck.com/api/v7/cardinfo.php.
 
-Langages et technologies : React, PHP, PHPUnit et MySQL.
+Outils et langages :
+    React JS et HTML/CSS pour le frontend
+    MySQL/MariaDB pour la base de données
+    Git/GitHub pour le versionning
+    PHP POO pour la page d’administration
+    PHPUnit pour les tests unitaires
 
-Outils supplémentaires : Postman.
+Durée : Du 18/12/2023 à 10:00 au 21/12/2023 à 16:45
 
-Groupe : Théo MENANT--FERRY, Alexandre DO, Raphaël ROMERO et Rémi KORZENIOWSKI.
+Groupe : Théo MENANT–FERRY + Alexandre DO + Raphaël ROMERO + Rémi KORZENIOWSKI
 
-Classe : BTC2 25.1.
-
-Durée : du 18/12/2023 à 10:00 au 21/12/2023 à 16:45.
+Classe : BTC2 25.1 Ipssi Paris
 
 Soutenance dans la journée du 22/12/2023.
 
-/!\ Pour récupérer le projet :
+CONSIGNES DÉTAILLÉES :
 
-Prérequis : vérifier que vous ayez bien Node.js d'installé.
+Développer une application web de gestionnaire de cartes Yu-Gi-Oh! et intégrer l’API externe https://db.ygoprodeck.com/api/v7/cardinfo.php.
 
-Si ce n'est pas le cas, télécharger à partir du site officiel : https://nodejs.org/en/download
+Le gestionnaire de cartes :
+    Les utilisateurs ont la capacité de lire, créer, mettre à jour, supprimer des cartes
+    Les données des cartes sont stockées dans une base de donnée MySQL
+    Les données des cartes sont exploitées via Node.js pour les utilisateurs
+    Les données des cartes sont exploitées via PHP avec PDO pour les administrateurs
 
-Pour vérifier que Node.js est bien installé : exécuter "node -v" dans votre terminal.
+Intégration de l’API externe :
+    Les données de l’API https://db.ygoprodeck.com/api/v7/cardinfo.php sont stockées localement dans une base de donnée
 
-La commande précédente devrait vous ressortir "vXX.X.X" où X correspond à un chiffre qui détermine la version (v.20.9.0 actuellement par exemple).
+Interface utilisateur :
+    Doit respecter l’univers de Yu-Gi-Oh!
+    Doit permettre la visualisation de toutes les cartes stockées dans la base de données
+    Doit permettre l’ajout, la modification et la suppression de cartes personnalisées (via Node.js et PHP)
+    Doit permettre d’afficher les informations détaillées des cartes
+    Doit permettre une recherche parmis toutes les cartes importées via système de filtres et de recherche (filtre par nom, par prix et par rareté)
 
-1. git clone https://github.com/ttnmeoeayhrnefr/projet-cartex
+Tests unitaires :
+    Tests unitaires adéquats pour la page administrateur en PHP
 
-2. cd front
+RÉCUPÉRATION ET INSTALLATION DU PROJET :
 
-3. npm install
+Prérequis :
+    WAMP/LAMP/XAMP ou autre plateforme de développement web utilisant MariaDB
+    Node.js
 
-(Nous savons que le projet présentera 8 vulnérabilités mais nous ne savons pas comment les résoudre pour l'instant, puisque "npm audit fix --force" ne fonctionne pas. Il a donc été décidé de laisser ces vulnérabilités dans le rendu final.)
+Si besoin, télécharger à partir des sites officiels :
+    https://www.wampserver.com/
+    https://nodejs.org/en/download/
 
-4. npm start
+Récupérer le projet à l’aide de la commande “git clone https://github.com/ttnmeoeayhrnefr/projet-cartex“
 
-TODO DB
+Utiliser le script “ProjetCarteX.sql” pour mettre en place la base de données.
 
-Merci à notre école Ipssi Paris ainsi qu'à monsieur Maxime OUDOT et madame Laetitia PINTO pour l'opportunité de réaliser ce projet dans le cadre de notre apprentissage.
+Dans le répertoire “front”, saisir les commandes :
+    “npm install”
+    “npm start”
+
+Dans le répertoire “back”, saisir les commandes:
+    “npm install”
+    “node server.js”
+
+Dans le répertoire “backoffice”, saisir les commandes:
+    “composer require –dev phpunit/phpunit”
+    “npm install”
+    “npm start’
+
+Vous êtes prêt à visiter notre site.
+
+/!\ Logins utiles pour le test du site :
+- purple / purple pour un utilisateur standard
+- admin / admin pour un utilisateur administrateur
+- vous pouvez également crée un compte si vous voulez, par contre il n'y a pas la possibilité d'être admin
+
+REMERCIEMENTS :
+
+Nous tenons à exprimer notre gratitude à l'égard de l'IPSSI Paris, institution qui a été le cadre propice à l'épanouissement de notre projet de gestionnaire de cartes Yu-Gi-Oh!. Ce projet, essentiel à notre formation, nous a permis d'explorer et d'appliquer des connaissances pratiques cruciales dans le domaine du développement web.
+
+Nous tenons à remercier chaleureusement Monsieur Maxime OUDOT et Madame Laetitia PINTO, nos professeurs, pour leur précieux soutien, leur expertise et leurs conseils avisés tout au long de la préparation à ce projet. Leur dévouement et leur disponibilité ont été des atouts majeurs dans l'aboutissement de ce travail.
+
+La conception de ce gestionnaire de cartes Yu-Gi-Oh! nous a offert une opportunité exceptionnelle d'approfondir nos compétences en développement web, en intégration d'API et en gestion de bases de données, tout en nous permettant de répondre aux exigences spécifiques du projet.
+
+Ce projet a été une expérience formatrice et enrichissante, nous permettant d'acquérir des compétences précieuses et de consolider nos connaissances dans un environnement stimulant.
+
+Nous sommes reconnaissants envers l'IPSSI Paris, nos professeurs et tous ceux qui ont contribué de près ou de loin à la réalisation de ce projet. Cette expérience restera un pilier important dans notre parcours académique et professionnel.

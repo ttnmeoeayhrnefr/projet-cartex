@@ -1,8 +1,8 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import "../style/connexion.scss";
-import { Link, Route, Routes } from 'react-router-dom'
-import axios from "axios";
+import React from "react";                     // Importation de React depuis la bibliothèque React
+import { useEffect, useState } from "react";    // Importation de useEffect et useState depuis la bibliothèque React
+import "../style/connexion.scss";         // Importation du fichier connexion.scss
+import { Link, Route, Routes } from 'react-router-dom'    // Importation de Link, Route et Routes depuis la bibliothèque react-router-dom
+import axios from "axios";             // Importation de axios depuis la bibliothèque axios
 
 export default function Connexion() {
   // VARIABLES POUR CONNEXION DECONNEXION UTILISATEUR
@@ -10,11 +10,11 @@ export default function Connexion() {
   const [mdp, set_mdp] = useState("");
   // const [user_connected, set_user_connected] = useState(false);
 
-  const handleConnexion = async (event) => {
+  const handleConnexion = async (event) => {      // Fonction qui permet de se connecter
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/connexion", {
+      const response = await fetch("http://localhost:3001/connexion", {   // Envoie les données de connexion à la base de données
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pseudo, mdp }),
@@ -22,11 +22,11 @@ export default function Connexion() {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok) {      // Si la réponse est ok, on connecte l'utilisateur
         console.log(data.message);
         localStorage.setItem("pseudo", pseudo);
       
-        const recupInfoUser = await axios.get(`http://localhost:3001/utilisateurs/nom/${pseudo}`);
+        const recupInfoUser = await axios.get(`http://localhost:3001/utilisateurs/nom/${pseudo}`);      
         const id_user = recupInfoUser.data[0].id_user;
         let role = recupInfoUser.data[0].role;
 
@@ -34,9 +34,9 @@ export default function Connexion() {
         console.log(role);
         
 
-        if (role === "0") {
+        if (role === "0") {     // Si le role est 0, on le met en utilisateur
           role = "utilisateur";
-        } else if (role === "1") {
+        } else if (role === "1") {    // Si le role est 1, on le met en admin
           role = "admin";
         }
 
@@ -56,29 +56,7 @@ export default function Connexion() {
     }
   };
 
- // DECONNEXION UTILISATEUR ET CLEAR DU LOCALSTORAGE
-  // const disconnect = () => {
-  //   if (user_connected === true) {
-  //     if (window.confirm("Vous allez être déconnecté...")) {
-  //       localStorage.removeItem("pseudo");
-  //       localStorage.removeItem("user_id");
-  //       localStorage.removeItem("role");
-  //       set_user_connected(false);
-  //       window.location.href = "/";
-  //     }
-  // }};
-
-  // // VERIFICATION
-  // useEffect(() => {
-  //   const user_connected = localStorage.getItem("pseudo");
-  //   if (user_connected) {
-  //     set_user_connected(true);
-  //     alert("L'utilisateur est déjà connecté. Veuillez-vous deconnecter pour vous connecter avec un autre compte.");
-  //     document.getElementById("pseudo").disabled = true;
-  //     document.getElementById("mdp").disabled = true;
-  //   }
-  // }, []);
-
+  //Affichage de la page
   return (
     <div className="connexion-page">
       <div className="container">

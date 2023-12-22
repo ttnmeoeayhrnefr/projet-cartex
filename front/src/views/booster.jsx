@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import '../style/booster.scss'
+import React, { useState, useEffect } from "react";   // Importation de useState et useEffect depuis la bibliothèque React
+import axios from "axios";                           // Importation de axios depuis la bibliothèque axios   
+import '../style/booster.scss'                     // Importation du fichier booster.scss       
 
 const Booster = () => {
-  const [boosterCards, setBoosterCards] = useState([]);
-  const [userCardList, setUserCardList] = useState([]);
-  const [userId, setUserId] = useState(localStorage.getItem("id_user"));
-  const [isHeaderVisible, setHeaderVisible] = useState(true);
-  const [isCardsContainerVisible, setCardsContainerVisible] = useState(false);
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [boosterCards, setBoosterCards] = useState([]);   // Déclaration de la constante boosterCards et de la fonction setBoosterCards
+  const [userCardList, setUserCardList] = useState([]);   // Déclaration de la constante userCardList et de la fonction setUserCardList
+  const [userId, setUserId] = useState(localStorage.getItem("id_user"));    // Déclaration de la constante userId et de la fonction setUserId
+  const [isHeaderVisible, setHeaderVisible] = useState(true);     // Déclaration de la constante isHeaderVisible et de la fonction setHeaderVisible
+  const [isCardsContainerVisible, setCardsContainerVisible] = useState(false);      // Déclaration de la constante isCardsContainerVisible et de la fonction setCardsContainerVisible
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);    // Déclaration de la constante currentCardIndex et de la fonction setCurrentCardIndex
 
-  const openBooster = async () => {
+  const openBooster = async () => {     // Déclaration de la fonction openBooster
     try {
-      const response = await axios.get("http://localhost:3001/cartes/random/booster");
+      const response = await axios.get("http://localhost:3001/cartes/random/booster");    //Récupère 5 cartes aléatoires
       setBoosterCards(response.data);
       setHeaderVisible(false);
       setCardsContainerVisible(true);
@@ -22,15 +22,18 @@ const Booster = () => {
     }
   };
 
+
+  // Fonction qui permet de cacher le container des cartes
   const hideCardsContainer = () => {
     setHeaderVisible(true);
     setCardsContainerVisible(false);
   };
 
+  // Fonction qui permet d'ajouter une carte à la liste de l'utilisateur
   const handleAddToUserList = async (card) => {
     try {
       console.log("Tentative d'ajout à la liste :", card);
-      const response = await axios.post("http://localhost:3001/listeCarte", {
+      const response = await axios.post("http://localhost:3001/listeCarte", {   // Envoie la carte à la liste de l'utilisateur
         id_user: userId,
         id_carte: card.id_carte,
       });
@@ -46,6 +49,7 @@ const Booster = () => {
     }
   };
 
+
   useEffect(() => {
     let intervalId;
     if (isCardsContainerVisible && currentCardIndex < boosterCards.length - 1) {
@@ -56,6 +60,8 @@ const Booster = () => {
     return () => clearInterval(intervalId);
   }, [isCardsContainerVisible, currentCardIndex, boosterCards.length]);
 
+
+  // Fonction qui permet de récupérer la classe de rareté de la carte
   const getRarityClass = (rarity) => {
     switch (rarity) {
       case 'Common':
@@ -96,6 +102,8 @@ const Booster = () => {
         return 'defaut';
     }
   };
+
+  //Affichage de la page
 
   return (
     <div className="booster-page">

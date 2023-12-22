@@ -4,6 +4,7 @@
 
     $DAO = new DAO($connexion);
     $card = $DAO->listAllCards();
+    if($_COOKIE['role']==1) {
 ?>
 
 <!DOCTYPE html>
@@ -95,3 +96,8 @@
 </body>
 
 </html>
+<?php
+    } else {
+        echo "vous n'avez pas les droits";
+    }
+?>
