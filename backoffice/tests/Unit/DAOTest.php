@@ -1,48 +1,59 @@
 <?php
 
+// Inclusion de la classe DAO nécessaire pour les tests
 require_once("/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php");
 
+// Importation de la classe TestCase de PHPUnit
 use PHPUnit\Framework\TestCase;
 
+// Définition de la classe de tests pour le DAO
 class DAOTest extends TestCase
 {
-    private $pdo;
-    private $dao;
+    private $pdo; // Instance de PDO pour la connexion à la base de données
+    private $dao; // Instance du DAO à tester
 
+    // Méthode setUp() exécutée avant chaque test pour initialiser l'environnement de test
     protected function setUp(): void
     {
-        $this->configureDatabase();
-        $this->dao = new DAO($this->pdo);
+        $this->configureDatabase(); // Configuration de la base de données
+        $this->dao = new DAO($this->pdo); // Initialisation du DAO avec la connexion PDO
     }
 
+    // Méthode privée pour configurer la connexion à la base de données
     private function configureDatabase(): void
     {
+        // Chargement des variables d'environnement depuis un fichier .env
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
         $dotenv->load();
 
         try {
+            // Récupération des informations de connexion depuis les variables d'environnement
             $hote = $_ENV['DB_HOST'];
             $port = $_ENV['DB_PORT'];
             $utilisateur = $_ENV['DB_USER'];
             $motDePasse = $_ENV['DB_PASS'];
             $nomDeLaBase = $_ENV['DB_NAME'];
 
+            // Connexion à la base de données via PDO
             $this->pdo = new PDO("mysql:host=$hote;port=$port;dbname=$nomDeLaBase", $utilisateur, $motDePasse);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "Erreur de connexion à la base de données: " . $e->getMessage();
-            die();
+            die(); // Arrête l'exécution en cas d'erreur de connexion
         }
     }
 
+    // Test la méthode addUser() du DAO
     public function testAddUser()
     {
+        // Création d'un utilisateur test
         $pseudo = 'test_user';
         $password = 'test_password';
         $role = '0';
     
         $userId = $this->dao->addUser($pseudo, $password, $role);
     
+        // Vérification de l'utilisateur créé
         $this->assertNotEmpty($userId, 'id_user ne doit pas etre vide');
     
         $user = $this->dao->listUserById($userId);
@@ -56,8 +67,10 @@ class DAOTest extends TestCase
     }
     
 
+    // Test la méthode updateUserById() du DAO
     public function testUpdateUserById()
     {
+        // Mise à jour d'un utilisateur test
         $pseudo = 'updated_user';
         $password = 'updated_password';
         $role = '1';
@@ -68,24 +81,30 @@ class DAOTest extends TestCase
 
         $updatedUser = $this->dao->listUserById($id);
 
+        // Vérification de l'utilisateur modifié
         $this->assertNotEmpty($updatedUser, 'l utilisateur modifié ne doit pas etre vide');
         $this->assertEquals($pseudo, $updatedUser['pseudo']);
         $this->assertTrue(password_verify($password, $updatedUser['mdp']), 'verification du mdp raté');
         $this->assertEquals($role, $updatedUser['role']);
     }
 
+    // Test la méthode removeUserById() du DAO
     public function testRemoveUserById()
     {
+        // Ajout de l'utilisateur
         $id = $this->testAddUser();
 
+        // Suppression et vérification
         $this->assertTrue($this->dao->removeUserById($id));
         $user = $this->dao->listUserById($id);
 
         $this->assertEmpty($user, 'utilisateur devrait être vide à id correspondant apres suppression');
     }
 
+    // Test la méthode addCard() du DAO
     public function testAddCard()
     {
+        // Création de la carte
         $nom = 'test Test';
         $image = 'test_Test.jpg';
         $imageSmall = 'test_Test_small.jpg';
@@ -108,6 +127,7 @@ class DAOTest extends TestCase
     
         $cardId = $this->dao->addCard($nom, $image, $imageSmall, $imageCropped, $idKonami, $description, $type, $race, $attack, $defense, $stars, $archetype, $attribute, $cardmarketPrice, $ebayPrice, $amazonPrice, $tcgplayerPrice, $collection, $rarete);
     
+        // Vérifications sur la carte créée
         $this->assertNotEmpty($cardId, 'id_carte ne doit pas etre vide');
     
         $card = $this->dao->listCardById($cardId);
@@ -138,8 +158,10 @@ class DAOTest extends TestCase
     }
     
 
+    // Test la méthode updateCardById() du DAO
         public function testUpdateCardById()
     {
+        // Mise à jour des informations de la carte
         $nom = 'Updated Test Card';
         $image = 'updated_test_card.jpg';
         $imageSmall = 'updated_test_card_small.jpg';
@@ -162,6 +184,7 @@ class DAOTest extends TestCase
 
         $id = $this->testAddCard();
 
+        // Modification et vérification
         $this->dao->updateCardById(
             $nom,
             $image,
@@ -208,11 +231,13 @@ class DAOTest extends TestCase
         $this->assertEquals($rarete, $updatedCard['set_rarete']);
     }
 
-
+    // Test la méthode removeCardById() du DAO
     public function testRemoveCardById()
     {
+        // Ajout de la carte
         $id = $this->testAddCard();
 
+        // Suppression et vérification
         $this->assertTrue($this->dao->removeCardById($id));
         $card = $this->dao->listCardById($id);
 
