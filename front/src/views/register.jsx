@@ -59,6 +59,8 @@ export default function Register() {
         }
     }, []);
 
+
+    //Affichage de la page
     return (
         <div className="register-page">
             <div className="container">

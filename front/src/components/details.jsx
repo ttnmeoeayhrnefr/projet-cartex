@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import "../style/details.scss";
+import React, { useState, useEffect } from "react";     // Importation de React et de ses hooks useState et useEffect
+import { useParams } from "react-router-dom";       // Importation de useParams pour récupérer les paramètres de l'URL
+import axios from "axios";                   // Importation d'axios pour les requêtes HTTP
+import "../style/details.scss";        // Importation du fichier de style details.scss
 
-export default function Details() {
-  const { cardId } = useParams();
-  const [cardDetails, setCardDetails] = useState(null);
+export default function Details() {     // Exportation de la fonction Details
+  const { cardId } = useParams();    // Récupération du paramètre cardId de l'URL
+  const [cardDetails, setCardDetails] = useState(null);   // Déclaration d'un state cardDetails et de sa fonction setCardDetails
 
-  useEffect(() => {
+  useEffect(() => {   // Utilisation du hook useEffect pour effectuer une requête HTTP au chargement du composant
     const fetchCardDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/cartes/${cardId}`);
-        setCardDetails(response.data[0]);
+        const response = await axios.get(`http://localhost:3001/cartes/${cardId}`);   // Requête HTTP GET sur l'API pour récupérer les détails de la carte
+        setCardDetails(response.data[0]);   // Mise à jour du state cardDetails avec les données de la réponse
       } catch (error) {
         console.error("Erreur lors de la récupération des détails de la carte", error);
       }
@@ -20,10 +20,13 @@ export default function Details() {
     fetchCardDetails();
   }, [cardId]);
 
+  // Affichage d'un message de chargement si les détails de la carte ne sont pas encore disponibles
   if (!cardDetails) {
     return <div className="loading-cards"><p>Chargement en <span className="primary">cours</span>...</p></div>;
   }
 
+
+  // Fonction pour calculer la largeur des barres d'attaque et de défense
   const getBarWidth = (value) => {
     if (value === null) {
       return "0%";
@@ -34,6 +37,7 @@ export default function Details() {
     }
   };
 
+  // Fonction pour récupérer l'image de l'attribut de la carte
   const getAttributeImage = (attribute) => {
     switch (attribute) {
       case "DARK":
@@ -55,6 +59,8 @@ export default function Details() {
     }
   };
 
+
+  // Affichage des détails de la carte
   return (
     <div className="content-details">
       <div className="card-img">

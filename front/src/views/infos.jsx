@@ -1,6 +1,6 @@
-import "../style/infos.scss"
+import "../style/infos.scss"        // Importation du fichier infos.scss
 
-export default function Infos() {
+export default function Infos() {       // Fonction qui permet d'afficher les informations du projet
     return (
         <div className="content-infos">
             <div className="title">
