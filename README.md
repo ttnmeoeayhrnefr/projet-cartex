@@ -71,6 +71,10 @@ Dans le répertoire “backoffice”, saisir les commandes:
 
 Vous êtes prêt à visiter notre site.
 
+/!\ Logins utiles pour le test du site :
+- purple / purple pour un utilisateur standard
+- admin / admin pour un utilisateur administrateur
+
 REMERCIEMENTS :
 
 Nous tenons à exprimer notre gratitude à l'égard de l'IPSSI Paris, institution qui a été le cadre propice à l'épanouissement de notre projet de gestionnaire de cartes Yu-Gi-Oh!. Ce projet, essentiel à notre formation, nous a permis d'explorer et d'appliquer des connaissances pratiques cruciales dans le domaine du développement web.
