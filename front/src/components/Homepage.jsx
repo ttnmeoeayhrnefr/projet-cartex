@@ -87,8 +87,9 @@ export default function Homepage() {            // Fonction Homepage
                         {showCursor && <span className="cursor">|</span>}
                     </div>
                     <div className="describe">
-                        <p>Je ne sais pas ce que je raconte mais c'est la pour faire crari. 
-                        En tout cas ce site il a l'air bien lourd sah ! Je sais pas ce que vous en pensez mais on va forcement avoir 20.</p>
+                        <p>Qu'importe la carte Yu Gi Oh! que vous cherchez, vous la trouverez !
+                            Vous pouvez également vous divertir grâce à notre sytème de simulation d'ouverture de booster.
+                        </p>
                     </div>
                     <div className="btn-home">
                         {/* <Link to="/Register" id='btn-home'>Inscription</Link>
