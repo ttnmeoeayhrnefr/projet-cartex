@@ -27,19 +27,20 @@ const EditionCarte = () => {              // création de la fonction EditionCar
     const [editedSetRarete, setEditedSetRarete] = useState("");     // création de la const editedSetRarete qui récupère la rareté du set de la carte
     const [editedIdUtilisateur, setEditedIdUtilisateur] = useState("");     // création de la const editedIdUtilisateur qui récupère l'id de l'utilisateur
 
-  useEffect(() => {
-    const fetchCardDetails = async () => {    // création de la fonction fetchCardDetails
-      try {
-        const response = await axios.get(`http://localhost:3001/cartes/${cardId}`);   // création de la constante response qui récupère les données de la carte
-        setCardDetails(response.data[0]);
-        console.log("Voici vos données :", response.data[0]);   // affichage des données de la carte dans la console
-      } catch (error) {
-        console.error("Erreur lors de la récupération des détails de la carte", error);
-      }
-    };
-  
-    fetchCardDetails();
-  }, [cardId]);
+    useEffect(() => {
+      const fetchCardDetails = async () => {    // création de la fonction fetchCardDetails
+        try {
+          const response = await axios.get(`http://localhost:3001/cartes/${cardId}`);   // création de la constante response qui récupère les données de la carte
+                    
+          setCardDetails(response.data[0]);
+          console.log("Voici vos données :", response.data[0]);   // affichage des données de la carte dans la console
+        } catch (error) {
+          console.error("Erreur lors de la récupération des détails de la carte", error);
+        }
+      };
+    
+      fetchCardDetails();
+    }, [cardId]);
   
   // Mettre à jour les valeurs des champs avec les valeurs de la carte
   useEffect(() => {
@@ -64,7 +65,6 @@ const EditionCarte = () => {              // création de la fonction EditionCar
         setEditedSetNom(cardDetails.set_nom);
         setEditedSetRarete(cardDetails.set_rarete);
         setEditedIdUtilisateur(cardDetails.id_user);
-      console.log(editedName);
     }
   }, [cardDetails]);
 
