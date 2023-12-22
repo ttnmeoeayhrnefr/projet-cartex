@@ -25,9 +25,8 @@
                 justify-content: center;
                 align-items: center;
     
-                .img {
+                .img, .card {
                     height: 70vh;
-                    background-color: var(--color-primary);
                     width: 30vw;
                     border-radius: 10px;
                     
@@ -35,15 +34,15 @@
                       .card-type {
                         position: absolute;
                         display: flex;
-                        width: 30vw;
-                        height: 85vh;
+                        width: auto;
+                        height: 70vh;
                         justify-content: center;
                         align-items: center;
                         border-radius: 10px;
                         background-color: var(--color-primary);
                         color: var(--color-font);
                         font-size: 1.5rem;
-                        z-index: 0; /* Assure que l'image de type est au-dessus de l'image de prévisualisation */
+                        z-index: 0;
                       }
                       
                       .card-image {
@@ -51,14 +50,14 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        height: 44.1vh;
-                        width: 22.8vw;
-                        top: 44.7vh;
-                        left: 9.9vw;
+                        height: 36.4vh;
+                        width: 20vw;
+                        top: 34.2vh;
+                        left: 9.2vw;
                         background-color: var(--color-primary);
                         color: var(--color-font);
                         font-size: 1.5rem;
-                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                        z-index: 1;
                       }
 
                       .card-name {
@@ -66,11 +65,11 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        top: 30vh;
+                        top: 22.5vh;
                         left: 8.5vw;
                         color: black;
                         font-size: 1.5rem;
-                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                        z-index: 1;
                       }
 
                     .stars-container {
@@ -78,15 +77,15 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        top: 39.4vh;
-                        left: 13vw;
+                        top: 30vh;
+                        left: 8vw;
                         color: var(--color-font);
                         font-size: 1.5rem;
-                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                        z-index: 1;
 
                         .star-image {
-                            width: 1.5rem;
-                            height: 1.5rem;
+                            width: 1.3rem;
+                            height: 1.3rem;
                 
                         }
                     }
@@ -98,9 +97,10 @@
                         align-items: center;
                         color: black;
                         font-size: 1rem;
-                        top: 103.9vh;
-                        left: 25.3vw;
-                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                        top: 83.25vh;
+                        left: 22.5vw;
+                        z-index: 1;
+                        font-weight: 500;
                     }
 
                     .defense {
@@ -110,21 +110,22 @@
                         align-items: center;
                         color: black;
                         font-size: 1rem;
-                        top: 103.9vh;
-                        left: 31.3vw;
-                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                        top: 83.25vh;
+                        left: 27.9vw;
+                        z-index: 1;
+                        font-weight: 500;
                     }
 
                     .description {
                         position: absolute;
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
                         color: black;
                         font-size: 1rem;
-                        top: 90.6vh;
+                        top: 72.5vh;
                         left: 8.8vw;
-                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                        z-index: 1;
+                        width: 21vw;
+                        max-height: 12vh;
                     }
 
 
@@ -138,7 +139,7 @@
                 flex-direction: column;
                 justify-content: space-between;
 
-                input, textarea {
+                input, textarea, select {
                     height: 100%;
                     border: none;
                     outline: none;
@@ -147,6 +148,11 @@
                     background-color:  #ffffff45;
                     color: var(--color-font);
                     padding-left: 1rem;
+                }
+
+                select {
+                    background-color: #5d5d5d;
+                    width: 16vw;
                 }
 
                 textarea {
