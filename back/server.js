@@ -1,13 +1,13 @@
-const express = require("express");
-const mariadb = require("mariadb");
-const bcrypt = require("bcryptjs");
-const cors = require("cors");
-const { reset } = require("nodemon");
-require("dotenv").config();
-const app = express();
-const port = 3001;
+const express = require("express");   // Importation du module express
+const mariadb = require("mariadb");   // Importation du module mariadb
+const bcrypt = require("bcryptjs");   // Importation du module bcryptjs
+const cors = require("cors");         // Importation du module cors
+const { reset } = require("nodemon"); // Importation du module nodemon
+require("dotenv").config();           // Importation du module dotenv
+const app = express();                // Création de l'application express
+const port = 3001;                    // Définition du port d'écoute du serveur
 
-const pool = mariadb.createPool({
+const pool = mariadb.createPool({     // Création de la connexion à la base de données
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   database: process.env.DB_NAME,
@@ -18,16 +18,16 @@ const pool = mariadb.createPool({
 
 
 
-app.use(express.json());
-app.use(cors());
+app.use(express.json());        // Utilisation du middleware express.json()
+app.use(cors());          // Utilisation du middleware cors()
 
-app.get("/", (req, res) => {
+app.get("/", (req, res) => {        // Route de test
   res.json("Hello la Team!");
 });
 
 
 //GET ALL CARDS
-app.get('/cartes', async (req, res) => {
+app.get('/cartes', async (req, res) => {     
     let conn;
     try {
         console.log('Lancement de la connexion');
@@ -371,6 +371,7 @@ app.delete("/cartes/nom/:nom", async (req, res) => {
 
 
 //CRUD UTILISATEUR
+// POST UTILISATEUR
 app.post("/utilisateurs", async (req, res) => {
   let conn;
   try {
@@ -392,6 +393,8 @@ app.post("/utilisateurs", async (req, res) => {
   }
 });
 
+
+// GET ALL UTILISATEURS
 app.get("/utilisateurs", async (req, res) => {
   let conn;
   try {
@@ -406,6 +409,8 @@ app.get("/utilisateurs", async (req, res) => {
   }
 });
 
+
+// GET ONE UTILISATEUR BY ID
 app.get("/utilisateurs/:id", async (req, res) => {
   let conn;
   try {
@@ -423,6 +428,8 @@ app.get("/utilisateurs/:id", async (req, res) => {
   }
 });
 
+
+// GET ONE UTILISATEUR BY NAME
 app.get("/utilisateurs/nom/:pseudo", async (req, res) => {
   let conn;
   try {
@@ -440,6 +447,8 @@ app.get("/utilisateurs/nom/:pseudo", async (req, res) => {
   }
 });
 
+
+//PUT UTILISATEUR BY ID
 app.put("/utilisateurs/:nom", async (req, res) => {
   let conn;
   try {
@@ -462,6 +471,8 @@ app.put("/utilisateurs/:nom", async (req, res) => {
   }
 });
 
+
+//DELETE UTILISATEUR BY ID
 app.delete("/utilisateurs/:id", async (req, res) => {
   let conn;
   try {
@@ -479,6 +490,8 @@ app.delete("/utilisateurs/:id", async (req, res) => {
   }
 });
 
+
+//DELETE UTILISATEUR BY NAME
 app.delete("/utilisateurs/nom/:pseudo", async (req, res) => {
   let conn;
   try {
@@ -568,6 +581,8 @@ app.get("/listeCarte/:id", async (req, res) => {
 //   }
 // });
 
+
+//POST LISTE CARTE
 app.post("/listeCarte", async (req, res) => {
   let conn;
   try {
@@ -585,6 +600,8 @@ app.post("/listeCarte", async (req, res) => {
   }
 });
 
+
+//DELETE LISTE CARTE
 app.delete("/listeCarte/delete/:id", async (req, res) => {
   let conn;
   try {
@@ -602,6 +619,8 @@ app.delete("/listeCarte/delete/:id", async (req, res) => {
   }
 });
 
+
+//GET CARDS DETAILS
 app.get("/cartes/details/:id", async (req, res) => {
   let conn;
   try {

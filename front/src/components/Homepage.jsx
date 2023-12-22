@@ -1,20 +1,20 @@
-import '../style/homepage.scss'
-import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom'
+import '../style/homepage.scss'         // Styles globaux de la page d'accueil
+import React, { useState, useEffect } from 'react';         // Importation de useState et useEffect pour la gestion des states et des effets
+import { Link} from 'react-router-dom'      // Importation de Link pour la gestion des liens
 import axios from 'axios';
 
-export default function Homepage() {
-    const [cards, setCards] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+export default function Homepage() {            // Fonction Homepage
+    const [cards, setCards] = useState([]);     // Déclaration des states cards, currentIndex, visibleLetters, showCursor, storedPseudo et user_connected
+    const [currentIndex, setCurrentIndex] = useState(0);        
     const [visibleLetters, setVisibleLetters] = useState([]);
     const [showCursor, setShowCursor] = useState(true);
     const storedPseudo = localStorage.getItem("pseudo");
     const [user_connected, set_user_connected] = useState(false);
   
-    useEffect(() => {
+    useEffect(() => {                // Utilisation de useEffect pour la récupération des cartes
       const fetchRandomCards = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/cartes/random/random');
+          const response = await axios.get('http://localhost:3001/cartes/random/random');       //Recupère les cartes aléatoires
           setCards(response.data.slice(0, 30));
         } catch (error) {
           console.error('Erreur lors de la récupération des cartes', error);
@@ -23,18 +23,18 @@ export default function Homepage() {
       fetchRandomCards();
     }, []); 
 
-  useEffect(() => {
-    const sloganText = "Collectionneurs, joueurs, et amateurs, CarteX a la carte qu'il vous faut.";
+  useEffect(() => {      // Utilisation de useEffect pour l'animation du slogan
+    const sloganText = "Collectionneurs, joueurs, et amateurs, CarteX a la carte qu'il vous faut.";     // Déclaration de la variable sloganText
     const sloganArray = sloganText.split('');
 
-    const animationTimeouts = sloganArray.map((letter, index) => {
+    const animationTimeouts = sloganArray.map((letter, index) => {      // Déclaration de la variable animationTimeouts
       return setTimeout(() => {
-        setVisibleLetters((prevVisibleLetters) => [
-          ...prevVisibleLetters,
+        setVisibleLetters((prevVisibleLetters) => [     // Déclaration de la variable setVisibleLetters
+          ...prevVisibleLetters,        
           { letter, isPrimary: index >= sloganText.indexOf('CarteX') && index < sloganText.indexOf('CarteX') + 6 },
         ]);
 
-        if (index === sloganArray.length - 1) {
+        if (index === sloganArray.length - 1) {         // Déclaration de la condition if
           setInterval(() => {
             setShowCursor((prevShowCursor) => !prevShowCursor);
           }, 500);
@@ -42,6 +42,7 @@ export default function Homepage() {
       }, index * 100);
     });
 
+    // Nettoyage des timeouts
     return () => {
       animationTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
     };
@@ -72,6 +73,7 @@ export default function Homepage() {
       }, []);
 
 
+      // AFFICHAGE DE LA PAGE
     return (
         <div className="content content-home">
             <div className="home-hook">

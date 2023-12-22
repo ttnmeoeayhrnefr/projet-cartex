@@ -4,32 +4,7 @@ import axios from 'axios'
 import { Link } from "react-router-dom";
 
 
-export default function MarketPlace() {
-    // const generateCardList = () => {
-    //     const cardList = [];
-    
-    //     for (let i = 0; i < 10; i++) {
-    //       cardList.push(
-    //         <div className="card" key={i}>
-    //           <div className="title">
-    //             <span>Title</span>
-    //             <p>#152354751255</p>
-    //           </div>
-    //           <div className="img">
-    //             <img src="https://i.pinimg.com/564x/2d/e0/b7/2de0b7946bb7c8427018694ce5464709.jpg" alt="" />
-    //           </div>
-    //           <div className="describe">
-    //             <div className="price">
-    //               <span>1.99$</span>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       );
-    //     }
-    
-    //     return cardList;
-    //   };
-
+export default function MarketPlace() {     // Fonction qui permet d'afficher la page marketplace
     const [cards, setCards] = useState([]);
     const [currentIndex, setCurrentIndex] = useState([]);
     const [search, setSearch] = useState("");
@@ -38,6 +13,7 @@ export default function MarketPlace() {
     // const [activeFilter, setActiveFilter] = useState(null);
     const [currentPrice, setCurrentPrice] = useState(0);
 
+    // fonction qui permet de changer le prix de la carte
     useEffect(() => {
       const interval = setInterval(() => {
         setCurrentPrice((prevPrice) => (prevPrice + 1) % 4);
@@ -48,10 +24,12 @@ export default function MarketPlace() {
       };
     }, []);
 
+
+    // fonction qui permet de récupérer les cartes
     useEffect(() => {
       const fetchAllCards = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/cartes'); // Assurez-vous que l'URL est correcte
+          const response = await axios.get('http://localhost:3001/cartes'); 
           setCards(response.data);
           setFilteredCards(response.data); // Initialise également filteredCards avec toutes les cartes
         } catch (error) {
@@ -63,6 +41,7 @@ export default function MarketPlace() {
     }, []);
 
 
+    // fonction qui permet de rechercher une carte
     useEffect(() => {
         const interval = setInterval(() => {
           setCurrentIndex((prevIndex) => (prevIndex + 1) % 4);
@@ -73,6 +52,7 @@ export default function MarketPlace() {
         };
       }, []);
 
+      // fonction qui permet de rechercher une carte
     const handleSearch = (e) => {
       let value = e.target.value.toLowerCase();
       setSearch(value);
@@ -86,17 +66,18 @@ export default function MarketPlace() {
 
     console.log(search);
 
+    // fonction qui permet de filtrer les cartes
     const handleFilter = (filterType) => {
       const sortedCards = [...cards];
   
       switch (filterType) {
-        case 'A-Z':
+        case 'A-Z':   // Si le filtre est A-Z, on trie les cartes par ordre alphabétique
           sortedCards.sort((a, b) => a.nom.localeCompare(b.nom));
           break;
-        case 'Prix':
+        case 'Prix':    // Si le filtre est Prix, on trie les cartes par prix
           sortedCards.sort((a, b) => a.cardmarket_price - b.cardmarket_price);
           break;
-        case 'Rarete':
+        case 'Rarete':      // Si le filtre est Rarete, on trie les cartes par rareté
           const rarityOrder = {
             '': 6, // Si la rareté est vide, on la met en dernier
             'Common': 5,
@@ -110,7 +91,7 @@ export default function MarketPlace() {
             return rarityOrder[a.set_rarete] - rarityOrder[b.set_rarete] || a.nom.localeCompare(b.nom);
           });
           break;
-        case 'Puissance':
+        case 'Puissance':   // Si le filtre est Puissance, on trie les cartes par puissance
           sortedCards.sort((a, b) => b.etoiles - a.etoiles);
           break;
         default:
@@ -120,12 +101,14 @@ export default function MarketPlace() {
       setFilteredCards(sortedCards);
     };
 
+    // fonction qui permet de cliquer sur une carte
     const handleCardClick = (cardId) => {
       console.log(cardId)
       setSelectedCardId(cardId);
       window.location.href = `/details/${cardId}`;
     };
 
+    // fonction qui permet de générer la liste des cartes
     const generateCardList = () => {
       return filteredCards.map((card) => (
         <Link to={`/details/${card.id_carte}`} key={card.id_carte}>
@@ -175,6 +158,7 @@ export default function MarketPlace() {
       ));
     };
 
+    // Affichage de la page
     return (
         <div className="content-mkp">
             <div className="header">

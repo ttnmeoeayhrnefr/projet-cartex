@@ -1,8 +1,12 @@
 <?php
 include '/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php';
 
+// Ce fichier contient les définitions de classes pour la gestion des cartes et des utilisateurs.
+
+// Classe représentant une carte.
 class Cards
 {
+    // Propriétés représentant les caractéristiques d'une carte.
     private $id;
     private $nom;
     private $image;
@@ -24,6 +28,7 @@ class Cards
     private $set_nom;
     private $set_rarete;
 
+    // Constructor de la carte
     public function __construct($id, $nom, $image, $image_small, $image_cropped, $id_konami, $description, $type, $race, $attack, $defense, $stars, $archetype, $attribute, $cardmarket_price, $tcgplayer_price, $amazon_price, $ebay_price, $set_nom, $set_rarete)
     {
         $this->id = $id;
@@ -48,6 +53,7 @@ class Cards
         $this->set_rarete = $set_rarete;
     }
 
+    // Méthodes pour obtenir les différentes propriétés de la carte.
     public function getId()
     {
         return $this->id;
@@ -211,23 +217,29 @@ class Cards
     }
 }
 
+// Classe représentant un utilisateur.
 class Utilisateurs
 {
+    // Propriétés liées à un utilisateur.
     private $id;
     private $pseudo;
     private $password;
     private $role;
 
+    // Le constructeur vérifie les données d'entrée pour créer un utilisateur valide.
     public function __construct($id, $pseudo, $password, $role)
     {
+        // Vérification d'entrée d'un pseudo
         if (empty($pseudo)) {
             throw new InvalidArgumentException("Le pseudo de l'utilisateur est requis.");
         }
 
+        // Vérification d'entrée d'un mot de passe
         if (empty($password)) {
             throw new InvalidArgumentException("Le mot de passe de l'utilisateur est requis.");
         }
 
+        // Vérification d'entrée d'un role valide, 0 = utilisateur standard, 1 = administrateur
         if ($role !== '0' && $role !== '1') {
             throw new InvalidArgumentException("Le rôle de l'utilisateur doit être soit 0 soit 1.");
         }
@@ -272,15 +284,18 @@ class Utilisateurs
     }
 }
 
+// Classe DAO pour interagir avec la base de données.
 class DAO
 {
     private $bdd;
 
+    // Constructeur
     public function __construct($bdd)
     {
         $this->bdd = $bdd;
     }
 
+        // Méthodes pour effectuer des opérations sur les utilisateurs et les cartes.
         public function listAllUsers() {
             try {
                 $row = $this->bdd->prepare("SELECT * FROM utilisateur");
