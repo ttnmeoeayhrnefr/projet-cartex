@@ -1,9 +1,13 @@
 <?php
+// Inclusion des fichiers de configuration et d'accès aux données
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
+    // Création d'une instance de DAO avec la connexion existante
     $DAO = new DAO($connexion);
+    // Récupération des détails d'une carte spécifique par son ID depuis la base de données
     $card = $DAO->listCardById($_GET['card']);
+    // Vérifie le rôle de l'utilisateur à l'aide des cookies
     if($_COOKIE['role']==1) {
 ?>
 
@@ -17,10 +21,12 @@
     </head>
     <body>
         <div class="page-sct">
+            <!-- Barre de navigation pour le panneau d'administration -->
             <div class="navbar-sct">
                 <div class="logo-sct">
                     <h1>Panneau d'administration</h1>
                 </div>
+                <!-- Bouton de déconnexion -->
                 <div class="disconnect-btn">
                     <a href="panel.php" id="aDisc">
                         <img src="assets/logout.svg" alt="logout" id="disco">
@@ -44,6 +50,8 @@
                             <div class="gest-sct">
                                 <div class="template">
                                     <form action="request.php?id=<?php echo $card['id_carte']; ?>&req=5" method="post">
+                                    <!-- Formulaire prérempli avec les détails de la carte -->
+                                    <!-- ... (Champs de formulaire pour chaque détail de la carte) ... -->
                                         <div class="cardUpdateSct">
                                             <div class="cardNomSct">
                                                 <label for="cardNom">Nom</label>
@@ -138,6 +146,7 @@
 </html>
 <?php
     } else {
+        // Si l'utilisateur n'a pas le rôle nécessaire (rôle différent de 1), afficher un message d'erreur
         echo "vous n'avez pas les droits";
     }
 ?>
