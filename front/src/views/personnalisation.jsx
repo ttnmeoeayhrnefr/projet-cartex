@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../style/personnalisation.scss"
 
-const Personnalisation = () => {      // Fonction qui permet d'afficher la page de personnalisation
-  const [userCards, setUserCards] = useState([]);   // Déclaration de la constante userCards et de la fonction setUserCards
+
+const Personnalisation = () => {
+  const [userCards, setUserCards] = useState([]);  // Fonction qui permet d'afficher la page de personnalisation
+  const [selectedCardId, setSelectedCardId] = useState(null);  // Déclaration de la constante userCards et de la fonction setUserCards
+
 
   // Récupérer les cartes de l'utilisateur a partir de son id
   useEffect(() => {
@@ -59,7 +62,12 @@ const Personnalisation = () => {      // Fonction qui permet d'afficher la page 
     window.location.href = '/Create-card';
   };
 
-  // Affichage de la page
+  const handleCardClick = (cardId) => {
+    console.log(cardId)
+    setSelectedCardId(cardId);
+    window.location.href = `/details/${cardId}`;
+  };
+
     return (
         <div className="personnalisation-page">
             <div className="container">
@@ -67,13 +75,13 @@ const Personnalisation = () => {      // Fonction qui permet d'afficher la page 
                 <div className="container-cards">
                     {userCards.map((card) => (
                       <div key={card.id_carte} className="card-item">
-                          <div className="name">
+                          <div className="name" onClick={() => handleCardClick(card.id_carte)}>
                                 <p>{card.nom}</p>
                           </div>
-                          <div className="img">
+                          <div className="img" onClick={() => handleCardClick(card.id_carte)}>
                             <img src={card.image} alt={card.nom} />
                           </div>
-                          <div className="describe">
+                          <div className="describe" onClick={() => handleCardClick(card.id_carte)}>
                               <p>{card.description}</p>
                           </div>
                           <div className="btn">

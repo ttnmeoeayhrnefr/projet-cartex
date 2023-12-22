@@ -27,19 +27,20 @@ const EditionCarte = () => {              // création de la fonction EditionCar
     const [editedSetRarete, setEditedSetRarete] = useState("");     // création de la const editedSetRarete qui récupère la rareté du set de la carte
     const [editedIdUtilisateur, setEditedIdUtilisateur] = useState("");     // création de la const editedIdUtilisateur qui récupère l'id de l'utilisateur
 
-  useEffect(() => {
-    const fetchCardDetails = async () => {    // création de la fonction fetchCardDetails
-      try {
-        const response = await axios.get(`http://localhost:3001/cartes/${cardId}`);   // création de la constante response qui récupère les données de la carte
-        setCardDetails(response.data[0]);
-        console.log("Voici vos données :", response.data[0]);   // affichage des données de la carte dans la console
-      } catch (error) {
-        console.error("Erreur lors de la récupération des détails de la carte", error);
-      }
-    };
-  
-    fetchCardDetails();
-  }, [cardId]);
+    useEffect(() => {
+      const fetchCardDetails = async () => {    // création de la fonction fetchCardDetails
+        try {
+          const response = await axios.get(`http://localhost:3001/cartes/${cardId}`);   // création de la constante response qui récupère les données de la carte
+                    
+          setCardDetails(response.data[0]);
+          console.log("Voici vos données :", response.data[0]);   // affichage des données de la carte dans la console
+        } catch (error) {
+          console.error("Erreur lors de la récupération des détails de la carte", error);
+        }
+      };
+    
+      fetchCardDetails();
+    }, [cardId]);
   
   // Mettre à jour les valeurs des champs avec les valeurs de la carte
   useEffect(() => {
@@ -64,7 +65,6 @@ const EditionCarte = () => {              // création de la fonction EditionCar
         setEditedSetNom(cardDetails.set_nom);
         setEditedSetRarete(cardDetails.set_rarete);
         setEditedIdUtilisateur(cardDetails.id_user);
-      console.log(editedName);
     }
   }, [cardDetails]);
 
@@ -106,148 +106,172 @@ const EditionCarte = () => {              // création de la fonction EditionCar
 
   // Affichage du formulaire d'édition de la carte
   return (
-    <div>
-      <h1>Édition de la carte</h1>
-      <label>Nom de la carte:</label>
-      <input
-        type="text"
-        value={editedName}
-        onChange={(e) => setEditedName(e.target.value)}
-      />
-      <br />
-      <label>Image de la carte:</label>
-      <input
-        type="text"
-        value={editedImg}
-        onChange={(e) => setEditedImg(e.target.value)}
-      />
-      <br />
-      <label>Image Petite:</label>
-      <input
-        type="text"
-        value={editedImgPetite}
-        onChange={(e) => setEditedImgPetite(e.target.value)}
-      />
-      <br />
-      <label>Image Cropped:</label>
-      <input
-        type="text"
-        value={editedImgCropped}
-        onChange={(e) => setEditedImgCropped(e.target.value)}
-      />
-      <br />
-      <label>Id Konami:</label>
-      <input
-        type="text"
-        value={editedIdKonami}
-        onChange={(e) => setEditedIdKonami(e.target.value)}
-      />
-      <br />
-      <label>Description de la carte:</label>
-      <textarea
-        value={editedDescription}
-        onChange={(e) => setEditedDescription(e.target.value)}
-      />
-      <br />
-      <label>Type:</label>
-      <input
-        type="text"
-        value={editedType}
-        onChange={(e) => setEditedType(e.target.value)}
-      />
-      <br />
-      <label>Race:</label>
-      <input
-        type="text"
-        value={editedRace}
-        onChange={(e) => setEditedRace(e.target.value)}
-      />
-      <br />
-      <label>Attaque:</label>
-      <input
-        type="text"
-        value={editedAttaque}
-        onChange={(e) => setEditedAttaque(e.target.value)}
-      />
-      <br />
-      <label>Défense:</label>
-      <input
-        type="text"
-        value={editedDefense}
-        onChange={(e) => setEditedDefense(e.target.value)}
-      />
-      <br />
-      <label>Etoiles:</label>
-      <input
-        type="text"
-        value={editedEtoiles}
-        onChange={(e) => setEditedEtoiles(e.target.value)}
-      />
-      <br />
-      <label>Archetype:</label>
-      <input
-        type="text"
-        value={editedArchetype}
-        onChange={(e) => setEditedArchetype(e.target.value)}
-      />
-      <br />
-      <label>Attribut:</label>
-      <input
-        type="text"
-        value={editedAttribut}
-        onChange={(e) => setEditedAttribut(e.target.value)}
-      />
-      <br />
-      <label>Card Market Price:</label>
-      <input
-        type="text"
-        value={editedCardMarketPrice}
-        onChange={(e) => setEditedCardMarketPrice(e.target.value)}
-      />
-      <br />
-      <label>TGC Player Price:</label>
-      <input
-        type="text"
-        value={editedTgcPlayerPrice}
-        onChange={(e) => setEditedTgcPlayerPrice(e.target.value)}
-      />
-      <br />
-      <label>Ebay Price:</label>
-      <input
-        type="text"
-        value={editedEbayPrice}
-        onChange={(e) => setEditedEbayPrice(e.target.value)}
-      />
-      <br />
-      <label>Amazon Price:</label>
-      <input
-        type="text"
-        value={editedAmazonPrice}
-        onChange={(e) => setEditedAmazonPrice(e.target.value)}
-      />
-      <br />
-      <label>Set Nom:</label>
-      <input
-        type="text"
-        value={editedSetNom}
-        onChange={(e) => setEditedSetNom(e.target.value)}
-      />
-      <br />
-      <label>Set Rareté:</label>
-      <input
-        type="text"
-        value={editedSetRarete}
-        onChange={(e) => setEditedSetRarete(e.target.value)}
-      />
-      <br />
-      <label>Id Utilisateur:</label>
-      <input
-        type="text"
-        value={editedIdUtilisateur}
-        onChange={(e) => setEditedIdUtilisateur(e.target.value)}
-      />
-      <br />
-      <button onClick={handleSaveChanges}>Enregistrer les modifications</button>
+    <div className="edit-page">
+      <div className="header">
+        <h1>Modification</h1>
+      </div>
+      <div className="container">
+        <div className="name">
+          <div className="text">
+          <label>Nom</label>
+          <input
+            type="text"
+            value={editedName}
+            onChange={(e) => setEditedName(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Race</label>
+          <input
+            type="text"
+            value={editedRace}
+            onChange={(e) => setEditedRace(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="img">
+          <div className="text">
+          <label>Image</label>
+          <input
+            type="text"
+            value={editedImg}
+            onChange={(e) => setEditedImg(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Image Petite</label>
+          <input
+            type="text"
+            value={editedImgPetite}
+            onChange={(e) => setEditedImgPetite(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Image Cropped</label>
+          <input
+            type="text"
+            value={editedImgCropped}
+            onChange={(e) => setEditedImgCropped(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="describe">
+          <div className="text">
+          <label>Description</label>
+          <textarea
+            value={editedDescription}
+            onChange={(e) => setEditedDescription(e.target.value)}
+            />
+        </div>
+          </div>
+        <div className="spaces">
+          <div className="text">
+          <label>Type</label>
+          <input
+            type="text"
+            value={editedType}
+            onChange={(e) => setEditedType(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Archetype</label>
+          <input
+            type="text"
+            value={editedArchetype}
+            onChange={(e) => setEditedArchetype(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Attribut</label>
+          <input
+            type="text"
+            value={editedAttribut}
+            onChange={(e) => setEditedAttribut(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="stats">
+          <div className="text">
+          <label>Attaque</label>
+          <input
+            type="text"
+            value={editedAttaque}
+            onChange={(e) => setEditedAttaque(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Défense</label>
+          <input
+            type="text"
+            value={editedDefense}
+            onChange={(e) => setEditedDefense(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Etoiles</label>
+          <input
+            type="text"
+            value={editedEtoiles}
+            onChange={(e) => setEditedEtoiles(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="price">
+          <div className="text">
+          <label>Prix Card Market</label>
+          <input
+            type="text"
+            value={editedCardMarketPrice}
+            onChange={(e) => setEditedCardMarketPrice(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Prix TGC Player</label>
+          <input
+            type="text"
+            value={editedTgcPlayerPrice}
+            onChange={(e) => setEditedTgcPlayerPrice(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Prix Ebay</label>
+          <input
+            type="text"
+            value={editedEbayPrice}
+            onChange={(e) => setEditedEbayPrice(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Prix Amazon</label>
+          <input
+            type="text"
+            value={editedAmazonPrice}
+            onChange={(e) => setEditedAmazonPrice(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="details">
+          <div className="text">
+          <label>Nom collection</label>
+          <input
+            type="text"
+            value={editedSetNom}
+            onChange={(e) => setEditedSetNom(e.target.value)}
+            />
+          </div>
+          <div className="text">
+          <label>Rareté</label>
+          <input
+            type="text"
+            value={editedSetRarete}
+            onChange={(e) => setEditedSetRarete(e.target.value)}
+            />  
+          </div>
+        </div>
+        <div className="btn">
+          <button onClick={handleSaveChanges}>Enregistrer</button>
+        </div>
+      </div>
     </div>
   );
 };

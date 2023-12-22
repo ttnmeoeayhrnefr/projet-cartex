@@ -2,11 +2,13 @@
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
+    // Affichage de la page si admin
     $DAO = new DAO($connexion);
     $User = $DAO->listUserById($_GET['user']);
     if($_COOKIE['role']==1) {
 ?>
 
+<!-- Mise a jour des utilisateurs -->
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -22,7 +24,7 @@
                     <h1>Panneau d'administration</h1>
                 </div>
                 <div class="disconnect-btn">
-                    <a href="panel.php" id="aDisc">
+                    <a href="disc.php" id="aDisc">
                         <img src="assets/logout.svg" alt="logout" id="disco">
                     </a>
                 </div>

@@ -22,6 +22,7 @@ body {
         width: 100vw;
         height: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
       }
@@ -229,7 +230,7 @@ body {
 
                 .msg {
                     display: flex;
-                    flex-direction: ;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
                 }

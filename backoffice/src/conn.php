@@ -19,6 +19,7 @@
 
             // Récupération de l'utilisateur par son nom d'utilisateur depuis la base de données
             $user = $dao->listUserByUsername($username);
+            session_destroy();
 
             // Vérification des informations d'identification
             if ($user && $user['role'] == '1' && password_verify($password, $user['mdp'])) {

@@ -2,6 +2,7 @@
 include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 
+// Affichage de la page si admin
 $DAO = new DAO($connexion);
 $user = $DAO->listAllUsers();
 if($_COOKIE['role']==1) {
@@ -10,6 +11,7 @@ if($_COOKIE['role']==1) {
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Panneau utilisateur -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +26,7 @@ if($_COOKIE['role']==1) {
                 <h1>Panneau d'administration</h1>
             </div>
             <div class="disconnect-btn">
-                <a href="panel.php" id="aDisc">
+                <a href="disc.php" id="aDisc">
                     <img src="assets/logout.svg" alt="logout" id="disco">
                 </a>
             </div>
@@ -45,6 +47,7 @@ if($_COOKIE['role']==1) {
                             </div>
                             <div class="gest-sct">
                                 <div class="userUpdateSct">
+                                    <!-- Affichage des utilisateur -->
                                     <?php
                                         echo "<table>";
                                         echo "<td><a href='user_add.php'>Ajouter utilisateur</a></td>";
