@@ -30,10 +30,104 @@
                     background-color: var(--color-primary);
                     width: 30vw;
                     border-radius: 10px;
+                    
+                  
+                      .card-type {
+                        position: absolute;
+                        display: flex;
+                        width: 30vw;
+                        height: 85vh;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px;
+                        background-color: var(--color-primary);
+                        color: var(--color-font);
+                        font-size: 1.5rem;
+                        z-index: 0; /* Assure que l'image de type est au-dessus de l'image de prévisualisation */
+                      }
+                      
+                      .card-image {
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 44.1vh;
+                        width: 22.8vw;
+                        top: 44.7vh;
+                        left: 9.9vw;
+                        background-color: var(--color-primary);
+                        color: var(--color-font);
+                        font-size: 1.5rem;
+                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                      }
 
-                    img {
-                        height: 100%;
+                      .card-name {
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        top: 30vh;
+                        left: 8.5vw;
+                        color: black;
+                        font-size: 1.5rem;
+                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                      }
+
+                    .stars-container {
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        top: 39.4vh;
+                        left: 13vw;
+                        color: var(--color-font);
+                        font-size: 1.5rem;
+                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+
+                        .star-image {
+                            width: 1.5rem;
+                            height: 1.5rem;
+                
+                        }
                     }
+                    
+                    .attaque {
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: black;
+                        font-size: 1rem;
+                        top: 103.9vh;
+                        left: 25.3vw;
+                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                    }
+
+                    .defense {
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: black;
+                        font-size: 1rem;
+                        top: 103.9vh;
+                        left: 31.3vw;
+                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                    }
+
+                    .description {
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: black;
+                        font-size: 1rem;
+                        top: 90.6vh;
+                        left: 8.8vw;
+                        z-index: 1; /* Assure que l'image de prévisualisation est en dessous de l'image de type */
+                    }
+
+
                 }
             }
 
