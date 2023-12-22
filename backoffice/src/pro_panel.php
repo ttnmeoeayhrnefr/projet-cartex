@@ -26,6 +26,7 @@
 include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 $DAO = new DAO($connexion);
+if($_COOKIE['role']==1) {
 ?>
 
 <!DOCTYPE html>
@@ -94,3 +95,8 @@ $DAO = new DAO($connexion);
 </body>
 
 </html>
+<?php
+    } else {
+        echo "vous n'avez pas les droits";
+    }
+?>
