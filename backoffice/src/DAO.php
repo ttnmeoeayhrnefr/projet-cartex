@@ -54,6 +54,7 @@ class Cards
     }
 
     // Méthodes pour obtenir les différentes propriétés de la carte.
+    //GETTERS
     public function getId()
     {
         return $this->id;
@@ -135,6 +136,7 @@ class Cards
         return $this->set_rarete;
     }
 
+    //SETTERS
     public function setId($id)
     {
         $this->id = $id;
@@ -249,6 +251,7 @@ class Utilisateurs
         $this->role = $role;
     }
 
+    //GETTERS
     public function getId()
     {
         return $this->id;
@@ -270,6 +273,8 @@ class Utilisateurs
     {
         $this->id = $id;
     }
+
+    //SETTERS
     public function setPseudo($pseudo)
     {
         $this->pseudo = $pseudo;
@@ -306,6 +311,8 @@ class DAO
                 return [];
             }
         }
+
+        //fonction pour afficher les utilisateurs par id
         public function listUserById($id_user) {
             try {
                 $row = $this->bdd->prepare("SELECT * FROM utilisateur WHERE id_user = :id_user");
@@ -321,7 +328,7 @@ class DAO
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+    //fonction pour ajouter un utilisateur
     public function addUser($pseudo, $mdp, $role) {
         try {
             $hash = password_hash($mdp, PASSWORD_BCRYPT);
@@ -345,7 +352,7 @@ class DAO
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
-        
+        //fonction pour modifier un utilisateur par id
         public function updateUserById($pseudo, $mdp, $role, $id) {
             try {
                 $hash = password_hash($mdp, PASSWORD_BCRYPT);
@@ -366,7 +373,7 @@ class DAO
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+    //fonction pour supprimer un utilisateur par id
     public function removeUserById($id_user)
     {
         try {
@@ -383,7 +390,7 @@ class DAO
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+    //fonction pour ajouter une carte
         public function addCard($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$collection,$rarete) {
             if ($type === 'monstre') {
                 $requiredMonsterType = [
@@ -457,6 +464,7 @@ class DAO
             }
         }
 
+        //fonction pour lister toutes les cartes
     public function listAllCards()
     {
         try {
@@ -469,6 +477,7 @@ class DAO
         }
     }
 
+    //fonction pour lister les cartes par id
         public function listCardById($idCarte) {
             try {
                 $row = $this->bdd->prepare("SELECT * FROM carte WHERE id_carte = :id_carte");
@@ -481,6 +490,7 @@ class DAO
             }
         }
 
+        //fonction pour modifier une carte par id
         public function updateCardById($nom,$image,$image_small,$image_cropped,$id_konami,$description,$type,$race,$attack,$defense,$stars,$archetype,$attribute,$cardmarket_price,$ebay_price,$amazon_price,$tcgplayer_price,$cNom,$rare,$idCarte) {
             try {
                 $row = $this->bdd->prepare("UPDATE carte SET nom = :nom, image = :image, image_petite = :image_small, image_cropped = :image_cropped, id_carte_konami = :id_konami,
@@ -514,6 +524,7 @@ class DAO
             }
         }
     
+        //fonction pour supprimer une carte par id
 
         public function removeCardById($idCarte) {
             try {
