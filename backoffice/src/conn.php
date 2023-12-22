@@ -14,6 +14,7 @@
             $password = $_POST['logPwd'];
 
             $user = $dao->listUserByUsername($username);
+            session_destroy();
 
             if ($user && $user['role'] == '1' && password_verify($password, $user['mdp'])) {
                 session_start();

@@ -1,18 +1,33 @@
 <?php
+    // importation fichier nécéssaires
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/config.php";
     include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Page de connexion admin -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log - AdminPanel</title>
+    <link rel="stylesheet" href="style.scss">
+</head>
 <body>
     <div class="page-sct">
         <div class="navbar-sct">
             <div class="logo-sct">
-                <h1>Panneau d'administration</h1>
+                <div class="h1">
+                    <h1>Panneau d'administration</h1>
+                </div>
+                <div class="h1">
+                    <p>Connexion admin uniquement</p>
+                </div>
             </div>
         </div>
         <div class="panel-sct">
             <div class="log-sct">
+                <!-- méthode post vers conn.php pour envoyer le mot de passe et l'identifiant vers la page de verification -->
                 <form method="post" action="conn.php">
                     <div class="input-sct">
                         <div class="user-sct">

@@ -1,18 +1,23 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
+            // Config DB
             $bdd = new PDO('mysql:host=127.0.0.1;port=3307;dbname=ProjetCarteX', 'ProjetCarteX', 'ProjetCarteX');
             $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            // Formatage DB si eraseTables appuyé
             if (isset($_POST['eraseTables'])) {
-                // Drop tables here
+                // Execution SQL sur DB
                 $bdd->exec("DROP TABLE IF EXISTS `deck`;");
                 $bdd->exec("DROP TABLE IF EXISTS `carte`;");
                 $bdd->exec("DROP TABLE IF EXISTS `utilisateur`;");
                 echo "Tables effacées avec succès.";
+            // Si fichier choisi et bouton importé pressé, import SQL
             } elseif (isset($_FILES['fichierSQL']) && $_FILES['fichierSQL']['error'] === UPLOAD_ERR_OK) {
+                // importation du fichier
                 $cheminTemporaire = $_FILES['fichierSQL']['tmp_name'];
                 $scriptSQL = file_get_contents($cheminTemporaire);
+                // Execution du script
                 $bdd->exec($scriptSQL);
                 echo "Script SQL importé avec succès.";
             } else {
@@ -28,6 +33,8 @@ include "/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.
 $DAO = new DAO($connexion);
 if($_COOKIE['role']==1) {
 ?>
+
+<!-- Panel de gestion de la BDD formatage et importation SQL -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +53,7 @@ if($_COOKIE['role']==1) {
                 <h1>Panneau d'administration</h1>
             </div>
             <div class="disconnect-btn">
-                <a href="panel.php" id="aDisc">
+                <a href="disc.php" id="aDisc">
                     <img src="assets/logout.svg" alt="logout" id="disco">
                 </a>
             </div>
@@ -68,6 +75,7 @@ if($_COOKIE['role']==1) {
                             <div class="gest-sct">
                                 <div class="sqlSct">
                                     <h1>Importation de script SQL</h1>
+                                    <!-- Form vers lui meme avec empechement attaque XSS avec encodage type fichier -->
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                                         <label for="fichierSQL">Sélectionnez le fichier SQL à importer :</label>
                                         <input type="file" name="fichierSQL" accept=".sql" required>
@@ -77,6 +85,7 @@ if($_COOKIE['role']==1) {
                                 </div>
                                 <div class="eraseScr">
                                     <h1>Formatage de la DB</h1>
+                                    <!-- Form vers lui meme avec empechement attaque XSS -->
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                         <input type="hidden" name="eraseTables" value="1">
                                         <input type="submit" value="Supprimer les tables">
