@@ -1,10 +1,12 @@
 <?php
 
+
+use PHPUnit\Framework\TestCase;
 // Inclusion de la classe DAO nécessaire pour les tests
-require_once("/Applications/XAMPP/xamppfiles/htdocs/projet-cartex/backoffice/src/DAO.php");
+require_once("./src/DAO/DAO.php");
 
 // Importation de la classe TestCase de PHPUnit
-use PHPUnit\Framework\TestCase;
+
 
 // Définition de la classe de tests pour le DAO
 class DAOTest extends TestCase
